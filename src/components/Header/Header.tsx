@@ -3,7 +3,7 @@ import { FlexContainer } from '../FlexContainer'
 
 export const Header = () => {
     return (
-        <header className="fixed top-0 left-0 w-full px-5">
+        <header className="fixed top-0 left-0 w-full px-5 bg-[#0a0a0a] z-50">
             <FlexContainer
                 justifyContent="justify-between"
                 alignItems="items-center"
