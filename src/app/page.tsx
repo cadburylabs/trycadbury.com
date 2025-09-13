@@ -1,3 +1,4 @@
+import { Benefits } from '@/components/Benefits/Benefits'
 import { Challenge } from '@/components/Challenge/Challenge'
 import { Fix } from '@/components/Fix/Fix'
 import { Header } from '@/components/Header/Header'
@@ -13,6 +14,7 @@ export default function Home() {
                 <Challenge />
                 <Fix />
                 <Online />
+                <Benefits />
             </main>
             <footer />
         </>
