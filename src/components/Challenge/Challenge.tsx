@@ -4,7 +4,7 @@ import { H2 } from '../Typography/H2'
 import { H3 } from '../Typography/H3'
 import { P } from '../Typography/P'
 
-const fixConfig = [
+const challengeConfig = [
     {
         index: 'CH-01',
         title: 'One big Game of Telephone',
@@ -39,7 +39,7 @@ export const Challenge = () => {
                 gap="gap-5"
                 className="border-r-[0.5px] border-b-[0.5px] border-blue-100"
             >
-                {fixConfig.map((card) => (
+                {challengeConfig.map((card) => (
                     <FlexContainer direction="flex-col" key={card.index}>
                         <FlexContainer
                             justifyContent="justify-between"
