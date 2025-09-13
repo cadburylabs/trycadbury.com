@@ -1,5 +1,6 @@
 import { Benefits } from '@/components/Benefits/Benefits'
 import { Challenge } from '@/components/Challenge/Challenge'
+import { Contact } from '@/components/Contact/Contact'
 import { Fix } from '@/components/Fix/Fix'
 import { Header } from '@/components/Header/Header'
 import { Intro } from '@/components/Intro/Intro'
@@ -17,6 +18,7 @@ export default function Home() {
                 <Online />
                 <Benefits />
                 <Plans />
+                <Contact />
             </main>
             <footer />
         </>
