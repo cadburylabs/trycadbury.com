@@ -25,7 +25,7 @@ const fixConfig = [
     },
 ]
 
-export const Fix = () => {
+export const Challenge = () => {
     return (
         <section className="flex mx-5">
             <FlexContainer className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-blue-100">
