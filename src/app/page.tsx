@@ -4,6 +4,7 @@ import { Fix } from '@/components/Fix/Fix'
 import { Header } from '@/components/Header/Header'
 import { Intro } from '@/components/Intro/Intro'
 import { Online } from '@/components/Online/Online'
+import { Plans } from '@/components/Plans/Plans'
 
 export default function Home() {
     return (
@@ -15,6 +16,7 @@ export default function Home() {
                 <Fix />
                 <Online />
                 <Benefits />
+                <Plans />
             </main>
             <footer />
         </>
