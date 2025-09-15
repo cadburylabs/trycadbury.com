@@ -2,6 +2,7 @@ import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H1 } from '../Typography/H1'
 import { P } from '../Typography/P'
+import { Button } from '../Button'
 
 export const Intro = () => {
     return (
@@ -9,28 +10,41 @@ export const Intro = () => {
             <FlexContainer
                 direction="flex-col"
                 justifyContent="justify-center"
-                className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-blue-100 flex-1"
+                gap="gap-10"
+                className="px-10 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] flex-1"
             >
                 <H1>
                     Cadbury is an AI <br />
-                    <span className="text-blue-400">Powered NetSuite</span>
+                    <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
+                        Powered NetSuite
+                    </span>
                     <br />
                     Consultant
                 </H1>
-                <P>
-                    Cadbury builds workflows, edits PDF templates, and creates
-                    saved searches in minutes. Trained on a proprietary corpus
-                    of data sourced from hundreds of expert consultants, Cadbury
-                    is the last consultant you’ll ever need.
-                </P>
-                <button className="py-2.5 px-4 bg-[#0DBFBB] uppercase w-fit">
-                    Schedule a Consultation
-                </button>
+                <FlexContainer
+                    direction="flex-col"
+                    gap="gap-2.5"
+                    className="max-w-[500px]"
+                >
+                    <P>
+                        Cadbury builds workflows,{' '}
+                        <span className="text-[#6DE1CE] font-medium">
+                            edits PDF templates
+                        </span>
+                        , and creates saved searches in minutes.
+                    </P>
+                    <P>
+                        Trained on a proprietary corpus of data sourced from
+                        hundreds of expert consultants, Cadbury is the last
+                        consultant you’ll ever need.
+                    </P>
+                </FlexContainer>
+                <Button>Schedule a Consultation</Button>
             </FlexContainer>
 
             <FlexContainer
                 center
-                className="flex-1 border-r-[0.5px] border-b-[0.5px] border-blue-100"
+                className="flex-1 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 Graphics
             </FlexContainer>

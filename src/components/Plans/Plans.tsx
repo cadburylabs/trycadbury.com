@@ -67,7 +67,7 @@ export const Plans = () => {
                         <FlexContainer gap="gap-10">
                             <H3>{card.title}</H3>
                             <H3>
-                                <span className="text-blue-400">
+                                <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
                                     {card.price}
                                 </span>
                                 <span className="text-sm">/month</span>

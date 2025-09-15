@@ -28,12 +28,15 @@ const fixConfig = [
 export const Fix = () => {
     return (
         <section className="flex flex-col mx-5">
-            <FlexContainer className="border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-blue-100">
+            <FlexContainer className="border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44]">
                 <H2>
-                    The <span className="text-blue-400">Fix</span>
+                    The{' '}
+                    <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
+                        Fix
+                    </span>
                 </H2>
             </FlexContainer>
-            <FlexContainer className="pt-10 border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-blue-100">
+            <FlexContainer className="pt-10 border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44]">
                 {fixConfig.map((card) => (
                     <FlexContainer key={card.index} direction="flex-col">
                         <div>{card.index}</div>

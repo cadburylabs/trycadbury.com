@@ -28,22 +28,24 @@ const challengeConfig = [
 export const Challenge = () => {
     return (
         <section className="flex mx-5">
-            <FlexContainer className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-blue-100">
+            <FlexContainer className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]">
                 <H2>
                     The <br />
-                    <span className="text-blue-400">Challenge</span>
+                    <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
+                        Challenge
+                    </span>
                 </H2>
             </FlexContainer>
             <FlexContainer
                 direction="flex-col"
                 gap="gap-5"
-                className="border-r-[0.5px] border-b-[0.5px] border-blue-100"
+                className="border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 {challengeConfig.map((card) => (
                     <FlexContainer direction="flex-col" key={card.index}>
                         <FlexContainer
                             justifyContent="justify-between"
-                            className="border-b-[0.5px] border-blue-100"
+                            className="border-b-[0.5px] border-[#363E44]"
                         >
                             <div>logo</div> <div>{card.index}</div>
                         </FlexContainer>

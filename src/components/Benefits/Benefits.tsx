@@ -7,12 +7,12 @@ import { P } from '../Typography/P'
 export const Benefits = () => {
     return (
         <section className="flex mx-5 flex-col">
-            <FlexContainer className="border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-blue-100">
+            <FlexContainer className="border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44]">
                 <H2>Benefits</H2>
             </FlexContainer>
             <FlexContainer
                 direction="flex-row"
-                className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-blue-100"
+                className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <FlexContainer alignItems="items-center">
                     <FlexContainer
