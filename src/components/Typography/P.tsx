@@ -14,8 +14,8 @@ export const P = forwardRef<
     (
         {
             children,
-            fontSize = 'text-[15px] md:text-[16px]',
-            opacity = 'opacity-90',
+            fontSize = 'text-[15px] md:text-[17px]',
+            opacity = 'opacity-70',
             role,
             tabIndex,
             className,

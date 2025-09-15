@@ -10,14 +10,14 @@ export const H2 = forwardRef<
     }
 >(
     (
-        { children, fontSize = 'text-5xl md:text-6xl', className, id = '' },
+        { children, fontSize = 'text-5xl md:text-8xl', className, id = '' },
         ref
     ) => {
         return (
             <h2
                 {...(id ? { id } : {})}
                 ref={ref}
-                className={`${className} ${fontSize} scroll-m-20 tracking-tight`}
+                className={`${className} ${fontSize} font-medium scroll-m-20 tracking-tight`}
             >
                 {children}
             </h2>
