@@ -37,7 +37,7 @@ export function TypographyLead({
     children: ReactNode
     className?: string
 }) {
-    return <p className={`${className} text-xl`}>{children}</p>
+    return <p className={`${className} font-medium text-lg`}>{children}</p>
 }
 
 export function TypographyLarge({

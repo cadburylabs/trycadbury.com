@@ -3,16 +3,20 @@ import { FlexContainer } from '../FlexContainer'
 import { H1 } from '../Typography/H1'
 import { P } from '../Typography/P'
 import { Button } from '../Button'
+import Image from 'next/image'
+import intro from '@/assets/intro.svg'
 
 export const Intro = () => {
     return (
-        <section className="mx-5 flex min-h-screen pt-16">
+        <section className="relative mx-5 flex min-h-screen pt-16 bg-gradient-dots">
             <FlexContainer
                 direction="flex-col"
                 justifyContent="justify-center"
                 gap="gap-10"
-                className="px-10 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] flex-1"
+                className="relative px-10 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] flex-1"
             >
+                <div className="animate-move-y-left" />
+                <div className="animate-move-y-right" />
                 <H1>
                     Cadbury is an AI <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -44,10 +48,13 @@ export const Intro = () => {
 
             <FlexContainer
                 center
-                className="flex-1 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="relative flex-1 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
-                Graphics
+                <div className="animate-move-y-right" />
+                <Image src={intro} alt="Intro graphic" />
             </FlexContainer>
+
+            <div className="animate-move-x-bottom" />
         </section>
     )
 }
