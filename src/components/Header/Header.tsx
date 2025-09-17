@@ -1,8 +1,9 @@
 import React from 'react'
 import { FlexContainer } from '../FlexContainer'
+import { TypographyLead } from '../Typography/Typography'
 import Image from 'next/image'
 import logo from '@/assets/logo.svg'
-import { TypographyLead } from '../Typography/Typography'
+import icoButton from '@/assets/icoButton.svg'
 
 const menuConfig = [
     'The Challenge',
@@ -18,24 +19,34 @@ export const Header = () => {
             <FlexContainer
                 justifyContent="justify-between"
                 alignItems="items-center"
-                className="relative border-b-[0.5px] border-[#363E44] py-2.5"
+                className="relative  py-3.5 px-5 border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-x-bottom" />
                 <FlexContainer width="w-fit" gap="gap-[7px]">
                     <Image src={logo} alt="Cadbury logo" />
-                    <TypographyLead>Cadbury</TypographyLead>
+                    <TypographyLead className="font-pp-montreal">
+                        Cadbury
+                    </TypographyLead>
                 </FlexContainer>
                 <nav>
-                    <ul className="flex gap-4">
+                    <ul className="flex gap-7">
                         {menuConfig.map((link) => (
-                            <li key={link} className="cursor-pointer">
+                            <li
+                                key={link}
+                                className="cursor-pointer tracking-tight text-[#cfdae5]"
+                            >
                                 {link}
                             </li>
                         ))}
                     </ul>
                 </nav>
-                <button className="py-2.5 px-4 bg-gradient-to-r text-[15px] from-[#0DBFBB33] to-[#0F8D8C33] text-[#6DE1CE] uppercase cursor-pointer">
+                <button className="flex gap-3 px-3.5 py-2.5 bg-gradient-to-r text-[15px] from-[#0DBFBB33] to-[#0F8D8C33] text-[#6DE1CE] font-medium tracking-tight uppercase cursor-pointer">
                     Free demo
+                    <Image
+                        src={icoButton}
+                        alt="button icon"
+                        className="inline-block"
+                    />
                 </button>
             </FlexContainer>
         </header>

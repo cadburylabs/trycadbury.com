@@ -24,11 +24,6 @@ body {
     font-weight: 400;
 }
 
-header {
-    background: linear-gradient(282deg, #090d14 0%, #121a21 100%);
-    background: linear-gradient(in oklch, 282deg, #090d14 0%, #121a21 100%);
-}
-
 .font-pp-montreal {
     font-family: 'PPMontreal', sans-serif;
 }
