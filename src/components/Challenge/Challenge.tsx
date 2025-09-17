@@ -1,8 +1,7 @@
 import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
-import { H3 } from '../Typography/H3'
-import { P } from '../Typography/P'
+import { ChallengeCard } from './ChallengeCard'
 
 const challengeConfig = [
     {
@@ -19,7 +18,7 @@ const challengeConfig = [
     },
     {
         index: 'CH-03',
-        title: 'Developer experience? What developer experience?',
+        title: 'Developer experience?\nWhat developer experience?',
         description:
             'In NetSuite, there is no local environment, no version control, and no testing framework. Without this infrastructure, existing consultants move slowly and are prone to making errors.',
     },
@@ -27,8 +26,21 @@ const challengeConfig = [
 
 export const Challenge = () => {
     return (
-        <section className="flex mx-5">
-            <FlexContainer className="border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]">
+        <section className="relative flex mx-5 bg-gradient-dots">
+            <FlexContainer
+                direction="flex-col"
+                gap="gap-[90px]"
+                className="relative py-32 px-14 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]"
+            >
+                <div className="animate-move-y-left" />
+                <div className="animate-move-y-right" />
+                <FlexContainer
+                    justifyContent="justify-between"
+                    className=" font-roboto-mono tracking-tight text-[#E4ECF4] uppercase"
+                >
+                    <span>Our Problem</span>
+                    <span>/01</span>
+                </FlexContainer>
                 <H2>
                     The <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -38,22 +50,20 @@ export const Challenge = () => {
             </FlexContainer>
             <FlexContainer
                 direction="flex-col"
-                gap="gap-5"
-                className="border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                gap="gap-[120px]"
+                className="relative py-32 px-14 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
+                <div className="animate-move-y-right" />
                 {challengeConfig.map((card) => (
-                    <FlexContainer direction="flex-col" key={card.index}>
-                        <FlexContainer
-                            justifyContent="justify-between"
-                            className="border-b-[0.5px] border-[#363E44]"
-                        >
-                            <div>logo</div> <div>{card.index}</div>
-                        </FlexContainer>
-                        <H3>{card.title}</H3>
-                        <P>{card.description}</P>
-                    </FlexContainer>
+                    <ChallengeCard
+                        key={card.index}
+                        index={card.index}
+                        title={card.title}
+                        description={card.description}
+                    />
                 ))}
             </FlexContainer>
+            <div className="animate-move-x-bottom" />
         </section>
     )
 }
