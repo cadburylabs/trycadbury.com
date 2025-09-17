@@ -14,7 +14,7 @@ export const Intro = () => {
                 direction="flex-col"
                 justifyContent="justify-center"
                 gap="gap-10"
-                className="relative pl-14 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] flex-1"
+                className="relative px-14 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-y-left" />
                 <div className="animate-move-y-right" />
@@ -49,7 +49,7 @@ export const Intro = () => {
 
             <FlexContainer
                 center
-                className="relative flex-1 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="px-14 relative border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-y-right" />
                 <Image src={intro} alt="Intro graphic" />
