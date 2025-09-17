@@ -98,3 +98,13 @@ body {
     background-repeat: repeat, no-repeat;
     background-size: 1920px 1080px, cover;
 }
+
+.button-background {
+    background: linear-gradient(264deg, #0dbfbb 2.45%, #0f8d8c 94.29%);
+    background: linear-gradient(
+        in oklch,
+        264deg,
+        #0dbfbb 2.45%,
+        #0f8d8c 94.29%
+    );
+}
