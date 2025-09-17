@@ -28,7 +28,7 @@ export const P = forwardRef<
                 ref={ref}
                 role={role}
                 tabIndex={tabIndex}
-                className={`${className} ${fontSize} ${opacity} leading-5`}
+                className={`${className} ${fontSize} ${opacity} text-[#E4ECF4] leading-5`}
                 {...props}
             >
                 {children}

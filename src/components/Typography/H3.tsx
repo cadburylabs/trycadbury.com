@@ -7,11 +7,11 @@ type H3Props = HTMLProps<HTMLHeadingElement> & {
 }
 
 export const H3 = forwardRef<HTMLHeadingElement, H3Props>(
-    ({ children, fontSize = 'text-[32px]', className = '', ...props }, ref) => {
+    ({ children, fontSize = 'text-[40px]', className = '', ...props }, ref) => {
         return (
             <h3
                 ref={ref}
-                className={`${className} ${fontSize} scroll-m-20 md:text-[40px]`}
+                className={`${className} ${fontSize} tracking-tight font-medium scroll-m-20 md:text-[40px]`}
                 {...props}
             >
                 {children}
