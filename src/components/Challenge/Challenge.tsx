@@ -2,6 +2,9 @@ import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import { ChallengeCard } from './ChallengeCard'
+import Image from 'next/image'
+import pointIco from '@/assets/point.png'
+import phone from '@/assets/phone.svg'
 
 const challengeConfig = [
     {
@@ -26,10 +29,10 @@ const challengeConfig = [
 
 export const Challenge = () => {
     return (
-        <section className="relative flex mx-5 bg-gradient-dots">
+        <section className="relative flex mx-5">
             <FlexContainer
                 direction="flex-col"
-                gap="gap-[90px]"
+                gap="gap-[50px]"
                 className="relative py-32 px-14 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-y-left" />
@@ -38,15 +41,26 @@ export const Challenge = () => {
                     justifyContent="justify-between"
                     className=" font-roboto-mono tracking-tight text-[#E4ECF4] uppercase"
                 >
-                    <span>Our Problem</span>
+                    <FlexContainer
+                        width="w-fit"
+                        gap="gap-1.5"
+                        alignItems="items-center"
+                    >
+                        <Image src={pointIco} alt="" /> Our Problem
+                    </FlexContainer>
                     <span>/01</span>
                 </FlexContainer>
-                <H2>
+                <H2 className="pt-[30px]">
                     The <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
                         Challenge
                     </span>
                 </H2>
+                <Image
+                    src={phone}
+                    alt="preview video"
+                    className="max-w-[400px]"
+                />
             </FlexContainer>
             <FlexContainer
                 direction="flex-col"

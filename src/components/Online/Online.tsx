@@ -4,6 +4,7 @@ import { H2 } from '../Typography/H2'
 import Image from 'next/image'
 import clock from '@/assets/clock.svg'
 import profile from '@/assets/profile.svg'
+import pointIco from '@/assets/point.png'
 
 export const Online = () => {
     return (
@@ -15,7 +16,14 @@ export const Online = () => {
             >
                 <div className="animate-move-y-left" />
                 <div className="animate-move-y-right" />
-                <span className="uppercase">How it works</span>
+                <FlexContainer
+                    width="w-fit"
+                    gap="gap-1.5"
+                    alignItems="items-center"
+                    className="uppercase"
+                >
+                    <Image src={pointIco} alt="" /> How it works
+                </FlexContainer>
                 <H2>
                     Online in <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">

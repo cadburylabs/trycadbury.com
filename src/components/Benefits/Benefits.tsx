@@ -5,6 +5,7 @@ import { H3 } from '../Typography/H3'
 import { P } from '../Typography/P'
 import Image from 'next/image'
 import visual from '@/assets/visual.png'
+import pointIco from '@/assets/point.png'
 
 export const Benefits = () => {
     return (
@@ -17,7 +18,14 @@ export const Benefits = () => {
                     alignItems="items-center"
                 >
                     <H2>Benefits</H2>
-                    <span className="uppercase">Value</span>
+                    <FlexContainer
+                        width="w-fit"
+                        gap="gap-1.5"
+                        alignItems="items-center"
+                        className="uppercase"
+                    >
+                        <Image src={pointIco} alt="" /> Value
+                    </FlexContainer>
                 </FlexContainer>
                 <FlexContainer
                     justifyContent="justify-end"

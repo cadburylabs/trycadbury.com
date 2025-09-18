@@ -8,6 +8,8 @@ import fixImage2 from '@/assets/fix_2.png'
 import fixImage3 from '@/assets/fix_3.png'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Image from 'next/image'
+import pointIco from '@/assets/point.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -76,7 +78,6 @@ export const Fix = () => {
             ref={sectionRef}
             className="relative flex flex-col mx-5 overflow-hidden border-[0.5px] border-[#363E44]"
         >
-            {/* Header (no sticky) */}
             <FlexContainer
                 justifyContent="justify-between"
                 className="relative py-10 px-14 border-b-[0.5px] border-[#363E44]"
@@ -91,7 +92,14 @@ export const Fix = () => {
                             Fix
                         </span>
                     </H2>
-                    <span className="uppercase">Solution</span>
+                    <FlexContainer
+                        width="w-fit"
+                        gap="gap-1.5"
+                        alignItems="items-center"
+                        className="uppercase"
+                    >
+                        <Image src={pointIco} alt="" /> Solution
+                    </FlexContainer>
                 </FlexContainer>
                 <FlexContainer
                     justifyContent="justify-end"
@@ -101,7 +109,6 @@ export const Fix = () => {
                 </FlexContainer>
             </FlexContainer>
 
-            {/* Track (only flex + spacing, no borders) */}
             <FlexContainer
                 ref={trackRef}
                 gap="gap-[120px]"

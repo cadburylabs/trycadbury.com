@@ -4,12 +4,11 @@ import { H1 } from '../Typography/H1'
 import { P } from '../Typography/P'
 import { Button } from '../Button'
 import Image from 'next/image'
-import intro from '@/assets/intro.svg'
 import videoPreview from '@/assets/videoPreview.png'
 
 export const Intro = () => {
     return (
-        <section className="relative mx-5 flex min-h-screen pt-16 bg-gradient-dots">
+        <section className="relative mx-5 flex min-h-screen pt-16">
             <FlexContainer
                 direction="flex-col"
                 justifyContent="justify-center"
@@ -33,9 +32,7 @@ export const Intro = () => {
                 >
                     <P>
                         Cadbury builds workflows,{' '}
-                        <span className="text-[#6DE1CE] font-medium">
-                            edits PDF templates
-                        </span>
+                        <span className="font-medium">edits PDF templates</span>
                         , and creates saved searches in minutes.
                     </P>
                     <P>
@@ -52,13 +49,14 @@ export const Intro = () => {
                 className="px-14 relative border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-y-right" />
-                <Image src={intro} alt="Intro graphic" />
+                <Image
+                    src={videoPreview}
+                    alt="preview video"
+                    className="max-w-[400px]"
+                />
             </FlexContainer>
 
             <div className="animate-move-x-bottom" />
-            <div className="absolute right-0 bottom-0 w-48">
-                <Image src={videoPreview} alt="preview video" />
-            </div>
         </section>
     )
 }
