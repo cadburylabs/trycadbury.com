@@ -15,7 +15,7 @@ export const Online = () => {
             >
                 <div className="animate-move-y-left" />
                 <div className="animate-move-y-right" />
-                <span>How it works</span>
+                <span className="uppercase">How it works</span>
                 <H2>
                     Online in <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -29,6 +29,7 @@ export const Online = () => {
                 className="relative py-10 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
                 alignItems="items-center"
             >
+                <span className="uppercase w-full text-right px-14">/03</span>
                 <div className="animate-move-y-right" />
                 <Image src={profile} alt="Profile" />
                 <span className="-m-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">

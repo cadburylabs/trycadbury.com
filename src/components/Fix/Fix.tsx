@@ -91,7 +91,7 @@ export const Fix = () => {
                             Fix
                         </span>
                     </H2>
-                    <span>Solution</span>
+                    <span className="uppercase">Solution</span>
                 </FlexContainer>
                 <FlexContainer
                     justifyContent="justify-end"
