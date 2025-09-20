@@ -29,7 +29,7 @@ export const Header = () => {
                     </TypographyLead>
                 </FlexContainer>
                 <nav>
-                    <ul className="flex gap-7">
+                    <ul className="hidden lg:flex gap-7">
                         {menuConfig.map((link) => (
                             <li
                                 key={link}
@@ -39,8 +39,9 @@ export const Header = () => {
                             </li>
                         ))}
                     </ul>
+                    <a className="inline-block lg:hidden">MENU</a>
                 </nav>
-                <button className="flex gap-3 px-3.5 py-2.5 bg-gradient-to-r text-[15px] from-[#0DBFBB33] to-[#0F8D8C33] text-[#6DE1CE] font-medium tracking-tight uppercase cursor-pointer">
+                <button className="hidden lg:flex gap-3 px-3.5 py-2.5 bg-gradient-to-r text-[15px] from-[#0DBFBB33] to-[#0F8D8C33] text-[#6DE1CE] font-medium tracking-tight uppercase cursor-pointer">
                     Let’s talk
                     <Image
                         src={icoButton}

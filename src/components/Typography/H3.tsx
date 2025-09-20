@@ -7,7 +7,15 @@ type H3Props = HTMLProps<HTMLHeadingElement> & {
 }
 
 export const H3 = forwardRef<HTMLHeadingElement, H3Props>(
-    ({ children, fontSize = 'text-[40px]', className = '', ...props }, ref) => {
+    (
+        {
+            children,
+            fontSize = 'text-[28px] md:text-[40px]',
+            className = '',
+            ...props
+        },
+        ref
+    ) => {
         return (
             <h3
                 ref={ref}

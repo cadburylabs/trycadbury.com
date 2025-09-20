@@ -11,7 +11,7 @@ export const Button = ({
 }) => {
     return (
         <button
-            className={`${className} flex gap-1.5 w-fit p-[30px] rounded-lg button-background uppercase text-lg font-medium font-roboto-mono cursor-pointer`}
+            className={`${className} w-full lg:w-fit p-5 lg:p-[30px] flex gap-1.5 justify-center lg:justify-start rounded-lg button-background uppercase text-[15px] lg:text-lg font-medium font-roboto-mono cursor-pointer`}
         >
             {children}
             <Image
