@@ -14,18 +14,24 @@ type FixCardProps = {
 export const FixCard = ({ index, title, image, description }: FixCardProps) => {
     return (
         <FlexContainer
-            gap="gap-[30px]"
+            gap="lg:gap-[30px]"
             direction="flex-col"
-            className="pb-[30px]"
+            className="lg:pb-[30px]"
         >
-            <FlexContainer justifyContent="justify-between">
-                <span>{index}</span> <span>/</span>
+            <FlexContainer className="justify-end lg:justify-between">
+                <span>{index}</span> <span className="hidden lg:block">/</span>
             </FlexContainer>
-            <FlexContainer alignItems="items-center" gap="gap-[30px]">
-                <Image src={image} alt="logo" />
-                <FlexContainer gap="gap-[30px]" direction="flex-col">
-                    <H3>{title}</H3>
-                    <P>{description}</P>
+            <FlexContainer
+                direction="flex-col lg:flex-row"
+                gap="gap-2 lg:gap-[30px]"
+                className="lg:items-center"
+            >
+                <Image src={image} alt="logo" className="w-[100px] lg:w-auto" />
+                <FlexContainer gap="lg:gap-[30px]" direction="flex-col">
+                    <H3 className="pb-4 lg:pb-0 border-b-[0.5px] lg:border-none border-[#363E44]">
+                        {title}
+                    </H3>
+                    <P className="pt-4 lg:pt-0">{description}</P>
                 </FlexContainer>
             </FlexContainer>
         </FlexContainer>
