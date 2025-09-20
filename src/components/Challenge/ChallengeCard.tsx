@@ -2,28 +2,35 @@ import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H3 } from '../Typography/H3'
 import { P } from '../Typography/P'
-import { Box } from '../Box'
+import Image, { StaticImageData } from 'next/image'
 
 type ChallengeCardProps = {
     index: string
+    icon: StaticImageData
     title: string
     description: string
 }
 
 export const ChallengeCard = ({
     index,
+    icon,
     title,
     description,
 }: ChallengeCardProps) => {
     return (
         <FlexContainer direction="flex-col">
-            <Box className="border-b-[0.5px] border-[#363E44] pb-[30px]">
+            <FlexContainer
+                direction="flex-col"
+                gap="gap-2"
+                className="relative border-b-[0.5px] border-[#363E44] pb-[15px] lg:pb-[30px]"
+            >
+                <Image src={icon} alt={title} className="lg:hidden" />
                 <H3 className="whitespace-pre-line">{title}</H3>
 
-                <div className="absolute right-0 top-1/4">{index}</div>
-            </Box>
+                <div className="absolute right-0 top-0 lg:top-1/4">{index}</div>
+            </FlexContainer>
 
-            <P className="pt-[30px]">{description}</P>
+            <P className="pt-[15px] lg:pt-[30px]">{description}</P>
         </FlexContainer>
     )
 }
