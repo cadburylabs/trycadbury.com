@@ -8,15 +8,16 @@ import videoPreview from '@/assets/videoPreview.png'
 
 export const Intro = () => {
     return (
-        <section className="relative mx-5 flex min-h-screen pt-16">
+        <section className="relative mx-5 flex flex-col lg:flex-row lg:min-h-screen pt-14 lg:pt-16">
             <FlexContainer
                 direction="flex-col"
                 justifyContent="justify-center"
                 gap="gap-10"
-                className="relative px-14 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="relative px-4 lg:px-14 pt-5 pb-10 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] text-center lg:text-left"
             >
                 <div className="animate-move-y-left" />
                 <div className="animate-move-y-right" />
+
                 <H1>
                     Cadbury is an <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -46,13 +47,13 @@ export const Intro = () => {
 
             <FlexContainer
                 center
-                className="px-14 relative border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="relative px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-y-right" />
                 <Image
                     src={videoPreview}
                     alt="preview video"
-                    className="max-w-[400px]"
+                    className="max-w-[400px] px-4 py-8"
                 />
             </FlexContainer>
 
