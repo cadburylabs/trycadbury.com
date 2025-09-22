@@ -6,43 +6,7 @@ import { P } from '../Typography/P'
 import { H3 } from '../Typography/H3'
 import Image from 'next/image'
 import pointIco from '@/assets/point.png'
-
-const plansConfig = [
-    {
-        className: 'border-l-[0.5px]',
-        title: 'Self serve',
-        monthly: 49,
-        description:
-            'You deserve to be growing your business, not managing another consultant.',
-        publishing: [
-            'Integration with the Webflow Enterprise platform',
-            'Integrations with CRMs and marketing systems of record',
-            'Integrations with ABM tools',
-        ],
-        hosting: [
-            '50 form submits (lifetime)',
-            '1 GB bandwidth',
-            '20 CMS collections',
-        ],
-    },
-    {
-        className: '',
-        title: 'White glove',
-        monthly: 135,
-        description:
-            'Enterprise-grade performance, security, and control — designed for teams who demand more.',
-        publishing: [
-            'Advanced targeting with Enhanced Match',
-            'Integrations with CRMs and marketing systems of record',
-            'Integrations with ABM tools',
-        ],
-        hosting: [
-            'Unlimited form submits',
-            '50 GB bandwidth',
-            '10 legacy Editor users',
-        ],
-    },
-]
+import { plansConfig } from '../contentConfig'
 
 export const Plans = () => {
     const [yearly, setYearly] = useState(false)
@@ -72,7 +36,7 @@ export const Plans = () => {
                     gap="gap-1.5"
                     alignItems="items-center"
                     justifyContent="justify-center"
-                    className="mr-40"
+                    className="hidden lg:flex mr-40"
                 >
                     <FlexContainer gap="gap-[14px]" center>
                         <P className="uppercase">Billed Monthly</P>
@@ -112,19 +76,20 @@ export const Plans = () => {
             </FlexContainer>
 
             <FlexContainer
+                direction="flex-col lg:flex-row"
                 justifyContent="justify-center"
                 className="relative border-b-[0.5px] border-[#363E44]"
             >
                 {plansConfig.map((card) => (
                     <FlexContainer
                         key={card.title}
-                        width="w-fit"
+                        width="lg:w-fit"
                         direction="flex-col"
                     >
                         <FlexContainer
-                            gap="gap-[60px]"
+                            gap="lg:gap-[60px]"
                             justifyContent="justify-between"
-                            className={`${card.className} py-10 pl-14 pr-7 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
+                            className={`${card.className} pt-5 lg:py-10 px-4 lg:pl-14 lg:pr-7 border-r-[0.5px] lg:border-b-[0.5px] border-[#363E44]`}
                         >
                             <H3>{card.title}</H3>
                             <H3>
@@ -135,9 +100,9 @@ export const Plans = () => {
                         </FlexContainer>
 
                         <FlexContainer
-                            className={`${card.className} py-7 pl-14 pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
+                            className={`${card.className} pb-5 lg:py-7 px-4 lg:pl-14 lg:pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
                         >
-                            <span className="max-w-[300px] text-[23px] text-[#ADBACC] font-medium tracking-tighter leading-none">
+                            <span className="max-w-[300px] text-[17px] lg:text-[23px] text-[#ADBACC] font-medium tracking-tighter leading-none">
                                 {card.description}
                             </span>
                         </FlexContainer>
@@ -145,7 +110,7 @@ export const Plans = () => {
                         <FlexContainer
                             direction="flex-col"
                             gap="gap-2"
-                            className={`${card.className} py-7 pl-14 pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
+                            className={`${card.className} py-7 px-4 lg:pl-14 lg:pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
                         >
                             <P className="uppercase tracking-tight">
                                 Publishing
@@ -170,7 +135,7 @@ export const Plans = () => {
                         <FlexContainer
                             direction="flex-col"
                             gap="gap-2"
-                            className={`${card.className} py-7 pl-14 pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
+                            className={`${card.className} py-7 px-4 lg:pl-14 lg:pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
                         >
                             <P className="uppercase tracking-tight">Hosting</P>
                             <ul>

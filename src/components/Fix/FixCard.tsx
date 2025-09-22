@@ -2,12 +2,12 @@ import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H3 } from '../Typography/H3'
 import { P } from '../Typography/P'
-import Image, { StaticImageData } from 'next/image'
+import { LottieAnimation } from '../LottieAnimation'
 
 type FixCardProps = {
     index: string
     title: string
-    image: StaticImageData
+    image: object
     description: string
 }
 
@@ -26,7 +26,10 @@ export const FixCard = ({ index, title, image, description }: FixCardProps) => {
                 gap="gap-2 lg:gap-[30px]"
                 className="lg:items-center"
             >
-                <Image src={image} alt="logo" className="w-[100px] lg:w-auto" />
+                <LottieAnimation
+                    animationData={image}
+                    className="w-[100px] lg:w-[180px]"
+                />
                 <FlexContainer gap="lg:gap-[30px]" direction="flex-col">
                     <H3 className="pb-4 lg:pb-0 border-b-[0.5px] lg:border-none border-[#363E44]">
                         {title}

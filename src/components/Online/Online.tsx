@@ -2,9 +2,10 @@ import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import Image from 'next/image'
-import clock from '@/assets/clock.svg'
-import profile from '@/assets/profile.svg'
 import pointIco from '@/assets/point.png'
+import clock from '@/assets/clock.json'
+import browserProfile from '@/assets/browserAcc.json'
+import { LottieAnimation } from '../LottieAnimation'
 
 export const Online = () => {
     return (
@@ -16,13 +17,16 @@ export const Online = () => {
             >
                 <div className="animate-move-y-left" />
                 <div className="animate-move-y-right" />
-                <FlexContainer
-                    width="w-fit"
-                    gap="gap-1.5"
-                    alignItems="items-center"
-                    className="uppercase"
-                >
-                    <Image src={pointIco} alt="" /> How it works
+                <FlexContainer justifyContent="justify-between">
+                    <FlexContainer
+                        width="w-fit"
+                        gap="gap-1.5"
+                        alignItems="items-center"
+                        className="uppercase"
+                    >
+                        <Image src={pointIco} alt="" /> How it works
+                    </FlexContainer>
+                    <span className="block lg:hidden">/03</span>
                 </FlexContainer>
                 <H2>
                     Online in <br />
@@ -30,7 +34,7 @@ export const Online = () => {
                         60 Seconds
                     </span>
                 </H2>
-                <Image src={clock} alt="Animation" />
+                <LottieAnimation animationData={clock} />
                 <span className="-mt-12 lg:hidden text-[21px] font-medium tracking-tight leading-none text-center">
                     No implementation periods, no calls with our developers, no
                     gimmicks. Simply add{' '}
@@ -47,7 +51,7 @@ export const Online = () => {
             >
                 <span className="uppercase w-full text-right px-14">/03</span>
                 <div className="animate-move-y-right" />
-                <Image src={profile} alt="Profile" />
+                <LottieAnimation animationData={browserProfile} />
                 <span className="-mt-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">
                     No implementation periods, no calls with our developers, no
                     gimmicks. Simply add{' '}

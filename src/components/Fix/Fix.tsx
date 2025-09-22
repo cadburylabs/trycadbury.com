@@ -1,41 +1,16 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import { FixCard } from './FixCard'
-import fixImage1 from '@/assets/fix_1.png'
-import fixImage2 from '@/assets/fix_2.png'
-import fixImage3 from '@/assets/fix_3.png'
-import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
 import Image from 'next/image'
 import pointIco from '@/assets/point.png'
+import { fixConfig } from '../contentConfig'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const fixConfig = [
-    {
-        index: 'CH-01',
-        title: 'Down with the bureaucracy',
-        image: fixImage1,
-        description:
-            'Stop depending on large consulting firms that have to fit your needs into their bureaucracy. Cadbury is your always available AI powered NetSuite Consultant, ready to act when your business needs it—not the other way around.',
-    },
-    {
-        index: 'CH-02',
-        title: 'Context aware',
-        image: fixImage2,
-        description:
-            'After installation, Cadbury automatically builds a dense understanding of the inner workings of your NetSuite instance by scanning scripts, workflows, and integrations. Combined with its own proprietary trained data—sourced from hundreds of expert NetSuite consultants—Cadbury moves faster and more accurately than the typical consultant.',
-    },
-    {
-        index: 'CH-03',
-        title: 'A modern DX',
-        image: fixImage3,
-        description:
-            'Stop depending on large consulting firms that have to fit your needs into their bureaucracy. Cadbury is your always available AI powered NetSuite Consultant, ready to act when your business needs it—not the other way around.',
-    },
-]
 
 export const Fix = () => {
     const sectionRef = useRef<HTMLDivElement>(null)
@@ -117,7 +92,7 @@ export const Fix = () => {
                         width="w-fit"
                         gap="gap-1.5"
                         alignItems="items-center"
-                        className="uppercase hidden lg:flex"
+                        className="hidden lg:flex uppercase"
                     >
                         <Image src={pointIco} alt="" /> Solution
                     </FlexContainer>

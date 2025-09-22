@@ -8,7 +8,10 @@ export const Footer = () => {
             <div className="absolute -top-[200px] h-[200px] left-0 w-full flex items-center justify-center backdrop-blur-sm border-[0.5px] border-[#363E44]">
                 <div className="animate-move-x-top" />
                 <div className="animate-move-x-bottom" />
-                <H3 className="text-center">
+                <H3
+                    fontSize="text-[19px] md:text-[40px]"
+                    className="text-center"
+                >
                     You Deserve{' '}
                     <span className="text-[#6DE1CE]">
                         to Be Growing Your Business
