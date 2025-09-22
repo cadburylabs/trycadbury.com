@@ -59,7 +59,7 @@ export const Benefits: React.FC = () => {
 
     useEffect(() => {
         window.addEventListener('wheel', onWheel, { passive: false })
-        return () => window.removeEventListener('wheel', onWheel as any)
+        return () => window.removeEventListener('wheel', onWheel)
     }, [onWheel])
 
     return (
@@ -123,13 +123,13 @@ export const Benefits: React.FC = () => {
                             className="w-full h-full"
                             style={
                                 {
-                                    // expose index as CSS variable so we can use calc()
-                                    '--i': index,
+                                    '--i': index.toString(),
                                     transform:
                                         'translateY(calc(-1 * var(--i) * var(--card-h)))',
                                     transition:
                                         'transform 420ms cubic-bezier(.22,.61,.36,1)',
-                                } as React.CSSProperties
+                                } as React.CSSProperties &
+                                    Record<string, string | number>
                             }
                         >
                             {benefitsConfig.map((card, i) => (
