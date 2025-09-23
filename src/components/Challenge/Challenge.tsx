@@ -277,7 +277,7 @@ export const Challenge = () => {
                 <FlexContainer
                     direction="flex-col"
                     gap="gap-10 lg:gap-[120px]"
-                    className="relative pb-10 lg:py-32 px-4 lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44] overflow-hidden"
+                    className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44] overflow-hidden"
                 >
                     <div className="animate-move-y-right" />
                     {challengeConfig.map((card, index) => (

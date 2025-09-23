@@ -57,13 +57,13 @@ export const Fix = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative flex flex-col mx-5 overflow-hidden border-[0.5px] border-[#363E44]"
+            className="relative flex flex-col overflow-hidden border-[#363E44]"
         >
             <FlexContainer
                 direction="flex-col lg:flex-row"
                 gap="gap-8 lg:gap-0"
                 justifyContent="justify-between"
-                className="relative py-8 lg:py-10 px-4 lg:px-14 lg:border-b-[0.5px] border-[#363E44]"
+                className="relative py-8 lg:py-10 px-4 lg:px-14 lg:border-b-[0.5px] lg:border-t-[0.5px] border-[#363E44]"
             >
                 <FlexContainer
                     justifyContent="justify-between"

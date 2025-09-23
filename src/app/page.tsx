@@ -15,7 +15,9 @@ export default function Home() {
             <main className="bg-gradient-dots">
                 <Intro />
                 <Challenge />
-                <Fix />
+                <div className="mx-5 border-[0.5px] border-[#363E44]">
+                    <Fix />
+                </div>
                 <Online />
                 <Benefits />
                 <Plans />
