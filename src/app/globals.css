@@ -16,6 +16,10 @@
     font-display: swap;
 }
 
+html {
+    scroll-behavior: auto;
+}
+
 body {
     background: linear-gradient(282deg, #090d14 0%, #121a21 100%);
     background: linear-gradient(in oklch, 282deg, #090d14 0%, #121a21 100%);
