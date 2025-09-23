@@ -15,11 +15,11 @@ const menuConfig = [
 
 export const Header = () => {
     return (
-        <header className="fixed top-0 left-0 w-full px-5 z-50 font-roboto-mono ">
+        <header className="fixed top-0 left-0 w-full px-3 lg:px-5 z-50 font-roboto-mono ">
             <FlexContainer
                 justifyContent="justify-between"
                 alignItems="items-center"
-                className="relative  py-3.5 px-5 border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44] bg-gradient-dots"
+                className="relative py-3.5 px-5 border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44] bg-gradient-dots"
             >
                 <div className="animate-move-x-bottom" />
                 <FlexContainer width="w-fit" gap="gap-[7px]">

@@ -8,7 +8,7 @@ import pointIco from '@/assets/point.png'
 
 export const Contact = () => {
     return (
-        <section className="relative mx-5 px-5 flex flex-col gap-10 min-h-screen items-center justify-center border-[0.5px] border-[#363E44]">
+        <section className="relative mx-3 lg:mx-5 px-5 flex flex-col gap-10 min-h-screen items-center justify-center border-[0.5px] border-[#363E44]">
             <FlexContainer direction="flex-col" gap="gap-5" center>
                 <FlexContainer
                     width="w-fit"

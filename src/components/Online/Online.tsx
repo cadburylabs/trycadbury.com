@@ -9,7 +9,7 @@ import { LottieAnimation } from '../LottieAnimation'
 
 export const Online = () => {
     return (
-        <section className="relative flex flex-col lg:flex-row mx-5">
+        <section className="relative flex flex-col lg:flex-row mx-3 lg:mx-5">
             <FlexContainer
                 direction="flex-col"
                 gap="gap-5"

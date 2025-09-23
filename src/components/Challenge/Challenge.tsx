@@ -231,7 +231,7 @@ export const Challenge = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative flex flex-col lg:flex-row mx-5 overflow-hidden"
+            className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden"
         >
             <div className="lg:w-1/2 lg:flex-shrink-0">
                 <FlexContainer

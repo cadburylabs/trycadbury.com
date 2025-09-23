@@ -122,7 +122,7 @@ export const Benefits: React.FC = () => {
     }, [n, currentCard])
 
     return (
-        <section className="relative mx-5">
+        <section className="relative mx-3 lg:mx-5">
             <div className="relative border-x-[0.5px] border-[#363E44]">
                 <FlexContainer className="px-14 py-10 border-b-[0.5px] border-[#363E44]">
                     <FlexContainer

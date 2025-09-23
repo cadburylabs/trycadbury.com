@@ -20,7 +20,7 @@ export const Plans = () => {
     }
 
     return (
-        <section className="relative mx-5 flex flex-col border-l-[0.5px] border-r-[0.5px] border-[#363E44]">
+        <section className="relative mx-3 lg:mx-5 flex flex-col border-l-[0.5px] border-r-[0.5px] border-[#363E44]">
             <div className="animate-move-y-left" />
             <div className="animate-move-y-right" />
             <FlexContainer
