@@ -47,7 +47,7 @@ export const Intro = () => {
 
             <FlexContainer
                 center
-                className="relative px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="relative lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <div className="animate-move-y-right" />
                 <Image
