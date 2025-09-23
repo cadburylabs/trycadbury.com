@@ -1,11 +1,10 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import { FixCard } from './FixCard'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 import Image from 'next/image'
 import pointIco from '@/assets/point.png'
 import { fixConfig } from '../contentConfig'
@@ -13,8 +12,11 @@ import { fixConfig } from '../contentConfig'
 gsap.registerPlugin(ScrollTrigger)
 
 export const Fix = () => {
-    const sectionRef = useRef<HTMLDivElement>(null)
-    const trackRef = useRef<HTMLDivElement>(null)
+    const sectionRef = useRef<HTMLDivElement | null>(null)
+    const trackRef = useRef<HTMLDivElement | null>(null)
+    const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+
+    const [activeCard, setActiveCard] = useState(0)
 
     useEffect(() => {
         const section = sectionRef.current
@@ -47,8 +49,24 @@ export const Fix = () => {
             })
         })
 
+        // Mobile (highlight effect like Challenge)
         mm.add('(max-width: 1023px)', () => {
+            const cards = cardsRef.current
+
+            // reset transforms when switching from desktop
             gsap.set(track, { clearProps: 'all' })
+
+            // create triggers just to update activeCard
+            cards.forEach((card, index) => {
+                if (!card) return
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'bottom 50%',
+                    onEnter: () => setActiveCard(index),
+                    onEnterBack: () => setActiveCard(index),
+                })
+            })
         })
 
         return () => mm.revert()
@@ -112,9 +130,15 @@ export const Fix = () => {
                 gap="lg:gap-[120px]"
                 className="relative px-4 lg:px-14 pb-10 lg:py-[100px] will-change-transform"
             >
-                {fixConfig.map((card) => (
-                    <div key={card.index} className="shrink-0 lg:w-[40vw]">
-                        <FixCard {...card} />
+                {fixConfig.map((card, index) => (
+                    <div
+                        key={card.index}
+                        ref={(el) => {
+                            cardsRef.current[index] = el
+                        }}
+                        className="shrink-0 lg:w-[40vw]"
+                    >
+                        <FixCard {...card} isActive={activeCard === index} />
                     </div>
                 ))}
             </FlexContainer>

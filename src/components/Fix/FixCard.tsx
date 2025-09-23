@@ -9,14 +9,25 @@ type FixCardProps = {
     title: string
     image: object
     description: string
+    isActive?: boolean
 }
 
-export const FixCard = ({ index, title, image, description }: FixCardProps) => {
+export const FixCard = ({
+    index,
+    title,
+    image,
+    description,
+    isActive = false,
+}: FixCardProps) => {
     return (
         <FlexContainer
             gap="lg:gap-[30px]"
             direction="flex-col"
-            className="lg:pb-[30px]"
+            className={`lg:pb-[30px] transition-all duration-700 ease-out ${
+                isActive
+                    ? 'opacity-100 scale-100 translate-y-0 lg:opacity-100 lg:scale-100 lg:translate-y-0'
+                    : 'opacity-50 scale-95 translate-y-4 lg:opacity-100 lg:scale-100 lg:translate-y-0'
+            }`}
         >
             <FlexContainer className="justify-end lg:justify-between">
                 <span>{index}</span> <span className="hidden lg:block">/</span>
