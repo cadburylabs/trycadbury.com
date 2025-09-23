@@ -18,7 +18,7 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
         return (
             <FlexContainer
                 ref={ref}
-                direction="flex-row"
+                direction="flex-col lg:flex-row"
                 alignItems="items-center"
                 className={`${className} benefits-background border-b-[0.5px] border-t-[0.5px] border-[#363E44]`}
             >
@@ -31,7 +31,10 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     <P>{index}</P>
                     <P className="uppercase">{tag}</P>
                 </FlexContainer>
-                <LottieAnimation animationData={icon} className="mr-10" />
+                <LottieAnimation
+                    animationData={icon}
+                    className="mr-10  lg:h-[236px]"
+                />
                 <FlexContainer
                     width="max-w-[450px]"
                     gap="gap-[15px] lg:gap-[30px]"

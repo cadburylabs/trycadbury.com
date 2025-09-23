@@ -7,6 +7,8 @@ import ring from '@/assets/ring.json'
 import cards from '@/assets/cards.json'
 
 import chip from '@/assets/chip.json'
+import brain from '@/assets/brain.json'
+import circles from '@/assets/circles.json'
 
 export const challengeConfig = [
     {
@@ -67,7 +69,7 @@ export const benefitsConfig = [
     },
     {
         index: 'BS-02',
-        icon: chip,
+        icon: brain,
         tag: 'Precise',
         title: 'Accuracy',
         description:
@@ -75,7 +77,7 @@ export const benefitsConfig = [
     },
     {
         index: 'BS-03',
-        icon: chip,
+        icon: circles,
         tag: 'Endless',
         title: 'The Long Tail',
         description:

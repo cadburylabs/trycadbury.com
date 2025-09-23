@@ -113,7 +113,7 @@ export const Benefits: React.FC = () => {
                     ref={deckRef}
                     className="
             relative overflow-hidden border-b-[0.5px] border-[#363E44]
-            [--card-h:420px] lg:[--card-h:236px]
+            [--card-h:450px] lg:[--card-h:236px]
           "
                     style={{ height: 'var(--card-h)' }}
                 >
