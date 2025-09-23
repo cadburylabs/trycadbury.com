@@ -96,6 +96,16 @@ body {
     animation: move-y 20s ease-in-out infinite;
 }
 
+.bg-gradient-black {
+    background: linear-gradient(282deg, #090d14 38.65%, #121a21 97.57%);
+    background: linear-gradient(
+        in oklch,
+        282deg,
+        #090d14 38.65%,
+        #121a21 97.57%
+    );
+}
+
 .bg-gradient-dots {
     background-image: url('/images/dots.png'),
         linear-gradient(282deg, #090d14 0%, #121a21 100%);
