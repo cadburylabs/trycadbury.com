@@ -5,11 +5,12 @@ import { ReactLenis } from 'lenis/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { LenisRef } from 'lenis/react'
+import type Lenis from 'lenis'
 
 gsap.registerPlugin(ScrollTrigger)
 
 type LenisContextType = {
-    lenis: any | null
+    lenis: Lenis | null
 }
 
 const LenisContext = createContext<LenisContextType>({ lenis: null })
@@ -17,7 +18,7 @@ export const useLenisContext = () => useContext(LenisContext)
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
     const lenisRef = useRef<LenisRef>(null)
-    const [lenisInstance, setLenisInstance] = useState<any | null>(null)
+    const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null)
 
     // Wait until lenis is ready
     useEffect(() => {
