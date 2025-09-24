@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Roboto_Mono } from 'next/font/google'
 import './globals.css'
-import LenisRoot from '@/hooks/useLenisScroller'
+import '@/components/borders.css'
+import { LenisProvider } from '@/context/LenisContext'
 
 const robotoMono = Roboto_Mono({
     subsets: ['latin'],
@@ -21,8 +22,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`antialiased ${robotoMono.variable}`}>
-                <LenisRoot />
-                {children}
+                <LenisProvider>{children}</LenisProvider>
             </body>
         </html>
     )

@@ -8,7 +8,7 @@ import Image from 'next/image'
 import pointIco from '@/assets/point.png'
 import { plansConfig } from '../contentConfig'
 
-export const Plans = () => {
+export const Plans = ({ id = '' }: { id: string }) => {
     const [yearly, setYearly] = useState(false)
 
     const getPrice = (monthly: number) => {
@@ -20,7 +20,10 @@ export const Plans = () => {
     }
 
     return (
-        <section className="relative mx-3 lg:mx-5 flex flex-col border-l-[0.5px] border-r-[0.5px] border-[#363E44]">
+        <section
+            id={id}
+            className="relative mx-3 lg:mx-5 flex flex-col border-l-[0.5px] border-r-[0.5px] border-[#363E44]"
+        >
             <div className="animate-move-y-left" />
             <div className="animate-move-y-right" />
             <FlexContainer

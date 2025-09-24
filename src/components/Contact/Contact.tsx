@@ -7,9 +7,12 @@ import Image from 'next/image'
 import pointIco from '@/assets/point.png'
 import logoColor from '@/assets/logoColor.svg'
 
-export const Contact = () => {
+export const Contact = ({ id = '' }: { id: string }) => {
     return (
-        <section className="relative mx-3 lg:mx-5 px-5 pt-20 pb-10 flex flex-col min-h-screen items-center justify-around lg:justify-between border-[0.5px] border-[#363E44]">
+        <section
+            id={id}
+            className="relative mx-3 lg:mx-5 px-5 pt-20 pb-10 flex flex-col min-h-screen items-center justify-around lg:justify-between border-[0.5px] border-[#363E44]"
+        >
             <FlexContainer direction="flex-col" gap="gap-10" center>
                 <FlexContainer direction="flex-col" gap="gap-5" center>
                     <FlexContainer

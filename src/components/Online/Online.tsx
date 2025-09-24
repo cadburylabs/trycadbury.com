@@ -7,9 +7,12 @@ import clock from '@/assets/clock.json'
 import browserProfile from '@/assets/browserAcc.json'
 import { LottieAnimation } from '../LottieAnimation'
 
-export const Online = () => {
+export const Online = ({ id = '' }: { id: string }) => {
     return (
-        <section className="relative flex flex-col lg:flex-row mx-3 lg:mx-5">
+        <section
+            id={id}
+            className="relative flex flex-col lg:flex-row mx-3 lg:mx-5"
+        >
             <FlexContainer
                 direction="flex-col"
                 gap="gap-5"

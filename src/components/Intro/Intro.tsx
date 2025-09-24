@@ -6,9 +6,12 @@ import { Button } from '../Button'
 import Image from 'next/image'
 import videoPreview from '@/assets/videoPreview.png'
 
-export const Intro = () => {
+export const Intro = ({ id = '' }: { id: string }) => {
     return (
-        <section className="relative mx-3 lg:mx-5 flex flex-col lg:flex-row lg:min-h-screen pt-14 lg:pt-16">
+        <section
+            id={id}
+            className="relative mx-3 lg:mx-5 flex flex-col lg:flex-row lg:min-h-screen pt-14 lg:pt-16"
+        >
             <FlexContainer
                 direction="flex-col"
                 justifyContent="justify-center"

@@ -1,0 +1,63 @@
+@keyframes move-x {
+    0% {
+        left: 0;
+    }
+    50% {
+        left: calc(100% - 100px);
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes move-y {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: calc(100% - 100px);
+    }
+    100% {
+        top: 0;
+    }
+}
+
+.animate-move-x-top {
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(to right, #54ae9f00, #6de1ce, #3c7b7100);
+    animation: move-x 20s ease-in-out infinite;
+}
+
+.animate-move-x-bottom {
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(to right, #54ae9f00, #6de1ce, #3c7b7100);
+    animation: move-x 20s ease-in-out infinite;
+}
+
+.animate-move-y-left {
+    position: absolute;
+    left: 0;
+    height: 100px;
+    width: 1px;
+    background: linear-gradient(to bottom, #54ae9f00, #6de1ce, #3c7b7100);
+    animation: move-y 20s ease-in-out infinite;
+}
+
+.animate-move-y-right {
+    position: absolute;
+    right: 0;
+    height: 100px;
+    width: 1px;
+    background: linear-gradient(to bottom, #54ae9f00, #6de1ce, #3c7b7100);
+    animation: move-y 20s ease-in-out infinite;
+}
+
+.animate-paused {
+    animation-play-state: paused !important;
+}

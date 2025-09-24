@@ -1,5 +1,6 @@
 'use client'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useLenisContext } from '@/context/LenisContext'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import { ChallengeCard } from './ChallengeCard'
@@ -12,78 +13,65 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export const Challenge = () => {
+export const Challenge = ({ id = '' }: { id: string }) => {
+    const { lenis } = useLenisContext()
     const sectionRef = useRef<HTMLElement | null>(null)
     const leftIconRef = useRef<HTMLDivElement | null>(null)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-
     const [activeCard, setActiveCard] = useState(0)
     const currentIcon = challengeConfig[activeCard]?.icon
 
     // Debounced state update to prevent infinite loops
-    const updateActiveCard = useCallback(
-        (newIndex: number) => {
-            setActiveCard((prevActive) => {
-                if (prevActive !== newIndex) {
-                    console.log(
-                        `Updating active card from ${prevActive} to ${newIndex}`
-                    )
-                    return newIndex
-                }
-                return prevActive
-            })
-        },
-        [] // Remove activeCard from dependencies
-    )
+    const updateActiveCard = useCallback((newIndex: number) => {
+        setActiveCard((prevActive) => {
+            if (prevActive !== newIndex) {
+                console.log(
+                    `Updating active card from ${prevActive} to ${newIndex}`
+                )
+                return newIndex
+            }
+            return prevActive
+        })
+    }, [])
 
     useEffect(() => {
         const section = sectionRef.current
         const leftIcon = leftIconRef.current
         const cards = cardsRef.current
-
         if (!section || !leftIcon || cards.length === 0) return
+        if (!lenis) return // wait until lenis is ready
 
-        // Set up ScrollTrigger to work with Lenis if it exists
-        if (window.lenis) {
-            const lenis = window.lenis
-            lenis.on('scroll', ScrollTrigger.update)
-            ScrollTrigger.scrollerProxy(document.body, {
-                scrollTop(value) {
-                    return arguments.length
-                        ? lenis.scrollTo(value as number, 0, 0)
-                        : lenis.scroll ?? 0
-                },
-                getBoundingClientRect() {
-                    return {
-                        top: 0,
-                        left: 0,
-                        width: window.innerWidth,
-                        height: window.innerHeight,
-                    }
-                },
-                pinType: document.body.style.transform ? 'transform' : 'fixed',
-            })
-        }
+        console.log('[Challenge] Initializing ScrollTriggers with Lenis')
 
-        // Clean up any existing triggers
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-
-        // Set initial states for cards
-        gsap.set(cards, {
-            y: 60,
-            opacity: 0.5,
-            scale: 0.95,
+        // 🔹 Integrate GSAP ScrollTrigger with Lenis
+        lenis.on('scroll', ScrollTrigger.update)
+        ScrollTrigger.scrollerProxy(document.body, {
+            scrollTop(value) {
+                return arguments.length
+                    ? lenis.scrollTo(value as number, { immediate: true })
+                    : lenis.scroll ?? 0
+            },
+            getBoundingClientRect() {
+                return {
+                    top: 0,
+                    left: 0,
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                }
+            },
+            pinType: document.body.style.transform ? 'transform' : 'fixed',
         })
 
+        // Clean existing triggers before re-creating
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+
+        // Initial states for cards
+        gsap.set(cards, { y: 60, opacity: 0.5, scale: 0.95 })
         if (cards[0]) {
-            gsap.set(cards[0], {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-            })
+            gsap.set(cards[0], { y: 0, opacity: 1, scale: 1 })
         }
 
-        // Pin the left column for the duration of the section
+        // Pin the left column
         ScrollTrigger.create({
             trigger: section,
             start: 'top top',
@@ -94,16 +82,14 @@ export const Challenge = () => {
             invalidateOnRefresh: true,
             onRefresh: (self) => {
                 if (window.innerWidth < 1024) {
-                    // lg breakpoint
-                    self.disable(false, true) // disable without killing
+                    self.disable(false, true)
                 } else {
                     self.enable()
                 }
             },
         })
 
-        // Create individual triggers for each card, starting from the LAST card
-        // This prevents conflicts between triggers
+        // Card triggers
         for (let index = cards.length - 1; index >= 0; index--) {
             const card = cards[index]
             if (!card) continue
@@ -114,8 +100,6 @@ export const Challenge = () => {
                 end: 'bottom 50%',
                 onEnter: () => {
                     updateActiveCard(index)
-
-                    // Animate current card in
                     gsap.to(card, {
                         y: 0,
                         opacity: 1,
@@ -125,7 +109,6 @@ export const Challenge = () => {
                     })
                 },
                 onLeave: () => {
-                    // Animate card out
                     gsap.to(card, {
                         y: -20,
                         opacity: 0.5,
@@ -136,7 +119,6 @@ export const Challenge = () => {
                 },
                 onEnterBack: () => {
                     updateActiveCard(index)
-
                     gsap.to(card, {
                         y: 0,
                         opacity: 1,
@@ -157,16 +139,14 @@ export const Challenge = () => {
             })
         }
 
-        // Add a special trigger that covers the area ABOVE the first card
-        // This ensures the first card becomes active when scrolling back up
-        ScrollTrigger.create({
-            trigger: cards[0],
-            start: 'top bottom', // When the top of first card hits bottom of viewport
-            end: 'top 80%', // Until it hits the normal trigger zone
-            onEnterBack: () => {
-                updateActiveCard(0)
-
-                if (cards[0]) {
+        // First card safety trigger
+        if (cards[0]) {
+            ScrollTrigger.create({
+                trigger: cards[0],
+                start: 'top bottom',
+                end: 'top 80%',
+                onEnterBack: () => {
+                    updateActiveCard(0)
                     gsap.to(cards[0], {
                         y: 0,
                         opacity: 1,
@@ -174,23 +154,20 @@ export const Challenge = () => {
                         duration: 0.6,
                         ease: 'power2.out',
                     })
-                }
-            },
-        })
+                },
+            })
+        }
 
-        // Add a trigger at the section level for additional safety
+        // Section-level safety trigger
         ScrollTrigger.create({
             trigger: section,
             start: 'top center',
             end: 'top top',
             onEnterBack: () => {
-                // Only set to first card if we're not already past it
                 const firstCardRect = cards[0]?.getBoundingClientRect()
                 const viewportHeight = window.innerHeight
-
                 if (firstCardRect && firstCardRect.top < viewportHeight * 0.8) {
                     updateActiveCard(0)
-
                     if (cards[0]) {
                         gsap.to(cards[0], {
                             y: 0,
@@ -204,33 +181,28 @@ export const Challenge = () => {
             },
         })
 
-        // Refresh ScrollTrigger
         ScrollTrigger.refresh()
 
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-            if (window.lenis) {
-                window.lenis.off('scroll', ScrollTrigger.update)
-            }
+            lenis.off('scroll', ScrollTrigger.update)
         }
-    }, []) // Remove activeCard from dependencies to prevent infinite loop
+    }, [lenis, updateActiveCard]) // depend on lenis so it re-inits when ready
 
-    // Handle icon animation separately
     useEffect(() => {
         const iconElement = leftIconRef.current
         if (!iconElement) return
-
-        // Smooth transition when icon changes
         gsap.fromTo(
             iconElement,
             { scale: 0.9, opacity: 0.7 },
             { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }
         )
-    }, [activeCard]) // Only depend on activeCard for icon animation
+    }, [activeCard])
 
     return (
         <section
             ref={sectionRef}
+            id={id}
             className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden"
         >
             <div className="lg:w-1/2 lg:flex-shrink-0">
@@ -267,7 +239,7 @@ export const Challenge = () => {
                         <LottieAnimation
                             animationData={currentIcon}
                             className="hidden lg:block w-[300px] max-w-[300px]"
-                            key={`icon-${activeCard}`} // Force re-render when activeCard changes
+                            key={`icon-${activeCard}`}
                         />
                     </div>
                 </FlexContainer>

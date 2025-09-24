@@ -9,10 +9,15 @@ import { Intro } from '@/components/Intro/Intro'
 import { Loader } from '@/components/Loader'
 import { Online } from '@/components/Online/Online'
 import { Plans } from '@/components/Plans/Plans'
+import { useRandomizeAnimations } from '@/hooks/useRandomizeAnimations'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true)
+
+    useRandomizeAnimations(
+        '.animate-move-x-top, .animate-move-x-bottom, .animate-move-y-left, .animate-move-y-right'
+    )
 
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 4100)
@@ -23,15 +28,15 @@ export default function Home() {
             <Loader isLoading={isLoading} />
             <Header />
             <main className="bg-gradient-dots">
-                <Intro />
-                <Challenge />
+                <Intro id="intro" />
+                <Challenge id="challenge" />
                 <div className="mx-3 lg:mx-5 border-[0.5px] border-[#363E44]">
-                    <Fix />
+                    <Fix id="fix" />
                 </div>
-                <Online />
-                <Benefits />
-                <Plans />
-                <Contact />
+                <Online id="online" />
+                <Benefits id="benefits" />
+                <Plans id="plans" />
+                <Contact id="contact" />
             </main>
             <Footer />
         </>

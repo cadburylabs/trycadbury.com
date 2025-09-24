@@ -8,20 +8,44 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import pointIco from '@/assets/point.png'
 import { fixConfig } from '../contentConfig'
+import { useLenisContext } from '@/context/LenisContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export const Fix = () => {
+export const Fix = ({ id = '' }: { id: string }) => {
+    const { lenis } = useLenisContext()
     const sectionRef = useRef<HTMLDivElement | null>(null)
     const trackRef = useRef<HTMLDivElement | null>(null)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-
     const [activeCard, setActiveCard] = useState(0)
 
     useEffect(() => {
+        if (!lenis) return // 🔹 wait until lenis is ready
+
         const section = sectionRef.current
         const track = trackRef.current
         if (!section || !track) return
+
+        console.log('[Fix] Initializing ScrollTrigger with Lenis')
+
+        // 🔹 Tie ScrollTrigger to Lenis
+        lenis.on('scroll', ScrollTrigger.update)
+        ScrollTrigger.scrollerProxy(document.body, {
+            scrollTop(value) {
+                return arguments.length
+                    ? lenis.scrollTo(value as number, { immediate: true })
+                    : lenis.scroll ?? 0
+            },
+            getBoundingClientRect() {
+                return {
+                    top: 0,
+                    left: 0,
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                }
+            },
+            pinType: document.body.style.transform ? 'transform' : 'fixed',
+        })
 
         const mm = gsap.matchMedia()
 
@@ -49,14 +73,11 @@ export const Fix = () => {
             })
         })
 
-        // Mobile (highlight effect like Challenge)
+        // Mobile fallback
         mm.add('(max-width: 1023px)', () => {
             const cards = cardsRef.current
-
-            // reset transforms when switching from desktop
             gsap.set(track, { clearProps: 'all' })
 
-            // create triggers just to update activeCard
             cards.forEach((card, index) => {
                 if (!card) return
                 ScrollTrigger.create({
@@ -69,12 +90,19 @@ export const Fix = () => {
             })
         })
 
-        return () => mm.revert()
-    }, [])
+        ScrollTrigger.refresh()
+
+        return () => {
+            mm.revert()
+            ScrollTrigger.getAll().forEach((t) => t.kill())
+            lenis.off('scroll', ScrollTrigger.update)
+        }
+    }, [lenis])
 
     return (
         <section
             ref={sectionRef}
+            id={id}
             className="relative flex flex-col overflow-hidden border-[#363E44]"
         >
             <FlexContainer

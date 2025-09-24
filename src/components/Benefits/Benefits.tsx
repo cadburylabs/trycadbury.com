@@ -1,128 +1,112 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import pointIco from '@/assets/point.png'
 import { BenefitsCard } from './BenefitsCard'
 import { benefitsConfig } from '../contentConfig'
-import { gsap } from 'gsap'
+import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLenisContext } from '@/context/LenisContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export const Benefits: React.FC = () => {
+export const Benefits = ({ id = '' }: { id: string }) => {
     const n = benefitsConfig.length
     const containerRef = useRef<HTMLDivElement>(null)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-    const [currentCard, setCurrentCard] = useState(0)
+    const lastIndex = useRef(0)
+    const { lenis } = useLenisContext()
 
     const CARD_OFFSET = 40
 
     useEffect(() => {
-        if (!containerRef.current) return
+        if (!containerRef.current || !lenis) return
 
         const cards = cardsRef.current.filter(Boolean)
         if (cards.length === 0) return
 
-        // Wait for Lenis to be ready
-        const initScrollTrigger = () => {
-            // Clear previous animations
-            ScrollTrigger.getAll().forEach((trigger) => {
-                if (trigger.vars.id?.includes('benefits-card')) {
-                    trigger.kill()
+        // Tie ScrollTrigger to Lenis
+        lenis.on('scroll', ScrollTrigger.update)
+        ScrollTrigger.scrollerProxy(document.body, {
+            scrollTop(value) {
+                return arguments.length
+                    ? lenis.scrollTo(value as number, { immediate: true })
+                    : lenis.scroll ?? 0
+            },
+            getBoundingClientRect() {
+                return {
+                    top: 0,
+                    left: 0,
+                    width: window.innerWidth,
+                    height: window.innerHeight,
                 }
-            })
+            },
+            pinType: document.body.style.transform ? 'transform' : 'fixed',
+        })
 
-            // Set initial states
-            cards.forEach((card, index) => {
-                if (index === 0) {
-                    // First card is always visible
-                    gsap.set(card, {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        zIndex: 1,
-                    })
-                } else {
-                    // Other cards start hidden
-                    gsap.set(card, {
-                        opacity: 0,
-                        y: 20,
-                        scale: 0.95,
-                        zIndex: index + 1, // Higher index = higher z-index
-                    })
-                }
-            })
+        // Initial setup
+        gsap.set(cards, { opacity: 0, y: 20, scale: 0.95 })
+        gsap.set(cards[0], { opacity: 1, y: 0, scale: 1 })
 
-            // Create ScrollTrigger that works with Lenis
-            ScrollTrigger.create({
-                trigger: containerRef.current,
-                start: 'top 70%',
-                end: 'bottom 30%',
-                id: 'benefits-card-container',
-                refreshPriority: -1, // Lower priority for Lenis compatibility
-                onUpdate: (self) => {
-                    const progress = self.progress
-                    const totalCards = cards.length
-                    // Much more gradual progression - each card needs more scroll
-                    const cardIndex = Math.min(
-                        Math.floor(progress * totalCards * 0.8 + progress * 2),
-                        totalCards - 1
-                    )
+        // ScrollTrigger
+        ScrollTrigger.create({
+            trigger: containerRef.current,
+            start: 'top 70%',
+            end: 'bottom 30%',
+            id: 'benefits-card-container',
+            onUpdate: (self) => {
+                const progress = self.progress
+                const totalCards = cards.length
+                const cardIndex = Math.min(
+                    Math.floor(progress * totalCards * 0.8 + progress * 2),
+                    totalCards - 1
+                )
 
-                    if (cardIndex !== currentCard) {
-                        setCurrentCard(cardIndex)
+                if (cardIndex !== lastIndex.current) {
+                    const prev = cards[lastIndex.current]
+                    const next = cards[cardIndex]
 
-                        // Animate cards with better performance
-                        cards.forEach((card, index) => {
-                            if (index <= cardIndex) {
-                                // Show card
-                                gsap.to(card, {
-                                    opacity: 1,
-                                    y: index * CARD_OFFSET,
-                                    scale: 1,
-                                    duration: 0.5,
-                                    ease: 'power2.out',
-                                    delay: index * 0.05,
-                                    overwrite: true, // Prevent animation conflicts
-                                })
-                            } else {
-                                // Hide card
-                                gsap.to(card, {
-                                    opacity: 0,
-                                    y: 20,
-                                    scale: 0.95,
-                                    duration: 0.3,
-                                    ease: 'power2.out',
-                                    overwrite: true,
-                                })
-                            }
+                    if (prev) {
+                        gsap.to(prev, {
+                            opacity: 0,
+                            y: 20,
+                            scale: 0.95,
+                            duration: 0.3,
+                            ease: 'power2.out',
+                            overwrite: 'auto',
                         })
                     }
-                },
-            })
+                    if (next) {
+                        gsap.to(next, {
+                            opacity: 1,
+                            y: cardIndex * CARD_OFFSET,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: 'power2.out',
+                            overwrite: 'auto',
+                        })
+                    }
 
-            // Refresh ScrollTrigger after setup
-            ScrollTrigger.refresh()
-        }
+                    lastIndex.current = cardIndex
+                }
+            },
+        })
 
-        // Delay initialization to ensure Lenis is ready
-        const timer = setTimeout(initScrollTrigger, 100)
+        ScrollTrigger.refresh()
 
         return () => {
-            clearTimeout(timer)
-            ScrollTrigger.getAll().forEach((trigger) => {
-                if (trigger.vars.id?.includes('benefits-card')) {
-                    trigger.kill()
-                }
+            ScrollTrigger.getAll().forEach((t) => {
+                if (t.vars.id === 'benefits-card-container') t.kill()
             })
+            lenis.off('scroll', ScrollTrigger.update)
         }
-    }, [n, currentCard])
+    }, [lenis, n])
 
     return (
-        <section className="relative mx-3 lg:mx-5">
+        <section id={id} className="relative mx-3 lg:mx-5">
             <div className="relative border-x-[0.5px] border-[#363E44]">
                 <FlexContainer className="px-14 py-10 border-b-[0.5px] border-[#363E44]">
                     <FlexContainer
@@ -166,7 +150,6 @@ export const Benefits: React.FC = () => {
                     </FlexContainer>
                 </FlexContainer>
 
-                {/* Compact Stacking Cards Container */}
                 <div
                     ref={containerRef}
                     className="relative h-[530px] lg:h-[485px] border-b-[0.5px] border-[#363E44]"
