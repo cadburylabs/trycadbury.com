@@ -170,8 +170,6 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                         </div>
                     </div>
                 </div>
-
-                <div className="animate-move-x-bottom" />
             </div>
         </section>
     )

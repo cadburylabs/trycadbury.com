@@ -18,9 +18,6 @@ export const Intro = ({ id = '' }: { id: string }) => {
                 gap="gap-10"
                 className="relative px-4 lg:px-14 pt-5 pb-10 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] text-center lg:text-left"
             >
-                <div className="animate-move-y-left" />
-                <div className="animate-move-y-right" />
-
                 <H1>
                     Cadbury is an <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -52,15 +49,12 @@ export const Intro = ({ id = '' }: { id: string }) => {
                 center
                 className="relative lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
-                <div className="animate-move-y-right" />
                 <Image
                     src={videoPreview}
                     alt="preview video"
                     className="max-w-[400px] px-4 py-8"
                 />
             </FlexContainer>
-
-            <div className="animate-move-x-bottom" />
         </section>
     )
 }

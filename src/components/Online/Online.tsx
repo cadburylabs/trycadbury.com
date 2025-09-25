@@ -18,8 +18,6 @@ export const Online = ({ id = '' }: { id: string }) => {
                 gap="gap-5"
                 className="relative px-4 lg:px-14 py-8 lg:py-10 border-l-[0.5px] border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
-                <div className="animate-move-y-left" />
-                <div className="animate-move-y-right" />
                 <FlexContainer justifyContent="justify-between">
                     <FlexContainer
                         width="w-fit"
@@ -53,7 +51,6 @@ export const Online = ({ id = '' }: { id: string }) => {
                 className="relative hidden lg:flex py-10 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
                 <span className="uppercase w-full text-right px-14">/03</span>
-                <div className="animate-move-y-right" />
                 <LottieAnimation animationData={browserProfile} />
                 <span className="-mt-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">
                     No implementation periods, no calls with our developers, no
@@ -64,7 +61,6 @@ export const Online = ({ id = '' }: { id: string }) => {
                     into your sandbox account, and we’ll take care of the rest.
                 </span>
             </FlexContainer>
-            <div className="animate-move-x-bottom" />
         </section>
     )
 }

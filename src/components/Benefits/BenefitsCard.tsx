@@ -23,7 +23,6 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                 alignItems="items-center"
                 className={`${className} h-full p-3.5 lg:p-[60px] benefits-background border-b-[0.5px] border-t-[0.5px] border-[#363E44]`}
             >
-                <div className="animate-move-x-top" />
                 <FlexContainer
                     width="w-full lg:w-fit"
                     direction="lg:flex-col"

@@ -6,8 +6,6 @@ export const Footer = () => {
     return (
         <footer className="relative mx-3 lg:mx-5">
             <div className="absolute -top-[200px] h-[200px] left-0 w-full flex items-center justify-center backdrop-blur-lg border-[0.5px] border-[#363E44]">
-                <div className="animate-move-x-top" />
-                <div className="animate-move-x-bottom" />
                 <H3
                     fontSize="text-[19px] md:text-[40px]"
                     className="text-center"

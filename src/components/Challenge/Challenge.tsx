@@ -211,8 +211,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                     gap="lg:gap-[40px]"
                     className="challenge-left-column relative py-8 lg:py-32 px-4 lg:px-14 border-r-[0.5px] border-l-[0.5px] lg:border-b-[0.5px] border-[#363E44] lg:h-screen lg:max-h-screen overflow-hidden"
                 >
-                    <div className="animate-move-y-left" />
-                    <div className="animate-move-y-right" />
                     <FlexContainer
                         justifyContent="justify-between"
                         className="font-roboto-mono tracking-tight text-[#E4ECF4] uppercase"
@@ -251,7 +249,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                     gap="gap-10 lg:gap-[120px]"
                     className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44] overflow-hidden"
                 >
-                    <div className="animate-move-y-right" />
                     {challengeConfig.map((card, index) => (
                         <div
                             key={card.index}
@@ -268,7 +265,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                     ))}
                 </FlexContainer>
             </div>
-            <div className="animate-move-x-bottom" />
         </section>
     )
 }

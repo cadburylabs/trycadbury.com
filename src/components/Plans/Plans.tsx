@@ -24,14 +24,11 @@ export const Plans = ({ id = '' }: { id: string }) => {
             id={id}
             className="relative mx-3 lg:mx-5 flex flex-col border-l-[0.5px] border-r-[0.5px] border-[#363E44]"
         >
-            <div className="animate-move-y-left" />
-            <div className="animate-move-y-right" />
             <FlexContainer
                 justifyContent="justify-between"
                 alignItems="items-center"
                 className="relative py-10 px-14 border-b-[0.5px] border-t-[0.5px] border-[#363E44]"
             >
-                <div className="animate-move-x-bottom" />
                 <H2>Plans</H2>
 
                 <FlexContainer
