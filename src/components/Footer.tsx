@@ -4,8 +4,12 @@ import { FlexContainer } from './FlexContainer'
 
 export const Footer = () => {
     return (
-        <footer className="relative mx-3 lg:mx-5">
-            <div className="absolute -top-[200px] h-[200px] left-0 w-full flex items-center justify-center backdrop-blur-lg border-[0.5px] border-[#363E44]">
+        <footer className="relative w-full">
+            <div className="absolute -top-[200px] h-[200px] left-0 w-full flex items-center justify-center backdrop-blur-lg">
+                {/* horizontal gradient line */}
+                <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
+                <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
                 <H3
                     fontSize="text-[19px] md:text-[40px]"
                     className="text-center"
@@ -21,8 +25,9 @@ export const Footer = () => {
             <FlexContainer
                 direction="flex-col"
                 gap="gap-[30px]"
-                className="p-4 lg:p-6 border-r-[0.5px] border-l-[0.5px] border-[#363E44]"
+                className="p-4 lg:p-6 relative"
             >
+                <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
                 <FlexContainer
                     gap="gap-3"
                     className="lg:hidden text-[#ADBACC] text-[10px] lg:text-[14px] tracking-tight pt-8"
