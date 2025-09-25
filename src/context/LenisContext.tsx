@@ -26,7 +26,6 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
 
         const checkLenis = () => {
             if (lenisRef.current?.lenis && !lenisInstance) {
-                console.log('[LenisProvider] Lenis instance ready ✅')
                 setLenisInstance(lenisRef.current.lenis)
             } else {
                 frame = requestAnimationFrame(checkLenis)

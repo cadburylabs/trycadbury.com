@@ -25,9 +25,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
     const updateActiveCard = useCallback((newIndex: number) => {
         setActiveCard((prevActive) => {
             if (prevActive !== newIndex) {
-                console.log(
-                    `Updating active card from ${prevActive} to ${newIndex}`
-                )
                 return newIndex
             }
             return prevActive
@@ -40,8 +37,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
         const cards = cardsRef.current
         if (!section || !leftIcon || cards.length === 0) return
         if (!lenis) return // wait until lenis is ready
-
-        console.log('[Challenge] Initializing ScrollTriggers with Lenis')
 
         // 🔹 Integrate GSAP ScrollTrigger with Lenis
         lenis.on('scroll', ScrollTrigger.update)

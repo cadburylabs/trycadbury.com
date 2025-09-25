@@ -26,8 +26,6 @@ export const Fix = ({ id = '' }: { id: string }) => {
         const track = trackRef.current
         if (!section || !track) return
 
-        console.log('[Fix] Initializing ScrollTrigger with Lenis')
-
         // 🔹 Tie ScrollTrigger to Lenis
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
