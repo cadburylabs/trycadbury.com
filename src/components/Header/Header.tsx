@@ -7,6 +7,7 @@ import logo from '@/assets/logo.svg'
 import icoButton from '@/assets/icoButton.svg'
 import gsap from 'gsap'
 import { useLenisContext } from '@/context/LenisContext'
+import { Form } from '../Contact/Form'
 
 const menuConfig = [
     { label: 'The Challenge', target: 'challenge' },
@@ -24,6 +25,8 @@ export const Header = () => {
     const loopTween = useRef<gsap.core.Tween>(null)
     const [locked, setLocked] = useState(false)
 
+    const [showForm, setShowForm] = useState(false)
+
     useEffect(() => {
         if (lineRef.current && containerRef.current) {
             const containerWidth = containerRef.current.offsetWidth
@@ -38,10 +41,6 @@ export const Header = () => {
             })
         }
     }, [])
-
-    useEffect(() => {
-        console.log('Lenis in Header:', lenis)
-    }, [lenis])
 
     const moveToLink = (target: HTMLElement) => {
         if (!lineRef.current || !containerRef.current) return
@@ -94,7 +93,6 @@ export const Header = () => {
 
         const section = document.getElementById(targetId)
         if (section && lenis) {
-            console.log('[NavClick] Scrolling to', targetId)
             lenis.scrollTo(section, { offset: -80 }) // adjust for header
         } else {
             console.warn('[NavClick] Lenis not available in context')
@@ -116,7 +114,7 @@ export const Header = () => {
 
                 <FlexContainer width="w-fit" gap="gap-[7px]">
                     <Image src={logo} alt="Cadbury logo" />
-                    <TypographyLead className="font-pp-montreal">
+                    <TypographyLead className="font-pp-montreal cursor-default">
                         Cadbury
                     </TypographyLead>
                 </FlexContainer>
@@ -140,7 +138,10 @@ export const Header = () => {
                     </ul>
                     <a className="inline-block lg:hidden">MENU</a>
                 </nav>
-                <button className="hidden lg:flex gap-3 px-3.5 py-2.5 bg-gradient-to-r text-[15px] from-[#0DBFBB33] to-[#0F8D8C33] text-[#6DE1CE] font-medium tracking-tight uppercase cursor-pointer">
+                <button
+                    onClick={() => setShowForm(true)}
+                    className="hidden lg:flex gap-3 px-3.5 py-2.5 bg-gradient-to-r from-[#0DBFBB33] to-[#0F8D8C33] hover:from-[#0DBFBB66] hover:to-[#0F8D8C66] text-[15px] text-[#6DE1CE] font-medium tracking-tight uppercase cursor-pointer transition-colors duration-300"
+                >
                     Let’s talk
                     <Image
                         src={icoButton}
@@ -149,6 +150,7 @@ export const Header = () => {
                     />
                 </button>
             </FlexContainer>
+            <Form open={showForm} onClose={() => setShowForm(false)} />
         </header>
     )
 }
