@@ -200,12 +200,20 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             id={id}
             className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden"
         >
+            {/* vertical gradient line */}
+            <span className="block lg:hidden absolute top-0 left-0 h-full w-px border-y-gradient" />
+            <span className="block lg:hidden absolute top-0 right-0 h-full w-px border-y-gradient" />
+
             <div className="lg:w-1/2 lg:flex-shrink-0">
                 <FlexContainer
                     direction="flex-col"
                     gap="lg:gap-[40px]"
-                    className="challenge-left-column relative py-8 lg:py-32 px-4 lg:px-14 border-r-[0.5px] border-l-[0.5px] lg:border-b-[0.5px] border-[#363E44] lg:h-screen lg:max-h-screen overflow-hidden"
+                    className="challenge-left-column relative py-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
                 >
+                    {/* vertical gradient line */}
+                    <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
+                    <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
+
                     <FlexContainer
                         justifyContent="justify-between"
                         className="font-roboto-mono tracking-tight text-[#E4ECF4] uppercase"
@@ -242,8 +250,10 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                 <FlexContainer
                     direction="flex-col"
                     gap="gap-10 lg:gap-[120px]"
-                    className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44] overflow-hidden"
+                    className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 overflow-hidden"
                 >
+                    <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
+
                     {challengeConfig.map((card, index) => (
                         <div
                             key={card.index}

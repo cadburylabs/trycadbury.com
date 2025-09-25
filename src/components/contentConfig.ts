@@ -87,7 +87,7 @@ export const benefitsConfig = [
 
 export const plansConfig = [
     {
-        className: 'border-l-[0.5px]',
+        className: '',
         title: 'Self serve',
         monthly: 49,
         description:

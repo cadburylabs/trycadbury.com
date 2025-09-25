@@ -13,11 +13,16 @@ export const Online = ({ id = '' }: { id: string }) => {
             id={id}
             className="relative flex flex-col lg:flex-row mx-3 lg:mx-5"
         >
+            <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
             <FlexContainer
                 direction="flex-col"
                 gap="gap-5"
-                className="relative px-4 lg:px-14 py-8 lg:py-10 border-l-[0.5px] border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="relative px-4 lg:px-14 py-8 lg:py-10"
             >
+                {/* vertical gradient line */}
+                <span className="absolute top-0 left-0 h-full w-px border-y-gradient" />
+                <span className="absolute top-0 right-0 h-full w-px border-y-gradient" />
+
                 <FlexContainer justifyContent="justify-between">
                     <FlexContainer
                         width="w-fit"
@@ -48,8 +53,10 @@ export const Online = ({ id = '' }: { id: string }) => {
             <FlexContainer
                 direction="flex-col"
                 alignItems="items-center"
-                className="relative hidden lg:flex py-10 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
+                className="relative hidden lg:flex py-10"
             >
+                <span className="absolute top-0 right-0 h-full w-px border-y-gradient" />
+
                 <span className="uppercase w-full text-right px-14">/03</span>
                 <LottieAnimation animationData={browserProfile} />
                 <span className="-mt-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">

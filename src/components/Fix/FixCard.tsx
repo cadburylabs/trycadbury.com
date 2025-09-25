@@ -42,7 +42,10 @@ export const FixCard = ({
                     className="w-[100px] lg:w-[180px]"
                 />
                 <FlexContainer gap="lg:gap-[30px]" direction="flex-col">
-                    <H3 className="pb-4 lg:pb-0 border-b-[0.5px] lg:border-none border-[#363E44]">
+                    <H3 className="relative pb-4 lg:pb-0">
+                        {/* horizontal gradient line */}
+                        <span className="block lg:hidden absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
                         {title}
                     </H3>
                     <P className="pt-4 lg:pt-0">{description}</P>

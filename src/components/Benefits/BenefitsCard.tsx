@@ -21,8 +21,12 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                 ref={ref}
                 direction="flex-col lg:flex-row"
                 alignItems="items-center"
-                className={`${className} h-full p-3.5 lg:p-[60px] benefits-background border-b-[0.5px] border-t-[0.5px] border-[#363E44]`}
+                className={`${className} h-full p-3.5 lg:p-[60px] benefits-background`}
             >
+                {/* horizontal gradient line */}
+                <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
+                <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
                 <FlexContainer
                     width="w-full lg:w-fit"
                     direction="lg:flex-col"

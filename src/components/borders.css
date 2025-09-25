@@ -22,6 +22,28 @@
     }
 }
 
+.border-x-gradient {
+    background: linear-gradient(
+        to right,
+        /* instead of 0deg */ rgba(54, 62, 68, 0.15) 0%,
+        #363e44 25%,
+        #363e44 50%,
+        #363e44 75%,
+        rgba(54, 62, 68, 0.15) 100%
+    );
+}
+
+.border-y-gradient {
+    background: linear-gradient(
+        to bottom,
+        rgba(54, 62, 68, 0.15) 0%,
+        #363e44 25%,
+        #363e44 50%,
+        #363e44 75%,
+        rgba(54, 62, 68, 0.15) 100%
+    );
+}
+
 .animate-move-x-top {
     position: absolute;
     top: 0;
@@ -37,7 +59,7 @@
     height: 1px;
     width: 100px;
     background: linear-gradient(to right, #54ae9f00, #6de1ce, #3c7b7100);
-    animation: move-x 20s ease-in-out infinite;
+    animation: move-x 5s ease-in-out infinite;
 }
 
 .animate-move-y-left {

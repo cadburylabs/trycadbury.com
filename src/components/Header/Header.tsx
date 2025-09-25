@@ -34,7 +34,7 @@ export const Header = () => {
 
             loopTween.current = gsap.to(lineRef.current, {
                 x: containerWidth - lineWidth,
-                duration: 20,
+                duration: 14,
                 repeat: -1,
                 yoyo: true,
                 ease: 'power1.inOut',
@@ -70,7 +70,7 @@ export const Header = () => {
                     currentX >= containerWidth / 2
                         ? 0
                         : containerWidth - lineWidth,
-                duration: 20,
+                duration: 14,
                 repeat: -1,
                 yoyo: true,
                 ease: 'power1.inOut',
@@ -105,8 +105,12 @@ export const Header = () => {
                 ref={containerRef}
                 justifyContent="justify-between"
                 alignItems="items-center"
-                className="relative py-3.5 px-5 border-b-[0.5px] border-l-[0.5px] border-r-[0.5px] border-[#363E44] bg-gradient-dots"
+                className="relative py-3.5 px-5 bg-gradient-dots border-x-[0.5px] border-[#363E44]"
             >
+                {/* horizontal gradient line */}
+                <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
+                <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
                 <div
                     ref={lineRef}
                     className="absolute bottom-0 h-[1px] bg-gradient-to-r from-transparent via-[#6de1ce] to-transparent w-[100px]"

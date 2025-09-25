@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
 import { P } from '../Typography/P'
-import { H3 } from '../Typography/H3'
-import Image from 'next/image'
-import pointIco from '@/assets/point.png'
+
 import { plansConfig } from '../contentConfig'
+import { PlansCard } from './PlansCard'
 
 export const Plans = ({ id = '' }: { id: string }) => {
     const [yearly, setYearly] = useState(false)
@@ -20,15 +19,20 @@ export const Plans = ({ id = '' }: { id: string }) => {
     }
 
     return (
-        <section
-            id={id}
-            className="relative mx-3 lg:mx-5 flex flex-col border-l-[0.5px] border-r-[0.5px] border-[#363E44]"
-        >
+        <section id={id} className="relative mx-3 lg:mx-5 flex flex-col">
+            {/* vertical gradient line */}
+            <span className="absolute top-0 left-0 h-full w-px border-y-gradient" />
+            <span className="absolute top-0 right-0 h-full w-px border-y-gradient" />
+
             <FlexContainer
                 justifyContent="justify-between"
                 alignItems="items-center"
-                className="relative py-10 px-14 border-b-[0.5px] border-t-[0.5px] border-[#363E44]"
+                className="relative py-10 px-14"
             >
+                {/* horizontal gradient line */}
+                <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
+                <span className="hidden lg:block absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
                 <H2>Plans</H2>
 
                 <FlexContainer
@@ -77,84 +81,12 @@ export const Plans = ({ id = '' }: { id: string }) => {
 
             <FlexContainer
                 direction="flex-col lg:flex-row"
+                gap="gap-[50px] lg:gap-0"
                 justifyContent="justify-center"
-                className="relative border-b-[0.5px] border-[#363E44]"
+                className="relative"
             >
                 {plansConfig.map((card) => (
-                    <FlexContainer
-                        key={card.title}
-                        width="lg:w-fit"
-                        direction="flex-col"
-                    >
-                        <FlexContainer
-                            gap="lg:gap-[60px]"
-                            justifyContent="justify-between"
-                            className={`${card.className} pt-5 lg:py-10 px-4 lg:pl-14 lg:pr-7 border-r-[0.5px] lg:border-b-[0.5px] border-[#363E44]`}
-                        >
-                            <H3>{card.title}</H3>
-                            <H3>
-                                <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                                    {getPrice(card.monthly)}
-                                </span>
-                            </H3>
-                        </FlexContainer>
-
-                        <FlexContainer
-                            className={`${card.className} pb-5 lg:py-7 px-4 lg:pl-14 lg:pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
-                        >
-                            <span className="max-w-[300px] text-[17px] lg:text-[23px] text-[#ADBACC] font-medium tracking-tighter leading-none">
-                                {card.description}
-                            </span>
-                        </FlexContainer>
-
-                        <FlexContainer
-                            direction="flex-col"
-                            gap="gap-2"
-                            className={`${card.className} py-7 px-4 lg:pl-14 lg:pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
-                        >
-                            <P className="uppercase tracking-tight">
-                                Publishing
-                            </P>
-                            <ul>
-                                {card.publishing.map((point) => (
-                                    <FlexContainer
-                                        key={point}
-                                        gap="gap-1.5"
-                                        alignItems="items-center"
-                                    >
-                                        <Image
-                                            src={pointIco}
-                                            alt="point icon"
-                                        />
-                                        <li className="pb-1">{point}</li>
-                                    </FlexContainer>
-                                ))}
-                            </ul>
-                        </FlexContainer>
-
-                        <FlexContainer
-                            direction="flex-col"
-                            gap="gap-2"
-                            className={`${card.className} py-7 px-4 lg:pl-14 lg:pr-8 border-r-[0.5px] border-b-[0.5px] border-[#363E44]`}
-                        >
-                            <P className="uppercase tracking-tight">Hosting</P>
-                            <ul>
-                                {card.hosting.map((point) => (
-                                    <FlexContainer
-                                        key={point}
-                                        gap="gap-1.5"
-                                        alignItems="items-center"
-                                    >
-                                        <Image
-                                            src={pointIco}
-                                            alt="point icon"
-                                        />
-                                        <li className="pb-1">{point}</li>
-                                    </FlexContainer>
-                                ))}
-                            </ul>
-                        </FlexContainer>
-                    </FlexContainer>
+                    <PlansCard key={card.title} getPrice={getPrice} {...card} />
                 ))}
             </FlexContainer>
         </section>

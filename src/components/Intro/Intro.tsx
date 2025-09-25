@@ -30,12 +30,27 @@ export const Intro = ({ id = '' }: { id: string }) => {
             id={id}
             className="relative mx-3 lg:mx-5 flex flex-col lg:flex-row lg:min-h-screen pt-14 lg:pt-16"
         >
+            {/* horizontal gradient line */}
+            <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
+            <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
+            {/* vertical gradient line */}
+            <span className="block lg:hidden absolute top-0 left-0 h-full w-px border-y-gradient" />
+            <span className="block lg:hidden absolute top-0 right-0 h-full w-px border-y-gradient" />
+
             <FlexContainer
                 direction="flex-col"
                 justifyContent="justify-center"
                 gap="gap-10"
-                className="relative px-4 lg:px-14 pt-5 pb-10 border-r-[0.5px] border-l-[0.5px] border-b-[0.5px] border-[#363E44] text-center lg:text-left"
+                className="relative px-4 lg:px-14 pt-5 pb-10 text-center lg:text-left"
             >
+                {/* horizontal gradient line */}
+                <span className="block lg:hidden absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
+                {/* vertical gradient line */}
+                <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
+                <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
+
                 <H1>
                     Cadbury is an <br />
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -63,10 +78,10 @@ export const Intro = ({ id = '' }: { id: string }) => {
                 <Button className="mt-8">Schedule a Consultation</Button>
             </FlexContainer>
 
-            <FlexContainer
-                center
-                className="relative lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
-            >
+            <FlexContainer center className="relative lg:px-14">
+                {/* vertical gradient line */}
+                <span className="hidden lg:block absolute top-0 right-0 h-full w-px bg-gradient-to-b from-transparent via-[#363E44] to-transparent" />
+
                 <Box
                     className="mx-4 my-8 group cursor-pointer relative"
                     onClick={() => setShowVideo(true)}

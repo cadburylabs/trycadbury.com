@@ -31,8 +31,11 @@ export const ChallengeCard = ({
                 <FlexContainer
                     direction="flex-col"
                     gap="gap-2"
-                    className="relative border-b-[0.5px] border-[#363E44] pb-[15px] lg:pb-[30px] w-full max-w-full overflow-hidden"
+                    className="relative pb-[15px] lg:pb-[30px] w-full max-w-full overflow-hidden"
                 >
+                    {/* horizontal gradient line */}
+                    <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
                     <LottieAnimation
                         animationData={icon}
                         className="max-w-[120px] lg:hidden flex-shrink-0"

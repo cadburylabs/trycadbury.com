@@ -107,8 +107,12 @@ export const Benefits = ({ id = '' }: { id: string }) => {
 
     return (
         <section id={id} className="relative mx-3 lg:mx-5">
-            <div className="relative border-x-[0.5px] border-[#363E44]">
-                <FlexContainer className="px-14 py-10 border-b-[0.5px] border-[#363E44]">
+            <div className="relative">
+                {/* vertical gradient line */}
+                <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-50" />
+                <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-50" />
+
+                <FlexContainer className="px-14 py-10">
                     <FlexContainer
                         direction="flex-col lg:flex-row"
                         gap="gap-8 lg:gap-0"
@@ -126,7 +130,7 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                                 <Image src={pointIco} alt="pointer icon" />{' '}
                                 Value
                             </FlexContainer>
-                            <span>/{String(n).padStart(2, '0')}</span>
+                            <span>/04</span>
                         </FlexContainer>
 
                         <H2>Benefits</H2>
@@ -146,13 +150,13 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                         alignItems="items-center"
                         className="hidden lg:flex"
                     >
-                        <span>/{String(n).padStart(2, '0')}</span>
+                        <span>/04</span>
                     </FlexContainer>
                 </FlexContainer>
 
                 <div
                     ref={containerRef}
-                    className="relative h-[530px] lg:h-[485px] border-b-[0.5px] border-[#363E44]"
+                    className="relative h-[530px] lg:h-[485px]"
                 >
                     <div className="sticky top-20">
                         <div className="relative overflow-hidden h-[530px] lg:h-[485px]">
