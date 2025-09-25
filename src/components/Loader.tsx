@@ -8,6 +8,17 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// const [isLoading, setIsLoading] = useState(true)
+
+// useRandomizeAnimations(
+//     '.animate-move-x-top, .animate-move-x-bottom, .animate-move-y-left, .animate-move-y-right'
+// )
+
+// useEffect(() => {
+//     const timer = setTimeout(() => setIsLoading(false), 4100)
+//     return () => clearTimeout(timer)
+// }, [])
+
 export const Loader = ({ isLoading }: { isLoading: boolean }) => {
     const loaderRef = useRef<HTMLDivElement>(null)
     const logoRef = useRef<HTMLDivElement>(null)
