@@ -49,11 +49,32 @@ export const Intro = ({ id = '' }: { id: string }) => {
                 center
                 className="relative lg:px-14 border-l-[0.5px] lg:border-l-0 border-r-[0.5px] border-b-[0.5px] border-[#363E44]"
             >
-                <Image
-                    src={videoPreview}
-                    alt="preview video"
-                    className="max-w-[400px] px-4 py-8"
-                />
+                <Box
+                    className="mx-4 my-8 group cursor-pointer relative"
+                    onClick={() => setShowVideo(true)}
+                >
+                    <Image src={videoPreview} alt="preview video" />
+
+                    <div
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  w-[82px] h-[82px] rounded-full 
+                  bg-gradient-to-b from-white/20 backdrop-blur-sm to-transparent z-0"
+                    />
+
+                    <div
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                  flex items-center justify-center w-20 h-20 rounded-full 
+                  bg-black z-10 
+                  opacity-60 group-hover:opacity-70 backdrop-blur-sm transition duration-300"
+                    >
+                        <div
+                            className="w-0 h-0 
+                    border-t-[8px] border-t-transparent 
+                    border-b-[8px] border-b-transparent 
+                    border-l-[12px] border-l-white ml-1"
+                        />
+                    </div>
+                </Box>
             </FlexContainer>
         </section>
     )
