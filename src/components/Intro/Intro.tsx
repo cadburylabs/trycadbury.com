@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H1 } from '../Typography/H1'
 import { P } from '../Typography/P'
 import { Button } from '../Button'
+import { Box } from '../Box'
+import { Modal } from '../Modal'
 import Image from 'next/image'
 import videoPreview from '@/assets/videoPreview.png'
+import icoBack from '@/assets/icoBack.svg'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export const Intro = ({ id = '' }: { id: string }) => {
+    const [showVideo, setShowVideo] = useState(false)
+
+    useEffect(() => {
+        if (showVideo) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'auto'
+            ScrollTrigger.refresh()
+        }
+    }, [showVideo])
+
     return (
         <section
             id={id}
@@ -29,7 +47,7 @@ export const Intro = ({ id = '' }: { id: string }) => {
                 <FlexContainer
                     direction="flex-col"
                     gap="gap-2.5"
-                    className="max-w-[500px]"
+                    className="lg:max-w-[500px]"
                 >
                     <P>
                         Cadbury builds workflows,{' '}
@@ -53,17 +71,21 @@ export const Intro = ({ id = '' }: { id: string }) => {
                     className="mx-4 my-8 group cursor-pointer relative"
                     onClick={() => setShowVideo(true)}
                 >
-                    <Image src={videoPreview} alt="preview video" />
+                    <Image
+                        src={videoPreview}
+                        alt="preview video"
+                        className="group-hover:opacity-85 duration-300"
+                    />
 
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                  w-[82px] h-[82px] rounded-full 
+                  w-[62px] h-[62px] rounded-full 
                   bg-gradient-to-b from-white/20 backdrop-blur-sm to-transparent z-0"
                     />
 
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                  flex items-center justify-center w-20 h-20 rounded-full 
+                  flex items-center justify-center w-[60px] h-[60px] rounded-full 
                   bg-black z-10 
                   opacity-60 group-hover:opacity-70 backdrop-blur-sm transition duration-300"
                     >
@@ -76,6 +98,21 @@ export const Intro = ({ id = '' }: { id: string }) => {
                     </div>
                 </Box>
             </FlexContainer>
+            <Modal
+                isOpen={showVideo}
+                onClose={() => setShowVideo(false)}
+                variant="fullscreen"
+            >
+                <FlexContainer center className="relative h-full">
+                    <Image
+                        src={icoBack}
+                        alt="icon back"
+                        className="absolute top-8 right-8 cursor-pointer"
+                        onClick={() => setShowVideo(false)}
+                    />
+                    <Image src={videoPreview} alt="preview video" />
+                </FlexContainer>
+            </Modal>
         </section>
     )
 }
