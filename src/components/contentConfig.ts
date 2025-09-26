@@ -88,7 +88,7 @@ export const benefitsConfig = [
 export const plansConfig = [
     {
         className: '',
-        title: 'Self serve',
+        title: 'Self Serve',
         monthly: 49,
         description:
             'You deserve to be growing your business, not managing another consultant.',
@@ -105,7 +105,7 @@ export const plansConfig = [
     },
     {
         className: '',
-        title: 'White glove',
+        title: 'White Glove',
         monthly: 135,
         description:
             'Enterprise-grade performance, security, and control — designed for teams who demand more.',

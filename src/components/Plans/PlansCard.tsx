@@ -46,67 +46,71 @@ export const PlansCard = ({
                 <H3>{title}</H3>
                 <H3>
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                        {monthly}$
+                        {`$${monthly}`}
                     </span>
-                    <span className="uppercase text-[15px] lg:text-[16px] tracking-tighter font-roboto-mono">
+                    <span className="pl-1 uppercase text-[15px] lg:text-[16px] tracking-tighter font-roboto-mono">
                         /mo
                     </span>
                 </H3>
             </FlexContainer>
 
             <FlexContainer
-                className={`${className} relative pb-5 lg:py-7 px-4 lg:pl-14 lg:pr-8`}
+                className={`${className} relative pt-3.5 pb-5 lg:py-7 px-4 lg:pl-14 lg:pr-8`}
             >
                 {/* horizontal gradient line */}
                 <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
-                <span className="max-w-[300px] text-[17px] lg:text-[23px] text-[#ADBACC] font-medium tracking-tighter leading-none">
+                <span className="max-w-[375px] text-[18px] lg:text-[24px] text-[#ADBACC] font-medium tracking-tighter leading-none">
                     {description}
                 </span>
             </FlexContainer>
 
             <FlexContainer
                 direction="flex-col"
-                gap="gap-2"
+                gap="gap-3"
                 className={`${className} relative py-7 px-4 lg:pl-14 lg:pr-8`}
             >
                 {/* horizontal gradient line */}
                 <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
-                <P className="uppercase tracking-tight">Publishing</P>
-                <ul>
+                <P className="uppercase tracking-tight text-[14px] lg:text-[16px] font-roboto-mono">
+                    Publishing
+                </P>
+                <ul className="space-y-2 list-none pl-0">
                     {publishing.map((point) => (
-                        <FlexContainer
-                            key={point}
-                            gap="gap-1.5"
-                            alignItems="items-center"
-                        >
-                            <Image src={pointIco} alt="point icon" />
-                            <li className="pb-1">{point}</li>
-                        </FlexContainer>
+                        <li key={point} className="flex items-start gap-2">
+                            <Image
+                                src={pointIco}
+                                alt="point icon"
+                                className="mt-[6px] w-3 h-auto flex-shrink-0"
+                            />
+                            <span className="text-[#E4ECF4]">{point}</span>
+                        </li>
                     ))}
                 </ul>
             </FlexContainer>
 
             <FlexContainer
                 direction="flex-col"
-                gap="gap-2"
+                gap="gap-3"
                 className={`${className} relative py-7 px-4 lg:pl-14 lg:pr-8`}
             >
                 {/* horizontal gradient line */}
                 <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
-                <P className="uppercase tracking-tight">Hosting</P>
-                <ul>
+                <P className="uppercase tracking-tight text-[14px] lg:text-[16px] font-roboto-mono">
+                    Hosting
+                </P>
+                <ul className="space-y-2 list-none pl-0">
                     {hosting.map((point) => (
-                        <FlexContainer
-                            key={point}
-                            gap="gap-1.5"
-                            alignItems="items-center"
-                        >
-                            <Image src={pointIco} alt="point icon" />
-                            <li className="pb-1">{point}</li>
-                        </FlexContainer>
+                        <li key={point} className="flex items-start gap-2">
+                            <Image
+                                src={pointIco}
+                                alt="point icon"
+                                className="mt-[6px] w-[11px] h-auto flex-shrink-0"
+                            />
+                            <span className="text-[#E4ECF4]">{point}</span>
+                        </li>
                     ))}
                 </ul>
             </FlexContainer>

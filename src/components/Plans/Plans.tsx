@@ -23,10 +23,13 @@ export const Plans = ({ id = '' }: { id: string }) => {
                     {/* horizontal gradient line */}
                     <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
                     <span className="hidden lg:block absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+                    <span className="block lg:hidden text-[13px]">/</span>
 
                     <H2>Plans</H2>
 
-                    <span className="font-roboto-mono">/05</span>
+                    <span className="font-roboto-mono text-[13px] lg:text-[16px]">
+                        /05
+                    </span>
                 </FlexContainer>
 
                 <FlexContainer
