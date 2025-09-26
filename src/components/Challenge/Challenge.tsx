@@ -29,10 +29,10 @@ export const Challenge = ({ id = '' }: { id: string }) => {
 
     useEffect(() => {
         const section = sectionRef.current
-        const leftIcon = leftIconRef.current
         const cards = cardsRef.current
-        if (!section || !leftIcon || cards.length === 0 || !lenis) return
+        if (!section || cards.length === 0 || !lenis) return
 
+        // 🔹 Tie ScrollTrigger to Lenis
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
             scrollTop(value) {
@@ -51,78 +51,36 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             pinType: document.body.style.transform ? 'transform' : 'fixed',
         })
 
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+        const mm = gsap.matchMedia()
 
-        gsap.set(cards, { y: 60, opacity: 0.5, scale: 0.95 })
-        if (cards[0]) gsap.set(cards[0], { y: 0, opacity: 1, scale: 1 })
-
-        // Pin left column on desktop
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top top',
-            end: 'bottom bottom',
-            pin: '.challenge-left-column',
-            pinSpacing: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onRefresh: (self) => {
-                if (window.innerWidth < 1024) {
-                    self.disable(false, true)
-                } else {
-                    self.enable()
-                }
-            },
+        mm.add('(min-width: 1024px)', () => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top top',
+                end: 'bottom bottom',
+                pin: '.challenge-left-column',
+                pinSpacing: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+            })
         })
 
-        // One trigger per card – switches when card center hits viewport center
+        // 🔹 All viewports: just track active card like Fix
         cards.forEach((card, index) => {
             if (!card) return
             ScrollTrigger.create({
                 trigger: card,
                 start: 'center 70%',
                 end: 'center center',
-                onEnter: () => {
-                    updateActiveCard(index)
-                    gsap.to(card, {
-                        y: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                    })
-                },
-                onEnterBack: () => {
-                    updateActiveCard(index)
-                    gsap.to(card, {
-                        y: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                    })
-                },
-                onLeave: () => {
-                    gsap.to(card, {
-                        y: -20,
-                        opacity: 0.5,
-                        scale: 0.98,
-                        duration: 0.4,
-                    })
-                },
-                onLeaveBack: () => {
-                    gsap.to(card, {
-                        y: 20,
-                        opacity: 0.5,
-                        scale: 0.98,
-                        duration: 0.4,
-                    })
-                },
+                onEnter: () => updateActiveCard(index),
+                onEnterBack: () => updateActiveCard(index),
             })
         })
 
         ScrollTrigger.refresh()
 
         return () => {
+            mm.revert()
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
             lenis.off('scroll', ScrollTrigger.update)
         }

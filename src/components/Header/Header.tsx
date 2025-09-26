@@ -350,7 +350,7 @@ export const Header = () => {
                         </ul>
                         <button
                             onClick={toggleMobileMenu}
-                            className="lg:hidden text-[#cfdae5] tracking-tight"
+                            className="lg:hidden text-[#cfdae5] tracking-tight text-[10px]"
                         >
                             {mobileOpen ? 'CLOSE' : 'MENU'}
                         </button>
