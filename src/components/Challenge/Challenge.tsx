@@ -153,7 +153,7 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                     <FlexContainer
                         direction="flex-col"
                         gap="gap-8 lg:gap-[40px]"
-                        className="challenge-left-column relative py-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
+                        className="challenge-left-column relative pt-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
                     >
                         {/* vertical gradient line */}
                         <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
@@ -167,6 +167,7 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                                 width="w-fit"
                                 gap="gap-1.5"
                                 alignItems="items-center"
+                                className="text-[13px] lg:text-[16px]"
                             >
                                 <Image src={pointIco} alt="pointer icon" /> Our
                                 Problem

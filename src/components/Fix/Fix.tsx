@@ -128,10 +128,11 @@ export const Fix = ({ id = '' }: { id: string }) => {
                         width="w-fit"
                         gap="gap-1.5"
                         alignItems="items-center"
+                        className="text-[13px] lg:text-[16px]"
                     >
                         <Image src={pointIco} alt="pointer icon" /> Solution
                     </FlexContainer>
-                    <span>/02</span>
+                    <span className="text-[13px] lg:text-[16px]">/02</span>
                 </FlexContainer>
                 <FlexContainer
                     alignItems="items-center"
@@ -164,7 +165,7 @@ export const Fix = ({ id = '' }: { id: string }) => {
             <FlexContainer
                 ref={trackRef}
                 direction="flex-col lg:flex-row"
-                gap="lg:gap-[120px]"
+                gap="gap-10 lg:gap-[120px]"
                 className="relative px-4 lg:px-14 pb-10 lg:py-[100px] will-change-transform"
             >
                 {fixConfig.map((card, index) => (

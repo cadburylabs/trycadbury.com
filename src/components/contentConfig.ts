@@ -37,21 +37,21 @@ export const challengeConfig = [
 export const fixConfig = [
     {
         index: 'CH-01',
-        title: 'Down with the bureaucracy',
+        title: 'Down with the Bureaucracy',
         image: hammer,
         description:
             'Stop depending on large consulting firms that have to fit your needs into their bureaucracy. Cadbury is your always available AI powered NetSuite Consultant, ready to act when your business needs it—not the other way around.',
     },
     {
         index: 'CH-02',
-        title: 'Context aware',
+        title: 'Context Aware',
         image: ring,
         description:
             'After installation, Cadbury automatically builds a dense understanding of the inner workings of your NetSuite instance by scanning scripts, workflows, and integrations. Combined with its own proprietary trained data—sourced from hundreds of expert NetSuite consultants—Cadbury moves faster and more accurately than the typical consultant.',
     },
     {
         index: 'CH-03',
-        title: 'A modern DX',
+        title: 'A Modern DX',
         image: cards,
         description:
             'Stop depending on large consulting firms that have to fit your needs into their bureaucracy. Cadbury is your always available AI powered NetSuite Consultant, ready to act when your business needs it—not the other way around.',

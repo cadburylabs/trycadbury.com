@@ -30,7 +30,10 @@ export const FixCard = ({
             }`}
         >
             <FlexContainer className="justify-end lg:justify-between">
-                <span>{index}</span> <span className="hidden lg:block">/</span>
+                <span className="text-[11px] lg:text-[16px] font-roboto-mono">
+                    {index}
+                </span>{' '}
+                <span className="hidden lg:block">/</span>
             </FlexContainer>
             <FlexContainer
                 direction="flex-col lg:flex-row"
