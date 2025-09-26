@@ -72,3 +72,7 @@ body {
         #121a21 97.57%
     );
 }
+
+.touch-pan-y-pinch * {
+    touch-action: pan-y pinch-zoom;
+}

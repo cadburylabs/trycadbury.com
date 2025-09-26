@@ -74,7 +74,7 @@ export const Modal = ({
     if (!isVisible) return null
 
     const baseWrapper =
-        'fixed inset-0 z-[1000] flex items-center bg-[#121A21B3] justify-center'
+        'fixed inset-0 z-[1000] flex items-center bg-[#121A21B3] justify-center touch-pan-y-pinch'
     const modalBase = 'relative rounded-lg shadow-lg'
     const modalVariants = {
         fullscreen: 'w-screen h-screen rounded-none bg-black',
@@ -82,13 +82,10 @@ export const Modal = ({
     }
 
     return createPortal(
-        <div
-            className={baseWrapper}
-            style={{ touchAction: 'pan-y pinch-zoom' }}
-        >
+        <div className={baseWrapper}>
             <div
                 ref={contentRef}
-                className={`${modalBase} ${modalVariants[variant]} ${className} backdrop-blur-sm`}
+                className={`${modalBase} ${modalVariants[variant]} ${className} backdrop-blur-sm overflow-y-auto`}
             >
                 {children}
             </div>
