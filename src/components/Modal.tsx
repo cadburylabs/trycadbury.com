@@ -81,7 +81,7 @@ export const Modal = ({
         'fixed inset-0 z-[1000] flex items-center bg-[#121A21B3] justify-center touch-pan-y-pinch'
     const modalBase = 'relative rounded-lg shadow-lg'
     const modalVariants = {
-        fullscreen: 'w-screen h-screen rounded-none bg-black',
+        fullscreen: 'w-screen h-dvh rounded-none bg-black',
         dialog: 'w-full max-w-lg p-2.5 bg-[#1E262D]',
     }
 
