@@ -74,9 +74,12 @@ export const Header = () => {
         }
     }, [])
 
+    const resumeTween = useRef<gsap.core.Tween | null>(null)
+
     const moveToLink = (target: HTMLElement) => {
         if (!lineRef.current || !containerRef.current) return
         if (loopTween.current) loopTween.current.kill()
+        if (resumeTween.current) resumeTween.current.kill()
 
         const linkRect = target.getBoundingClientRect()
         const containerRect = containerRef.current!.getBoundingClientRect()
@@ -92,15 +95,17 @@ export const Header = () => {
     const resumeLoop = () => {
         if (!locked && lineRef.current && containerRef.current) {
             if (loopTween.current) loopTween.current.kill()
+            if (resumeTween.current) resumeTween.current.kill()
 
             const containerWidth = containerRef.current.offsetWidth
             const lineWidth = lineRef.current.offsetWidth
 
-            gsap.to(lineRef.current, {
+            resumeTween.current = gsap.to(lineRef.current, {
                 x: 0,
                 duration: 14,
                 ease: 'power2.out',
                 onComplete: () => {
+                    resumeTween.current = null
                     loopTween.current = gsap.to(lineRef.current, {
                         x: containerWidth - lineWidth - 28,
                         duration: 14,
