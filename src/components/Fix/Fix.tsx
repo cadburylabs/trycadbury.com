@@ -84,6 +84,12 @@ export const Fix = ({ id = '' }: { id: string }) => {
                     end: 'bottom 50%',
                     onEnter: () => setActiveCard(index),
                     onEnterBack: () => setActiveCard(index),
+                    onLeave: () => {
+                        if (activeCard === index) setActiveCard(-1) // or null
+                    },
+                    onLeaveBack: () => {
+                        if (activeCard === index) setActiveCard(-1)
+                    },
                 })
             })
         })

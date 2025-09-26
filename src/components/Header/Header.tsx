@@ -62,10 +62,10 @@ export const Header = () => {
     useEffect(() => {
         if (lineRef.current && containerRef.current) {
             const containerWidth = containerRef.current.offsetWidth
-            const lineWidth = 100
+            const lineWidth = lineRef.current.offsetWidth
 
             loopTween.current = gsap.to(lineRef.current, {
-                x: containerWidth - lineWidth,
+                x: containerWidth - lineWidth - 28,
                 duration: 14,
                 repeat: -1,
                 yoyo: true,
@@ -95,17 +95,22 @@ export const Header = () => {
 
             const containerWidth = containerRef.current.offsetWidth
             const lineWidth = lineRef.current.offsetWidth
-            const currentX = gsap.getProperty(lineRef.current, 'x') as number
 
-            loopTween.current = gsap.to(lineRef.current, {
-                x:
-                    currentX >= containerWidth / 2
-                        ? 0
-                        : containerWidth - lineWidth,
-                duration: 14,
-                repeat: -1,
-                yoyo: true,
-                ease: 'power1.inOut',
+            // Animate smoothly back to left edge first
+            gsap.to(lineRef.current, {
+                x: 0,
+                duration: 14, // feel free to adjust
+                ease: 'power2.out',
+                onComplete: () => {
+                    // then start full edge ↔ edge loop
+                    loopTween.current = gsap.to(lineRef.current, {
+                        x: containerWidth - lineWidth - 28,
+                        duration: 14,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'power1.inOut',
+                    })
+                },
             })
         }
     }

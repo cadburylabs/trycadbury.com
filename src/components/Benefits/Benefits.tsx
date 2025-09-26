@@ -65,12 +65,22 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                     totalCards - 1
                 )
 
-                if (cardIndex !== lastIndex.current) {
-                    const prev = cards[lastIndex.current]
-                    const next = cards[cardIndex]
+                cards.forEach((card, i) => {
+                    if (!card) return
 
-                    if (prev) {
-                        gsap.to(prev, {
+                    if (i <= cardIndex) {
+                        // Active or below → visible + stacked
+                        gsap.to(card, {
+                            opacity: 1,
+                            y: i * CARD_OFFSET,
+                            scale: 1,
+                            duration: 0.4,
+                            ease: 'power2.out',
+                            overwrite: 'auto',
+                        })
+                    } else {
+                        // Above → hide
+                        gsap.to(card, {
                             opacity: 0,
                             y: 20,
                             scale: 0.95,
@@ -79,19 +89,7 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                             overwrite: 'auto',
                         })
                     }
-                    if (next) {
-                        gsap.to(next, {
-                            opacity: 1,
-                            y: cardIndex * CARD_OFFSET,
-                            scale: 1,
-                            duration: 0.5,
-                            ease: 'power2.out',
-                            overwrite: 'auto',
-                        })
-                    }
-
-                    lastIndex.current = cardIndex
-                }
+                })
             },
         })
 
