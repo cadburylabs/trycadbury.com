@@ -58,18 +58,29 @@ export const Modal = ({
 
     useEffect(() => {
         if (isOpen) {
-            lenis?.stop()
-            document.body.style.overflow = 'hidden'
-        } else {
-            lenis?.start()
-            document.body.style.overflow = ''
+            setIsVisible(true)
+            window.addEventListener('keydown', handleEsc)
+
+            gsap.fromTo(
+                contentRef.current,
+                { opacity: 0, y: 40 },
+                { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+            )
+        } else if (isVisible) {
+            gsap.to(contentRef.current, {
+                opacity: 0,
+                y: 40,
+                duration: 0.25,
+                ease: 'power2.in',
+                onComplete: () => {
+                    setIsVisible(false)
+                    window.removeEventListener('keydown', handleEsc)
+                },
+            })
         }
 
-        return () => {
-            lenis?.start()
-            document.body.style.overflow = ''
-        }
-    }, [isOpen, lenis])
+        return () => window.removeEventListener('keydown', handleEsc)
+    }, [isOpen, isVisible, handleEsc])
 
     if (!isVisible) return null
 
