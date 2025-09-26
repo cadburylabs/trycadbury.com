@@ -14,21 +14,21 @@ export const challengeConfig = [
     {
         index: 'CH-01',
         icon: phone,
-        title: 'One big Game of Telephone',
+        title: 'One Big Game of Telephone',
         description:
             'In 2025, you shouldn’t need four different people to service your request. Yet due to a broken system, your simple request to edit a PDF template leads to one big game of telephone with a sales rep, an engagement manager, a functional consultant, and finally a technical consultant.',
     },
     {
         index: 'CH-02',
         icon: glass,
-        title: 'Perpetual discovery',
+        title: 'Perpetual Discovery',
         description:
             'What kind of business are you? What’s important to you? Order-to-cash, procure-to-pay - how do you go about it? You’ve answered these questions hundreds of times, and yet every consulting firm you onboard has to ask again. And when that firm leaves your team? All that training leaves with them.',
     },
     {
         index: 'CH-03',
         icon: browser,
-        title: 'Developer experience?\nWhat developer experience?',
+        title: 'Developer Experience?\nWhat Developer Experience?',
         description:
             'In NetSuite, there is no local environment, no version control, and no testing framework. Without this infrastructure, existing consultants move slowly and are prone to making errors.',
     },

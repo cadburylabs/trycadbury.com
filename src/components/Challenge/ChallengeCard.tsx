@@ -31,7 +31,7 @@ export const ChallengeCard = ({
                 <FlexContainer
                     direction="flex-col"
                     gap="gap-2"
-                    className="relative pb-[15px] lg:pb-[30px] w-full max-w-full overflow-hidden"
+                    className="relative pb-[15px] lg:pb-[30px] w-full max-w-full"
                 >
                     {/* horizontal gradient line */}
                     <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
@@ -43,7 +43,7 @@ export const ChallengeCard = ({
                     <H3 className="whitespace-pre-line w-full max-w-full overflow-hidden">
                         {title}
                     </H3>
-                    <div className="absolute right-0 top-0 lg:top-1/4 flex-shrink-0">
+                    <div className="absolute right-0 top-0 lg:top-1/4 flex-shrink-0 text-[11px] lg:text-[16px] font-roboto-mono">
                         {index}
                     </div>
                 </FlexContainer>

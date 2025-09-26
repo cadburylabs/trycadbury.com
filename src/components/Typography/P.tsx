@@ -15,7 +15,7 @@ export const P = forwardRef<
         {
             children,
             fontSize = 'text-[15px] md:text-[17px]',
-            opacity = 'opacity-70',
+            opacity = '',
             role,
             tabIndex,
             className,
@@ -28,7 +28,7 @@ export const P = forwardRef<
                 ref={ref}
                 role={role}
                 tabIndex={tabIndex}
-                className={`${className} ${fontSize} ${opacity} text-[#E4ECF4] leading-5`}
+                className={`${className} ${fontSize} ${opacity} text-[#CFDAE5] leading-snug`}
                 {...props}
             >
                 {children}

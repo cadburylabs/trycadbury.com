@@ -171,9 +171,11 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                                 <Image src={pointIco} alt="pointer icon" /> Our
                                 Problem
                             </FlexContainer>
-                            <span>/01</span>
+                            <span className="text-[13px] lg:text-[16px]">
+                                /01
+                            </span>
                         </FlexContainer>
-                        <H2 className="pt-[30px] lg:w-[160px] flex-shrink-0">
+                        <H2 className="lg:pt-[30px] lg:w-[160px] flex-shrink-0">
                             The{' '}
                             <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
                                 Challenge
