@@ -12,10 +12,10 @@ export default function Home() {
     return (
         <>
             <Header />
-            <main className="bg-gradient-dots">
+            <main>
                 <Intro id="intro" />
                 <Challenge id="challenge" />
-                <div className="relative mx-3 lg:mx-5">
+                <div className="relative mx-3 lg:mx-5 bg-gradient-dots">
                     <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
                     <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
                     <span className="absolute top-0 left-0 h-full w-px border-y-gradient" />

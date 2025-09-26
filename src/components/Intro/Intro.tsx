@@ -17,82 +17,86 @@ export const Intro = ({ id = '' }: { id: string }) => {
     const [showVideo, setShowVideo] = useState(false)
 
     return (
-        <section
-            id={id}
-            className="relative mx-3 lg:mx-5 flex flex-col lg:flex-row lg:min-h-screen pt-14 lg:pt-16"
-        >
-            {/* horizontal gradient line */}
-            <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
-            <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
-
-            {/* vertical gradient line */}
-            <span className="block lg:hidden absolute top-0 left-0 h-full w-px border-y-gradient" />
-            <span className="block lg:hidden absolute top-0 right-0 h-full w-px border-y-gradient" />
-
-            <FlexContainer
-                direction="flex-col"
-                justifyContent="justify-center"
-                gap="gap-10"
-                className="relative px-4 lg:px-14 pt-5 pb-10 text-center lg:text-left"
+        <div className="bg-gradient-dots">
+            <section
+                id={id}
+                className="relative mx-3 lg:mx-5 flex flex-col lg:flex-row lg:min-h-screen pt-14 lg:pt-16 bg-gradient-dots"
             >
                 {/* horizontal gradient line */}
-                <span className="block lg:hidden absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+                <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
+                <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
                 {/* vertical gradient line */}
-                <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
-                <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
+                <span className="block lg:hidden absolute top-0 left-0 h-full w-px border-y-gradient" />
+                <span className="block lg:hidden absolute top-0 right-0 h-full w-px border-y-gradient" />
 
-                <H1>
-                    Cadbury is an <br />
-                    <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                        AI NetSuite
-                    </span>
-                    <br />
-                    Consultant
-                </H1>
                 <FlexContainer
                     direction="flex-col"
-                    gap="gap-2.5"
-                    className="lg:max-w-[500px]"
+                    justifyContent="justify-center"
+                    gap="gap-10"
+                    className="relative px-4 lg:px-14 pt-5 pb-10 text-center lg:text-left"
                 >
-                    <P>
-                        Cadbury builds workflows,{' '}
-                        <span className="font-medium">edits PDF templates</span>
-                        , and creates saved searches in minutes.
-                    </P>
-                    <P>
-                        Trained on a proprietary corpus of data sourced from
-                        hundreds of expert consultants, Cadbury is the last
-                        consultant you’ll ever need.
-                    </P>
+                    {/* horizontal gradient line */}
+                    <span className="block lg:hidden absolute bottom-0 left-0 w-full h-px border-x-gradient" />
+
+                    {/* vertical gradient line */}
+                    <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
+                    <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
+
+                    <H1>
+                        Cadbury is an <br />
+                        <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
+                            AI NetSuite
+                        </span>
+                        <br />
+                        Consultant
+                    </H1>
+                    <FlexContainer
+                        direction="flex-col"
+                        gap="gap-2.5"
+                        className="lg:max-w-[500px]"
+                    >
+                        <P>
+                            Cadbury builds workflows,{' '}
+                            <span className="font-medium">
+                                edits PDF templates
+                            </span>
+                            , and creates saved searches in minutes.
+                        </P>
+                        <P>
+                            Trained on a proprietary corpus of data sourced from
+                            hundreds of expert consultants, Cadbury is the last
+                            consultant you’ll ever need.
+                        </P>
+                    </FlexContainer>
+                    <Button className="mt-8">Schedule a Consultation</Button>
                 </FlexContainer>
-                <Button className="mt-8">Schedule a Consultation</Button>
-            </FlexContainer>
 
-            <FlexContainer center className="relative lg:px-14">
-                {/* vertical gradient line */}
-                <span className="hidden lg:block absolute top-0 right-0 h-full w-px bg-gradient-to-b from-transparent via-[#363E44] to-transparent" />
+                <FlexContainer center className="relative lg:px-14">
+                    {/* vertical gradient line */}
+                    <span className="hidden lg:block absolute top-0 right-0 h-full w-px bg-gradient-to-b from-transparent via-[#363E44] to-transparent" />
 
-                <VideoPreview
-                    src={videoPreview}
-                    onClick={() => setShowVideo(true)}
-                />
-            </FlexContainer>
-            <Modal
-                isOpen={showVideo}
-                onClose={() => setShowVideo(false)}
-                variant="fullscreen"
-            >
-                <FlexContainer center className="relative h-full">
-                    <Image
-                        src={icoBack}
-                        alt="icon back"
-                        className="absolute top-8 right-8 cursor-pointer"
-                        onClick={() => setShowVideo(false)}
+                    <VideoPreview
+                        src={videoPreview}
+                        onClick={() => setShowVideo(true)}
                     />
-                    <Image src={videoPreview} alt="preview video" />
                 </FlexContainer>
-            </Modal>
-        </section>
+                <Modal
+                    isOpen={showVideo}
+                    onClose={() => setShowVideo(false)}
+                    variant="fullscreen"
+                >
+                    <FlexContainer center className="relative h-full">
+                        <Image
+                            src={icoBack}
+                            alt="icon back"
+                            className="absolute top-8 right-8 cursor-pointer"
+                            onClick={() => setShowVideo(false)}
+                        />
+                        <Image src={videoPreview} alt="preview video" />
+                    </FlexContainer>
+                </Modal>
+            </section>
+        </div>
     )
 }

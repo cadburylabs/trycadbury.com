@@ -12,7 +12,6 @@ type PlansCardProps = {
     description: string
     publishing: string[]
     hosting: string[]
-    getPrice: (monthly: number) => string
     className?: string
 }
 
@@ -22,7 +21,6 @@ export const PlansCard = ({
     description,
     publishing,
     hosting,
-    getPrice,
     className,
 }: PlansCardProps) => {
     return (
@@ -48,7 +46,10 @@ export const PlansCard = ({
                 <H3>{title}</H3>
                 <H3>
                     <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                        {getPrice(monthly)}
+                        {monthly}$
+                    </span>
+                    <span className="uppercase text-[15px] lg:text-[16px] tracking-tighter font-roboto-mono">
+                        /mo
                     </span>
                 </H3>
             </FlexContainer>

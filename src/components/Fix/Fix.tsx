@@ -155,7 +155,7 @@ export const Fix = ({ id = '' }: { id: string }) => {
                 <FlexContainer
                     justifyContent="justify-end"
                     alignItems="items-center"
-                    className="hidden lg:flex"
+                    className="hidden lg:flex font-roboto-mono"
                 >
                     <span>/02</span>
                 </FlexContainer>
