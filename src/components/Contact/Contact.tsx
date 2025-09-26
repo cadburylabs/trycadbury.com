@@ -18,8 +18,8 @@ export const Contact = ({ id = '' }: { id: string }) => {
             <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
             <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
             {/* vertical gradient line */}
-            <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-50" />
-            <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-50" />
+            <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-40" />
+            <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-40" />
 
             <FlexContainer
                 direction="flex-col"

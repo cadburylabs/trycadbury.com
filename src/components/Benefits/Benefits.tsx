@@ -109,8 +109,8 @@ export const Benefits = ({ id = '' }: { id: string }) => {
         <section id={id} className="relative mx-3 lg:mx-5">
             <div className="relative">
                 {/* vertical gradient line */}
-                <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-50" />
-                <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-50" />
+                <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-40" />
+                <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-40" />
 
                 <FlexContainer className="px-14 py-10">
                     <FlexContainer

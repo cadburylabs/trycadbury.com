@@ -60,7 +60,7 @@ export const Modal = ({
     if (!isVisible) return null
 
     const baseWrapper =
-        'fixed inset-0 z-50 flex items-center bg-[#121A21B3] justify-center'
+        'fixed inset-0 z-[1000] flex items-center bg-[#121A21B3] justify-center'
     const modalBase = 'modal-content relative rounded-lg shadow-lg'
     const modalVariants = {
         fullscreen: 'w-screen h-screen rounded-none bg-black',
