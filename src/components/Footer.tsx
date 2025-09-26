@@ -19,14 +19,13 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
 
                 <H3
                     fontSize="text-[19px] md:text-[40px]"
-                    className="text-center leading-tight"
+                    className="text-center leading-tight max-w-[800px]"
                 >
                     You Deserve{' '}
                     <span className="text-[#6DE1CE]">
                         to Be Growing Your Business
                     </span>
-                    , not <br />
-                    Managing Another Consultant.
+                    , not Managing Another Consultant.
                 </H3>
             </div>
             <FlexContainer
