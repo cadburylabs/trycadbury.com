@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
@@ -19,12 +19,19 @@ export const Fix = ({ id = '' }: { id: string }) => {
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
     const [activeCard, setActiveCard] = useState(0)
 
+    const updateActiveCard = useCallback((newIndex: number) => {
+        setActiveCard((prevActive) =>
+            prevActive !== newIndex ? newIndex : prevActive
+        )
+    }, [])
+
     useEffect(() => {
-        if (!lenis) return // 🔹 wait until lenis is ready
+        if (!lenis) return
 
         const section = sectionRef.current
         const track = trackRef.current
-        if (!section || !track) return
+        const cards = cardsRef.current
+        if (!section || !track || cards.length === 0) return
 
         // 🔹 Tie ScrollTrigger to Lenis
         lenis.on('scroll', ScrollTrigger.update)
@@ -47,6 +54,7 @@ export const Fix = ({ id = '' }: { id: string }) => {
 
         const mm = gsap.matchMedia()
 
+        // 🔹 Desktop: horizontal scroll
         mm.add('(min-width: 1024px)', () => {
             const totalWidth = track.scrollWidth - section.offsetWidth
             const steps = fixConfig.length - 2
@@ -71,25 +79,18 @@ export const Fix = ({ id = '' }: { id: string }) => {
             })
         })
 
-        // Mobile fallback
+        // 🔹 Mobile: absolute version (like Challenge)
         mm.add('(max-width: 1023px)', () => {
-            const cards = cardsRef.current
             gsap.set(track, { clearProps: 'all' })
 
             cards.forEach((card, index) => {
                 if (!card) return
                 ScrollTrigger.create({
                     trigger: card,
-                    start: 'top 80%',
-                    end: 'bottom 50%',
-                    onEnter: () => setActiveCard(index),
-                    onEnterBack: () => setActiveCard(index),
-                    onLeave: () => {
-                        if (activeCard === index) setActiveCard(-1) // or null
-                    },
-                    onLeaveBack: () => {
-                        if (activeCard === index) setActiveCard(-1)
-                    },
+                    start: 'center 70%',
+                    end: 'center center',
+                    onEnter: () => updateActiveCard(index),
+                    onEnterBack: () => updateActiveCard(index),
                 })
             })
         })
@@ -101,7 +102,7 @@ export const Fix = ({ id = '' }: { id: string }) => {
             ScrollTrigger.getAll().forEach((t) => t.kill())
             lenis.off('scroll', ScrollTrigger.update)
         }
-    }, [lenis])
+    }, [lenis, updateActiveCard])
 
     return (
         <section

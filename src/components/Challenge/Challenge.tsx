@@ -21,24 +21,18 @@ export const Challenge = ({ id = '' }: { id: string }) => {
     const [activeCard, setActiveCard] = useState(0)
     const currentIcon = challengeConfig[activeCard]?.icon
 
-    // Debounced state update to prevent infinite loops
     const updateActiveCard = useCallback((newIndex: number) => {
-        setActiveCard((prevActive) => {
-            if (prevActive !== newIndex) {
-                return newIndex
-            }
-            return prevActive
-        })
+        setActiveCard((prevActive) =>
+            prevActive !== newIndex ? newIndex : prevActive
+        )
     }, [])
 
     useEffect(() => {
         const section = sectionRef.current
         const leftIcon = leftIconRef.current
         const cards = cardsRef.current
-        if (!section || !leftIcon || cards.length === 0) return
-        if (!lenis) return // wait until lenis is ready
+        if (!section || !leftIcon || cards.length === 0 || !lenis) return
 
-        // 🔹 Integrate GSAP ScrollTrigger with Lenis
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
             scrollTop(value) {
@@ -57,16 +51,12 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             pinType: document.body.style.transform ? 'transform' : 'fixed',
         })
 
-        // Clean existing triggers before re-creating
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
 
-        // Initial states for cards
         gsap.set(cards, { y: 60, opacity: 0.5, scale: 0.95 })
-        if (cards[0]) {
-            gsap.set(cards[0], { y: 0, opacity: 1, scale: 1 })
-        }
+        if (cards[0]) gsap.set(cards[0], { y: 0, opacity: 1, scale: 1 })
 
-        // Pin the left column
+        // Pin left column on desktop
         ScrollTrigger.create({
             trigger: section,
             start: 'top top',
@@ -84,16 +74,24 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             },
         })
 
-        // Card triggers
-        for (let index = cards.length - 1; index >= 0; index--) {
-            const card = cards[index]
-            if (!card) continue
-
+        // One trigger per card – switches when card center hits viewport center
+        cards.forEach((card, index) => {
+            if (!card) return
             ScrollTrigger.create({
                 trigger: card,
-                start: 'top 80%',
-                end: 'bottom 50%',
+                start: 'center 70%',
+                end: 'center center',
                 onEnter: () => {
+                    updateActiveCard(index)
+                    gsap.to(card, {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.6,
+                        ease: 'power2.out',
+                    })
+                },
+                onEnterBack: () => {
                     updateActiveCard(index)
                     gsap.to(card, {
                         y: 0,
@@ -109,17 +107,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                         opacity: 0.5,
                         scale: 0.98,
                         duration: 0.4,
-                        ease: 'power2.out',
-                    })
-                },
-                onEnterBack: () => {
-                    updateActiveCard(index)
-                    gsap.to(card, {
-                        y: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.6,
-                        ease: 'power2.out',
                     })
                 },
                 onLeaveBack: () => {
@@ -128,52 +115,9 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                         opacity: 0.5,
                         scale: 0.98,
                         duration: 0.4,
-                        ease: 'power2.out',
                     })
                 },
             })
-        }
-
-        // First card safety trigger
-        if (cards[0]) {
-            ScrollTrigger.create({
-                trigger: cards[0],
-                start: 'top bottom',
-                end: 'top 80%',
-                onEnterBack: () => {
-                    updateActiveCard(0)
-                    gsap.to(cards[0], {
-                        y: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.6,
-                        ease: 'power2.out',
-                    })
-                },
-            })
-        }
-
-        // Section-level safety trigger
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top center',
-            end: 'top top',
-            onEnterBack: () => {
-                const firstCardRect = cards[0]?.getBoundingClientRect()
-                const viewportHeight = window.innerHeight
-                if (firstCardRect && firstCardRect.top < viewportHeight * 0.8) {
-                    updateActiveCard(0)
-                    if (cards[0]) {
-                        gsap.to(cards[0], {
-                            y: 0,
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.6,
-                            ease: 'power2.out',
-                        })
-                    }
-                }
-            },
         })
 
         ScrollTrigger.refresh()
@@ -182,7 +126,7 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
             lenis.off('scroll', ScrollTrigger.update)
         }
-    }, [lenis, updateActiveCard]) // depend on lenis so it re-inits when ready
+    }, [lenis, updateActiveCard])
 
     useEffect(() => {
         const iconElement = leftIconRef.current
