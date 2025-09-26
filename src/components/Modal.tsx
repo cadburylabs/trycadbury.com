@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { gsap } from 'gsap'
 import { useLenisContext } from '@/context/LenisContext'
@@ -21,6 +21,7 @@ export const Modal = ({
 }: ModalProps) => {
     const { lenis } = useLenisContext()
     const [isVisible, setIsVisible] = useState(isOpen)
+    const contentRef = useRef<HTMLDivElement>(null)
 
     const handleEsc = useCallback(
         (e: KeyboardEvent) => {
@@ -33,10 +34,9 @@ export const Modal = ({
         if (isOpen) {
             setIsVisible(true)
             window.addEventListener('keydown', handleEsc)
-            lenis?.stop()
 
             gsap.fromTo(
-                '.modal-content',
+                contentRef.current,
                 { opacity: 0, y: 40 },
                 { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
             )
@@ -49,19 +49,33 @@ export const Modal = ({
                 ease: 'power2.in',
                 onComplete: () => {
                     setIsVisible(false)
-                    lenis?.start()
                     window.removeEventListener('keydown', handleEsc)
                 },
             })
         }
         return () => window.removeEventListener('keydown', handleEsc)
-    }, [isOpen, isVisible, handleEsc, lenis])
+    }, [isOpen, isVisible, handleEsc])
+
+    useEffect(() => {
+        if (isOpen) {
+            lenis?.stop()
+            document.body.style.overflow = 'hidden'
+        } else {
+            lenis?.start()
+            document.body.style.overflow = ''
+        }
+
+        return () => {
+            lenis?.start()
+            document.body.style.overflow = ''
+        }
+    }, [isOpen, lenis])
 
     if (!isVisible) return null
 
     const baseWrapper =
         'fixed inset-0 z-[1000] flex items-center bg-[#121A21B3] justify-center'
-    const modalBase = 'modal-content relative rounded-lg shadow-lg'
+    const modalBase = 'relative rounded-lg shadow-lg'
     const modalVariants = {
         fullscreen: 'w-screen h-screen rounded-none bg-black',
         dialog: 'w-full max-w-lg p-2.5 bg-[#1E262D]',
@@ -70,6 +84,7 @@ export const Modal = ({
     return createPortal(
         <div className={baseWrapper}>
             <div
+                ref={contentRef}
                 className={`${modalBase} ${modalVariants[variant]} ${className} backdrop-blur-sm`}
             >
                 {children}

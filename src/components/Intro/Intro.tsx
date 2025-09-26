@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H1 } from '../Typography/H1'
 import { P } from '../Typography/P'
 import { Button } from '../Button'
-import { Box } from '../Box'
 import { Modal } from '../Modal'
 import Image from 'next/image'
 import videoPreview from '@/assets/videoPreview.png'
@@ -16,15 +15,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 export const Intro = ({ id = '' }: { id: string }) => {
     const [showVideo, setShowVideo] = useState(false)
-
-    useEffect(() => {
-        if (showVideo) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = 'auto'
-            ScrollTrigger.refresh()
-        }
-    }, [showVideo])
 
     return (
         <section
