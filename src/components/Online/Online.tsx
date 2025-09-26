@@ -31,11 +31,11 @@ export const Online = ({ id = '' }: { id: string }) => {
                             width="w-fit"
                             gap="gap-1.5"
                             alignItems="items-center"
-                            className="uppercase font-roboto-mono"
+                            className="uppercase font-roboto-mono text-[13px] lg:text-[16px]"
                         >
                             <Image src={pointIco} alt="" /> How it works
                         </FlexContainer>
-                        <span className="block lg:hidden font-roboto-mono">
+                        <span className="block lg:hidden font-roboto-mono text-[13px] lg:text-[16px]">
                             /03
                         </span>
                     </FlexContainer>
@@ -74,7 +74,7 @@ export const Online = ({ id = '' }: { id: string }) => {
                         /03
                     </span>
                     <LottieAnimation animationData={browserProfile} />
-                    <span className="-mt-32 max-w-[500px] text-[30px] flex flex-col items-center font-medium tracking-tighter leading-none text-center">
+                    <span className="-mt-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">
                         No implementation periods, no calls with our developers,
                         no gimmicks. Simply add{' '}
                         <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -82,11 +82,13 @@ export const Online = ({ id = '' }: { id: string }) => {
                         </span>{' '}
                         into your sandbox account, and we’ll take care of the
                         rest.
-                        <Image
-                            src={gradientLogo}
-                            alt="gradient logo"
-                            className="pt-4"
-                        />
+                        <Box className="w-full flex justify-center">
+                            <Image
+                                src={gradientLogo}
+                                alt="gradient logo"
+                                className="pt-4"
+                            />
+                        </Box>
                     </span>
                 </FlexContainer>
             </section>
