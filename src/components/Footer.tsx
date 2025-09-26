@@ -2,17 +2,24 @@ import React from 'react'
 import { H3 } from './Typography/H3'
 import { FlexContainer } from './FlexContainer'
 
-export const Footer = () => {
+type FooterProps = {
+    animatedBlockRef?: React.Ref<HTMLDivElement>
+}
+
+export const Footer = ({ animatedBlockRef }: FooterProps) => {
     return (
         <footer className="relative w-full">
-            <div className="absolute -top-[200px] h-[200px] left-0 w-full flex items-center justify-center backdrop-blur-lg">
+            <div
+                ref={animatedBlockRef}
+                className="absolute -top-[200px] h-[200px] left-0 w-full flex items-center justify-center backdrop-blur-2xl"
+            >
                 {/* horizontal gradient line */}
                 <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
                 <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
                 <H3
                     fontSize="text-[19px] md:text-[40px]"
-                    className="text-center"
+                    className="text-center leading-tight"
                 >
                     You Deserve{' '}
                     <span className="text-[#6DE1CE]">
