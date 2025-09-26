@@ -33,8 +33,18 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     justifyContent="justify-between"
                     className="lg:h-full lg:mr-10 shrink-0"
                 >
-                    <P>{index}</P>
-                    <P className="hidden lg:block uppercase">{tag}</P>
+                    <P
+                        fontSize="text-[11px] lg:text-[16px]"
+                        className="font-roboto-mono"
+                    >
+                        {index}
+                    </P>
+                    <P
+                        fontSize="text-[11px] lg:text-[16px]"
+                        className="hidden lg:block uppercase font-roboto-mono"
+                    >
+                        {tag}
+                    </P>
                     <P className="block lg:hidden uppercase">/</P>
                 </FlexContainer>
                 <FlexContainer width="w-[434px]" center className="shrink-0">
@@ -60,7 +70,12 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     className="h-full"
                 >
                     <P className="hidden lg:block">/</P>
-                    <P className="block lg:hidden uppercase">{tag}</P>
+                    <P
+                        fontSize="text-[11px] lg:text-[16px]"
+                        className="block lg:hidden uppercase font-roboto-mono"
+                    >
+                        {tag}
+                    </P>
                     <LottieAnimation animationData={blocks} className="h-2.5" />
                 </FlexContainer>
             </FlexContainer>

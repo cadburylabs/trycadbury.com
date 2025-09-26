@@ -126,11 +126,14 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                                     width="w-fit"
                                     gap="gap-1.5"
                                     alignItems="items-center"
+                                    className="text-[13px] lg:text-[16px]"
                                 >
                                     <Image src={pointIco} alt="pointer icon" />{' '}
                                     Value
                                 </FlexContainer>
-                                <span>/04</span>
+                                <span className="text-[13px] lg:text-[16px]">
+                                    /04
+                                </span>
                             </FlexContainer>
 
                             <H2>Benefits</H2>
