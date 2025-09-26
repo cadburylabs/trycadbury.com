@@ -51,7 +51,7 @@ export const Contact = ({ id = '' }: { id: string }) => {
         const trigger = ScrollTrigger.create({
             trigger: contactRef.current,
             scroller: document.body,
-            start: 'bottom 110%',
+            start: 'bottom 120%',
             end: 'bottom 70%',
             // markers: true,
             onEnter: () =>
@@ -106,7 +106,7 @@ export const Contact = ({ id = '' }: { id: string }) => {
                     direction="flex-col"
                     gap="gap-10"
                     alignItems="items-center"
-                    className="h-full flex-1 justify-between pb-[125px] lg:pb-10"
+                    className="h-full flex-1 justify-evenly lg:justify-between pb-[150px] lg:pb-10"
                 >
                     <FlexContainer
                         direction="flex-col"
@@ -119,7 +119,7 @@ export const Contact = ({ id = '' }: { id: string }) => {
                                 width="w-fit"
                                 gap="gap-1.5"
                                 alignItems="items-center"
-                                className="uppercase"
+                                className="uppercase text-[13px] lg:text-[16px] font-roboto-mono"
                             >
                                 <Image src={pointIco} alt="" /> Start your
                                 journey
