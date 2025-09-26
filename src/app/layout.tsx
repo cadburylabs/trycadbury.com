@@ -21,9 +21,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body
-                className={`antialiased bg-gradient-dots ${robotoMono.variable}`}
-            >
+            <body className={`antialiased ${robotoMono.variable}`}>
                 <LenisProvider>{children}</LenisProvider>
             </body>
         </html>
