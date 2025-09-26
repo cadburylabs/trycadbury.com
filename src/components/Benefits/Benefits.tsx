@@ -17,7 +17,6 @@ export const Benefits = ({ id = '' }: { id: string }) => {
     const n = benefitsConfig.length
     const containerRef = useRef<HTMLDivElement>(null)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-    const lastIndex = useRef(0)
     const { lenis } = useLenisContext()
 
     const CARD_OFFSET = 40
@@ -47,6 +46,8 @@ export const Benefits = ({ id = '' }: { id: string }) => {
             pinType: document.body.style.transform ? 'transform' : 'fixed',
         })
 
+        const isMobile = window.innerWidth < 1024
+
         // Initial setup
         gsap.set(cards, { opacity: 0, y: 20, scale: 0.95 })
         gsap.set(cards[0], { opacity: 1, y: 0, scale: 1 })
@@ -54,14 +55,14 @@ export const Benefits = ({ id = '' }: { id: string }) => {
         // ScrollTrigger
         ScrollTrigger.create({
             trigger: containerRef.current,
-            start: 'top 70%',
-            end: 'bottom 30%',
+            start: isMobile ? 'top 65%' : 'top 70%', // earlier start
+            end: isMobile ? 'bottom 35%' : 'bottom 30%', // earlier end
             id: 'benefits-card-container',
             onUpdate: (self) => {
                 const progress = self.progress
                 const totalCards = cards.length
                 const cardIndex = Math.min(
-                    Math.floor(progress * totalCards * 0.8 + progress * 2),
+                    Math.floor(progress * totalCards),
                     totalCards - 1
                 )
 
@@ -155,10 +156,10 @@ export const Benefits = ({ id = '' }: { id: string }) => {
 
                     <div
                         ref={containerRef}
-                        className="relative h-[530px] lg:h-[485px]"
+                        className="relative h-[530px] lg:h-[500px]"
                     >
                         <div className="sticky top-20">
-                            <div className="relative overflow-hidden h-[530px] lg:h-[485px]">
+                            <div className="relative overflow-hidden h-[530px] lg:h-[500px]">
                                 {benefitsConfig.map((card, index) => (
                                     <div
                                         key={card.index ?? index}
