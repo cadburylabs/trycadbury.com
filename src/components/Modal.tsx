@@ -32,51 +32,44 @@ export const Modal = ({
 
     useEffect(() => {
         if (isOpen) {
-            setIsVisible(true)
-            window.addEventListener('keydown', handleEsc)
-
-            gsap.fromTo(
-                contentRef.current,
-                { opacity: 0, y: 40 },
-                { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-            )
-        } else if (isVisible) {
-            // play exit animation
-            gsap.to('.modal-content', {
-                opacity: 0,
-                y: 40,
-                duration: 0.25,
-                ease: 'power2.in',
-                onComplete: () => {
-                    setIsVisible(false)
-                    window.removeEventListener('keydown', handleEsc)
-                },
-            })
+            lenis?.stop?.()
+            document.body.style.overflow = 'hidden'
+        } else {
+            lenis?.start?.()
+            document.body.style.overflow = ''
         }
-        return () => window.removeEventListener('keydown', handleEsc)
-    }, [isOpen, isVisible, handleEsc])
+
+        return () => {
+            lenis?.start?.()
+            document.body.style.overflow = ''
+        }
+    }, [isOpen, lenis])
 
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true)
             window.addEventListener('keydown', handleEsc)
 
-            gsap.fromTo(
-                contentRef.current,
-                { opacity: 0, y: 40 },
-                { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-            )
+            if (contentRef.current) {
+                gsap.fromTo(
+                    contentRef.current,
+                    { opacity: 0, y: 40 },
+                    { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+                )
+            }
         } else if (isVisible) {
-            gsap.to(contentRef.current, {
-                opacity: 0,
-                y: 40,
-                duration: 0.25,
-                ease: 'power2.in',
-                onComplete: () => {
-                    setIsVisible(false)
-                    window.removeEventListener('keydown', handleEsc)
-                },
-            })
+            if (contentRef.current) {
+                gsap.to(contentRef.current, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.25,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        setIsVisible(false)
+                        window.removeEventListener('keydown', handleEsc)
+                    },
+                })
+            }
         }
 
         return () => window.removeEventListener('keydown', handleEsc)
