@@ -31,7 +31,7 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     width="w-full lg:w-fit"
                     direction="lg:flex-col"
                     justifyContent="justify-between"
-                    className="lg:h-full lg:mr-10 shrink-0"
+                    className="lg:h-full mr-5 xl:mr-10 shrink-0"
                 >
                     <P
                         fontSize="text-[11px] lg:text-[16px]"
@@ -47,7 +47,11 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     </P>
                     <P className="block lg:hidden uppercase">/</P>
                 </FlexContainer>
-                <FlexContainer width="w-[434px]" center className="shrink-0">
+                <FlexContainer
+                    width="w-full lg:w-[400px] xl:w-[434px]"
+                    center
+                    className="shrink-0"
+                >
                     <LottieAnimation
                         animationData={icon}
                         className="h-[186px] lg:h-[250px] w-auto pt-4 lg:pt-0"
@@ -57,7 +61,7 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     width="w-full lg:max-w-[450px]"
                     gap="gap-[15px] lg:gap-[30px]"
                     direction="flex-col"
-                    className="lg:ml-40 lg:py-4 pt-8 lg:pt-0 text-center lg:text-left shrink-0"
+                    className="xl:ml-32 lg:py-4 pt-8 lg:pt-0 text-center lg:text-left shrink-0"
                 >
                     <H3>{title}</H3>
                     <P>{description}</P>
