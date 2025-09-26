@@ -96,19 +96,18 @@ export const Header = () => {
             const containerWidth = containerRef.current.offsetWidth
             const lineWidth = lineRef.current.offsetWidth
 
-            // Animate smoothly back to left edge first
             gsap.to(lineRef.current, {
                 x: 0,
-                duration: 14, // feel free to adjust
+                duration: 14,
                 ease: 'power2.out',
                 onComplete: () => {
-                    // then start full edge ↔ edge loop
                     loopTween.current = gsap.to(lineRef.current, {
                         x: containerWidth - lineWidth - 28,
                         duration: 14,
                         repeat: -1,
                         yoyo: true,
                         ease: 'power1.inOut',
+                        fromCurrent: true,
                     })
                 },
             })
