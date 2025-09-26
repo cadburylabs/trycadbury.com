@@ -37,6 +37,21 @@ export const Header = () => {
     const [showForm, setShowForm] = useState(false)
     const [showVideo, setShowVideo] = useState(false)
 
+    useEffect(() => {
+        if (mobileOpen) {
+            lenis?.stop?.()
+            document.body.style.overflow = 'hidden'
+        } else {
+            lenis?.start?.()
+            document.body.style.overflow = ''
+        }
+
+        return () => {
+            lenis?.start?.()
+            document.body.style.overflow = ''
+        }
+    }, [mobileOpen, lenis])
+
     // inside Header component
     useEffect(() => {
         const mql = window.matchMedia('(min-width: 1024px)')
