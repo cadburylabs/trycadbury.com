@@ -6,6 +6,8 @@ import pointIco from '@/assets/point.png'
 import clock from '@/assets/clock.json'
 import browserProfile from '@/assets/browserAcc.json'
 import { LottieAnimation } from '../LottieAnimation'
+import gradientLogo from '@/assets/gradientLogo.svg'
+import { Box } from '../Box'
 
 export const Online = ({ id = '' }: { id: string }) => {
     return (
@@ -52,6 +54,13 @@ export const Online = ({ id = '' }: { id: string }) => {
                         </span>{' '}
                         into your sandbox account, and we’ll take care of the
                         rest.
+                        <Box className="w-full flex justify-center">
+                            <Image
+                                src={gradientLogo}
+                                alt="gradient logo"
+                                className="pt-5"
+                            />
+                        </Box>
                     </span>
                 </FlexContainer>
                 <FlexContainer
@@ -65,7 +74,7 @@ export const Online = ({ id = '' }: { id: string }) => {
                         /03
                     </span>
                     <LottieAnimation animationData={browserProfile} />
-                    <span className="-mt-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">
+                    <span className="-mt-32 max-w-[500px] text-[30px] flex flex-col items-center font-medium tracking-tighter leading-none text-center">
                         No implementation periods, no calls with our developers,
                         no gimmicks. Simply add{' '}
                         <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
@@ -73,6 +82,11 @@ export const Online = ({ id = '' }: { id: string }) => {
                         </span>{' '}
                         into your sandbox account, and we’ll take care of the
                         rest.
+                        <Image
+                            src={gradientLogo}
+                            alt="gradient logo"
+                            className="pt-4"
+                        />
                     </span>
                 </FlexContainer>
             </section>
