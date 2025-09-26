@@ -104,75 +104,77 @@ export const Benefits = ({ id = '' }: { id: string }) => {
     }, [lenis, n])
 
     return (
-        <section id={id} className="relative mx-3 lg:mx-5">
-            <div className="relative">
-                {/* vertical gradient line */}
-                <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-40" />
-                <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-40" />
+        <div className="bg-gradient-dots">
+            <section id={id} className="relative mx-3 lg:mx-5 bg-gradient-dots">
+                <div className="relative">
+                    {/* vertical gradient line */}
+                    <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-40" />
+                    <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-40" />
 
-                <FlexContainer className="px-14 py-10">
-                    <FlexContainer
-                        direction="flex-col lg:flex-row"
-                        gap="gap-8 lg:gap-0"
-                        justifyContent="justify-between"
-                    >
+                    <FlexContainer className="px-4 lg:px-14 py-10">
                         <FlexContainer
+                            direction="flex-col lg:flex-row"
+                            gap="gap-8 lg:gap-0"
                             justifyContent="justify-between"
-                            className="lg:hidden font-roboto-mono tracking-tight text-[#E4ECF4] uppercase"
                         >
+                            <FlexContainer
+                                justifyContent="justify-between"
+                                className="lg:hidden font-roboto-mono tracking-tight text-[#E4ECF4] uppercase"
+                            >
+                                <FlexContainer
+                                    width="w-fit"
+                                    gap="gap-1.5"
+                                    alignItems="items-center"
+                                >
+                                    <Image src={pointIco} alt="pointer icon" />{' '}
+                                    Value
+                                </FlexContainer>
+                                <span>/04</span>
+                            </FlexContainer>
+
+                            <H2>Benefits</H2>
+
                             <FlexContainer
                                 width="w-fit"
                                 gap="gap-1.5"
                                 alignItems="items-center"
+                                className="hidden lg:flex uppercase"
                             >
-                                <Image src={pointIco} alt="pointer icon" />{' '}
-                                Value
+                                <Image src={pointIco} alt="" /> Value
                             </FlexContainer>
-                            <span>/04</span>
                         </FlexContainer>
-
-                        <H2>Benefits</H2>
 
                         <FlexContainer
-                            width="w-fit"
-                            gap="gap-1.5"
+                            justifyContent="justify-end"
                             alignItems="items-center"
-                            className="hidden lg:flex uppercase"
+                            className="hidden lg:flex"
                         >
-                            <Image src={pointIco} alt="" /> Value
+                            <span className="font-roboto-mono">/04</span>
                         </FlexContainer>
                     </FlexContainer>
 
-                    <FlexContainer
-                        justifyContent="justify-end"
-                        alignItems="items-center"
-                        className="hidden lg:flex"
+                    <div
+                        ref={containerRef}
+                        className="relative h-[530px] lg:h-[485px]"
                     >
-                        <span>/04</span>
-                    </FlexContainer>
-                </FlexContainer>
-
-                <div
-                    ref={containerRef}
-                    className="relative h-[530px] lg:h-[485px]"
-                >
-                    <div className="sticky top-20">
-                        <div className="relative overflow-hidden h-[530px] lg:h-[485px]">
-                            {benefitsConfig.map((card, index) => (
-                                <div
-                                    key={card.index ?? index}
-                                    ref={(el) => {
-                                        cardsRef.current[index] = el
-                                    }}
-                                    className="absolute top-0 left-0 w-full h-[450px] lg:h-[426px]"
-                                >
-                                    <BenefitsCard {...card} />
-                                </div>
-                            ))}
+                        <div className="sticky top-20">
+                            <div className="relative overflow-hidden h-[530px] lg:h-[485px]">
+                                {benefitsConfig.map((card, index) => (
+                                    <div
+                                        key={card.index ?? index}
+                                        ref={(el) => {
+                                            cardsRef.current[index] = el
+                                        }}
+                                        className="absolute top-0 left-0 w-full h-[450px] lg:h-[426px]"
+                                    >
+                                        <BenefitsCard {...card} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     )
 }

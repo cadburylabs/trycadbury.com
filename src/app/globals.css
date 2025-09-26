@@ -64,7 +64,7 @@ body {
 }
 
 .benefits-background {
-    background: linear-gradient(282deg, #090d14 38.65%, #121a21 97.57%);
+    background: linear-gradient(-10deg, #090d14 38.65%, #121a21 97.57%);
     background: linear-gradient(
         in oklch,
         282deg,
