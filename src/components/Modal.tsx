@@ -82,7 +82,10 @@ export const Modal = ({
     }
 
     return createPortal(
-        <div className={baseWrapper}>
+        <div
+            className={baseWrapper}
+            style={{ touchAction: 'pan-y pinch-zoom' }}
+        >
             <div
                 ref={contentRef}
                 className={`${modalBase} ${modalVariants[variant]} ${className} backdrop-blur-sm`}
