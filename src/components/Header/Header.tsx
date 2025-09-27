@@ -38,21 +38,6 @@ export const Header = () => {
     const [showVideo, setShowVideo] = useState(false)
 
     useEffect(() => {
-        if (mobileOpen) {
-            lenis?.stop?.()
-            document.body.style.overflow = 'hidden'
-        } else {
-            lenis?.start?.()
-            document.body.style.overflow = ''
-        }
-
-        return () => {
-            lenis?.start?.()
-            document.body.style.overflow = ''
-        }
-    }, [mobileOpen, lenis])
-
-    useEffect(() => {
         const mql = window.matchMedia('(min-width: 1024px)')
 
         const onChange = (e: MediaQueryListEvent | MediaQueryList) => {
@@ -137,11 +122,14 @@ export const Header = () => {
         setLocked(true)
     }
 
+    const closeTween = useRef<gsap.core.Timeline | null>(null)
+
     const toggleMobileMenu = () => {
         if (!overlayRef.current) return
 
         if (!mobileOpen) {
             setMobileOpen(true)
+            lenis?.stop()
 
             gsap.to(overlayRef.current, {
                 y: '0%',
@@ -176,24 +164,26 @@ export const Header = () => {
                     '>-0.1'
                 )
         } else {
-            const tl = gsap.timeline({
+            if (closeTween.current) {
+                closeTween.current.kill()
+            }
+
+            lenis?.start()
+
+            closeTween.current = gsap.timeline({
                 onComplete: () => {
-                    gsap.to(overlayRef.current, {
-                        y: '-100%',
-                        opacity: 0,
-                        duration: 0.4,
-                        ease: 'power3.in',
-                        onComplete: () => setMobileOpen(false),
-                    })
+                    setMobileOpen(false)
+                    closeTween.current = null
                 },
             })
 
-            tl.to('.overlay-video', {
-                y: 30,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power3.in',
-            })
+            closeTween.current
+                .to('.overlay-video', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: 'power3.in',
+                })
                 .to(
                     '.overlay-cta',
                     { y: 30, opacity: 0, duration: 0.3, ease: 'power3.in' },
@@ -207,6 +197,16 @@ export const Header = () => {
                         duration: 0.3,
                         ease: 'power3.in',
                         stagger: 0.05,
+                    },
+                    '<'
+                )
+                .to(
+                    overlayRef.current,
+                    {
+                        y: '-100%',
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: 'power3.in',
                     },
                     '<'
                 )
