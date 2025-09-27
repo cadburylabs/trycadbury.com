@@ -31,7 +31,7 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     width="w-full lg:w-fit"
                     direction="lg:flex-col"
                     justifyContent="justify-between"
-                    className="lg:h-full mr-5 xl:mr-10 shrink-0"
+                    className="lg:h-full xl:mr-10 shrink-0"
                 >
                     <P
                         fontSize="text-[11px] lg:text-[16px]"
@@ -80,7 +80,10 @@ export const BenefitsCard = forwardRef<HTMLDivElement, BenefitsCardProps>(
                     >
                         {tag}
                     </P>
-                    <LottieAnimation animationData={blocks} className="h-2.5" />
+                    <LottieAnimation
+                        animationData={blocks}
+                        className="w-10 h-2.5"
+                    />
                 </FlexContainer>
             </FlexContainer>
         )
