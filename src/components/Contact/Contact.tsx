@@ -12,9 +12,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useLenisContext } from '@/context/LenisContext'
 import { Footer } from '../Footer'
 
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger)
-}
+gsap.registerPlugin(ScrollTrigger)
 
 export const Contact = ({ id = '' }: { id: string }) => {
     const { lenis } = useLenisContext()
@@ -53,7 +51,6 @@ export const Contact = ({ id = '' }: { id: string }) => {
             scroller: document.body,
             start: 'bottom 120%',
             end: 'bottom 70%',
-            // markers: true,
             onEnter: () =>
                 gsap.to(animatedBlockRef.current, {
                     y: 0,
@@ -101,7 +98,6 @@ export const Contact = ({ id = '' }: { id: string }) => {
                 <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-40" />
                 <span className="absolute top-0 right-0 h-full w-px border-y-gradient z-40" />
 
-                {/* content */}
                 <FlexContainer
                     direction="flex-col"
                     gap="gap-10"

@@ -33,7 +33,6 @@ export const Fix = ({ id = '' }: { id: string }) => {
         const cards = cardsRef.current
         if (!section || !track || cards.length === 0) return
 
-        // 🔹 Tie ScrollTrigger to Lenis
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
             scrollTop(value) {
@@ -54,7 +53,6 @@ export const Fix = ({ id = '' }: { id: string }) => {
 
         const mm = gsap.matchMedia()
 
-        // 🔹 Desktop: horizontal scroll
         mm.add('(min-width: 1024px)', () => {
             const totalWidth = track.scrollWidth - section.offsetWidth
             const steps = fixConfig.length - 2
@@ -79,7 +77,6 @@ export const Fix = ({ id = '' }: { id: string }) => {
             })
         })
 
-        // 🔹 Mobile: absolute version (like Challenge)
         mm.add('(max-width: 1023px)', () => {
             gsap.set(track, { clearProps: 'all' })
 
@@ -117,7 +114,6 @@ export const Fix = ({ id = '' }: { id: string }) => {
                 className="relative py-8 lg:py-10 px-4 lg:px-14"
             >
                 {/* horizontal gradient line */}
-                {/* <span className="absolute top-0 left-0 w-full h-px border-x-gradient" /> */}
                 <span className="hidden lg:block absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
                 <FlexContainer

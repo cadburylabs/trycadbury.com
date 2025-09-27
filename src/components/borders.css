@@ -79,7 +79,3 @@
     background: linear-gradient(to bottom, #54ae9f00, #6de1ce, #3c7b7100);
     animation: move-y 20s ease-in-out infinite;
 }
-
-.animate-paused {
-    animation-play-state: paused !important;
-}

@@ -2,7 +2,6 @@
 import React from 'react'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
-import { P } from '../Typography/P'
 
 import { plansConfig } from '../contentConfig'
 import { PlansCard } from './PlansCard'

@@ -52,7 +52,6 @@ export const Header = () => {
         }
     }, [mobileOpen, lenis])
 
-    // inside Header component
     useEffect(() => {
         const mql = window.matchMedia('(min-width: 1024px)')
 
@@ -73,7 +72,6 @@ export const Header = () => {
         return () => mql.removeEventListener('change', onChange)
     }, [mobileOpen])
 
-    // --- Desktop line animation ---
     useEffect(() => {
         if (lineRef.current && containerRef.current) {
             const containerWidth = containerRef.current.offsetWidth
@@ -139,14 +137,12 @@ export const Header = () => {
         setLocked(true)
     }
 
-    // --- Mobile overlay animation ---
     const toggleMobileMenu = () => {
         if (!overlayRef.current) return
 
         if (!mobileOpen) {
             setMobileOpen(true)
 
-            // Overlay in
             gsap.to(overlayRef.current, {
                 y: '0%',
                 opacity: 1,
@@ -155,7 +151,6 @@ export const Header = () => {
                 pointerEvents: 'auto',
             })
 
-            // Sequence for children
             const tl = gsap.timeline({ delay: 0.2 })
             tl.fromTo(
                 linksRef.current,
@@ -172,7 +167,7 @@ export const Header = () => {
                     '.overlay-cta',
                     { y: 30, opacity: 0 },
                     { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' },
-                    '>-0.1' // start right after links
+                    '>-0.1'
                 )
                 .fromTo(
                     '.overlay-video',
@@ -181,7 +176,6 @@ export const Header = () => {
                     '>-0.1'
                 )
         } else {
-            // Close children first
             const tl = gsap.timeline({
                 onComplete: () => {
                     gsap.to(overlayRef.current, {
@@ -206,7 +200,7 @@ export const Header = () => {
                     '<'
                 )
                 .to(
-                    linksRef.current.slice().reverse(), // reverse order for nav items
+                    linksRef.current.slice().reverse(),
                     {
                         y: 30,
                         opacity: 0,
@@ -226,24 +220,24 @@ export const Header = () => {
     ) => {
         e.preventDefault()
 
-        // desktop underline
         lockLine(li)
 
-        // mobile close
         if (mobileOpen) {
             toggleMobileMenu()
         }
 
-        // delayed scroll
         setTimeout(() => {
             const section = document.getElementById(targetId)
             if (section && lenis) {
-                lenis.scrollTo(section, { offset: -80 })
+                lenis.scrollTo(section, {
+                    offset: -80,
+                    duration: 2.0,
+                    easing: (t) => 1 - Math.pow(1 - t, 3),
+                })
             }
         }, 300)
     }
 
-    // close overlay safely
     const closeOverlay = (onDone?: () => void) => {
         if (!overlayRef.current || !mobileOpen) {
             onDone?.()
@@ -290,7 +284,7 @@ export const Header = () => {
 
     const openForm = () => {
         if (mobileOpen) {
-            closeOverlay(() => setShowForm(true)) // pass callback
+            closeOverlay(() => setShowForm(true))
         } else {
             setShowForm(true)
         }
@@ -315,21 +309,19 @@ export const Header = () => {
                         mobileOpen ? '' : 'bg-gradient-dots'
                     }`}
                 >
-                    {/* gradient borders */}
                     {!mobileOpen && (
                         <>
+                            {/* horizontal gradient line */}
                             <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
                             <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
                         </>
                     )}
 
-                    {/* moving line (desktop only) */}
                     <div
                         ref={lineRef}
                         className="absolute bottom-0 h-[1px] bg-gradient-to-r from-transparent via-[#6de1ce] to-transparent w-[100px] hidden lg:block"
                     />
 
-                    {/* logo */}
                     <FlexContainer width="w-fit" gap="gap-[7px]">
                         <Image src={logo} alt="Cadbury logo" />
                         <TypographyLead className="font-pp-montreal cursor-default">
@@ -337,7 +329,6 @@ export const Header = () => {
                         </TypographyLead>
                     </FlexContainer>
 
-                    {/* nav */}
                     <nav>
                         <ul
                             ref={navRef}
@@ -371,7 +362,6 @@ export const Header = () => {
                         </button>
                     </nav>
 
-                    {/* desktop CTA */}
                     <button
                         onClick={() => setShowForm(true)}
                         className="hidden lg:flex gap-3 px-3.5 py-2.5 bg-gradient-to-r from-[#0DBFBB33] to-[#0F8D8C33] hover:from-[#0DBFBB66] hover:to-[#0F8D8C66] text-[15px] text-[#6DE1CE] font-medium tracking-tight uppercase cursor-pointer transition-colors duration-300"
@@ -386,7 +376,6 @@ export const Header = () => {
                 </FlexContainer>
             </header>
 
-            {/* mobile overlay */}
             <div
                 ref={overlayRef}
                 className="fixed inset-0 pt-[80px] px-8 z-50 lg:hidden md:items-center flex flex-col font-roboto-mono"
@@ -445,10 +434,8 @@ export const Header = () => {
                 </FlexContainer>
             </div>
 
-            {/* form */}
             <Form open={showForm} onClose={() => setShowForm(false)} />
 
-            {/* video modal (if needed) */}
             <Modal
                 isOpen={showVideo}
                 onClose={() => setShowVideo(false)}

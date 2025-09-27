@@ -34,18 +34,16 @@ export const Loader = ({ isLoading }: { isLoading: boolean }) => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // fade logo in quickly (0 → 1 opacity in 0.3s)
             gsap.fromTo(
                 logoRef.current,
                 { opacity: 0 },
                 { opacity: 1, duration: 1.15, delay: 0.15, ease: 'power2.out' }
             )
 
-            // slide whole loader up after animation finishes
             gsap.to(loaderRef.current, {
                 y: '-100%',
                 duration: 0.5,
-                delay: 3.6, // keep synced with your timer
+                delay: 3.6, // adjust based on loading timer
                 ease: 'power3.inOut',
             })
         }, loaderRef)

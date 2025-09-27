@@ -27,7 +27,6 @@ export const Benefits = ({ id = '' }: { id: string }) => {
         const cards = cardsRef.current.filter(Boolean)
         if (cards.length === 0) return
 
-        // Tie ScrollTrigger to Lenis
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
             scrollTop(value) {
@@ -48,15 +47,13 @@ export const Benefits = ({ id = '' }: { id: string }) => {
 
         const isMobile = window.innerWidth < 1024
 
-        // Initial setup
         gsap.set(cards, { opacity: 0, y: 20, scale: 0.95 })
         gsap.set(cards[0], { opacity: 1, y: 0, scale: 1 })
 
-        // ScrollTrigger
         ScrollTrigger.create({
             trigger: containerRef.current,
-            start: isMobile ? 'top 65%' : 'top 70%', // earlier start
-            end: isMobile ? 'bottom 35%' : 'bottom 30%', // earlier end
+            start: isMobile ? 'top 65%' : 'top 70%',
+            end: isMobile ? 'bottom 35%' : 'bottom 30%',
             id: 'benefits-card-container',
             onUpdate: (self) => {
                 const progress = self.progress
@@ -70,7 +67,6 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                     if (!card) return
 
                     if (i <= cardIndex) {
-                        // Active or below → visible + stacked
                         gsap.to(card, {
                             opacity: 1,
                             y: i * CARD_OFFSET,
@@ -80,7 +76,6 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                             overwrite: 'auto',
                         })
                     } else {
-                        // Above → hide
                         gsap.to(card, {
                             opacity: 0,
                             y: 20,

@@ -32,7 +32,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
         const cards = cardsRef.current
         if (!section || cards.length === 0 || !lenis) return
 
-        // 🔹 Tie ScrollTrigger to Lenis
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
             scrollTop(value) {
@@ -65,7 +64,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             })
         })
 
-        // 🔹 All viewports: just track active card like Fix
         cards.forEach((card, index) => {
             if (!card) return
             ScrollTrigger.create({
@@ -141,7 +139,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                             </span>
                         </H2>
 
-                        {/* Dynamic Lottie Icon */}
                         <div ref={leftIconRef} className="flex-shrink-0">
                             <LottieAnimation
                                 animationData={currentIcon}
