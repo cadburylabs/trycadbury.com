@@ -17,7 +17,7 @@ export const Challenge = ({ id = '' }: { id: string }) => {
     const { lenis } = useLenisContext()
     const sectionRef = useRef<HTMLElement | null>(null)
     const leftIconRef = useRef<HTMLDivElement | null>(null)
-    const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+    const cardsContainerRef = useRef<HTMLDivElement | null>(null)
     const [activeCard, setActiveCard] = useState(0)
     const currentIcon = challengeConfig[activeCard]?.icon
 
@@ -29,8 +29,8 @@ export const Challenge = ({ id = '' }: { id: string }) => {
 
     useEffect(() => {
         const section = sectionRef.current
-        const cards = cardsRef.current
-        if (!section || cards.length === 0 || !lenis) return
+        const cardsContainer = cardsContainerRef.current
+        if (!section || !cardsContainer || !lenis) return
 
         lenis.on('scroll', ScrollTrigger.update)
         ScrollTrigger.scrollerProxy(document.body, {
@@ -53,25 +53,68 @@ export const Challenge = ({ id = '' }: { id: string }) => {
         const mm = gsap.matchMedia()
 
         mm.add('(min-width: 1024px)', () => {
+            const scrollDistance =
+                challengeConfig.length * (window.innerHeight * 0.6)
+
             ScrollTrigger.create({
                 trigger: section,
                 start: 'top top',
-                end: 'bottom bottom',
-                pin: '.challenge-left-column',
+                end: () => `+=${scrollDistance}`,
+                pin: section,
                 pinSpacing: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
             })
+
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top top',
+                end: () => `+=${scrollDistance}`,
+                onUpdate: (self) => {
+                    const progress = self.progress
+                    let cardIndex = 0
+
+                    console.log(
+                        `Progress: ${progress.toFixed(
+                            3
+                        )}, Current active: ${activeCard}`
+                    )
+
+                    if (progress <= 0.3) {
+                        cardIndex = 0
+                    } else if (progress <= 0.55) {
+                        cardIndex = 1
+                    } else if (progress <= 0.8) {
+                        cardIndex = 2
+                    } else {
+                        cardIndex = 3
+                    }
+
+                    cardIndex = Math.min(cardIndex, challengeConfig.length - 1)
+
+                    console.log(`Calculated cardIndex: ${cardIndex}`)
+
+                    updateActiveCard(cardIndex)
+
+                    const targetX = -cardIndex * 100
+                    gsap.to(cardsContainer, {
+                        x: `${targetX}%`,
+                        duration: 0.6,
+                        ease: 'power2.out',
+                    })
+                },
+            })
         })
 
-        cards.forEach((card, index) => {
-            if (!card) return
-            ScrollTrigger.create({
-                trigger: card,
-                start: 'center 70%',
-                end: 'center center',
-                onEnter: () => updateActiveCard(index),
-                onEnterBack: () => updateActiveCard(index),
+        mm.add('(max-width: 1023px)', () => {
+            challengeConfig.forEach((_, index) => {
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: () => `${index * 25}% center`,
+                    end: () => `${(index + 1) * 25}% center`,
+                    onEnter: () => updateActiveCard(index),
+                    onEnterBack: () => updateActiveCard(index),
+                })
             })
         })
 
@@ -152,25 +195,42 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                 <div className="lg:w-1/2 lg:flex-shrink-0">
                     <FlexContainer
                         direction="flex-col"
-                        gap="gap-10 lg:gap-[120px]"
-                        className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 overflow-hidden"
+                        justifyContent="justify-center"
+                        className="relative h-full lg:h-screen overflow-hidden pb-10 lg:py-32 px-4 lg:px-14"
                     >
                         <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
 
-                        {challengeConfig.map((card, index) => (
+                        <div className="hidden lg:block w-full h-full relative overflow-hidden">
                             <div
-                                key={card.index}
-                                ref={(el) => {
-                                    cardsRef.current[index] = el
-                                }}
-                                className="w-full max-w-full"
+                                ref={cardsContainerRef}
+                                className="flex absolute inset-0"
                             >
-                                <ChallengeCard
-                                    {...card}
-                                    isActive={activeCard === index}
-                                />
+                                {challengeConfig.map((card, index) => (
+                                    <div
+                                        key={card.index}
+                                        className="w-full h-full flex-shrink-0 flex items-center justify-center px-4"
+                                    >
+                                        <div className="w-full max-w-full">
+                                            <ChallengeCard
+                                                {...card}
+                                                isActive={activeCard === index}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
+
+                        <div className="lg:hidden w-full space-y-10">
+                            {challengeConfig.map((card, index) => (
+                                <div key={card.index} className="w-full">
+                                    <ChallengeCard
+                                        {...card}
+                                        isActive={activeCard === index}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </FlexContainer>
                 </div>
             </section>
