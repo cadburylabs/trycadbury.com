@@ -48,7 +48,7 @@ body {
 
 .bg-gradient-dots {
     background-image: url('/images/dots.png'),
-        linear-gradient(282deg, #090d14 0%, #121a21 100%);
+        linear-gradient(282deg, #090d14 0%, #090d14 20%, #121a21 100%);
     background-repeat: repeat, no-repeat;
     background-size: 1920px 1080px, cover;
 }
@@ -67,7 +67,7 @@ body {
     background: linear-gradient(-10deg, #090d14 38.65%, #121a21 97.57%);
     background: linear-gradient(
         in oklch,
-        282deg,
+        -10deg,
         #090d14 38.65%,
         #121a21 97.57%
     );
