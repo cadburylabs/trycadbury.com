@@ -1,12 +1,24 @@
 import React from 'react'
 import { H3 } from './Typography/H3'
 import { FlexContainer } from './FlexContainer'
+import { useLenisContext } from '@/context/LenisContext'
 
 type FooterProps = {
     animatedBlockRef?: React.Ref<HTMLDivElement>
 }
 
 export const Footer = ({ animatedBlockRef }: FooterProps) => {
+    const { lenis } = useLenisContext()
+
+    const scrollToTop = () => {
+        if (lenis) {
+            lenis.scrollTo(0, {
+                duration: 2,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+            })
+        }
+    }
+
     return (
         <footer className="relative w-full">
             <div
@@ -85,7 +97,10 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                     <span className="text-[#7C848C] text-[9px] lg:text-[13px] tracking-tight uppercase cursor-pointer">
                         Privacy policy
                     </span>
-                    <span className="hidden lg:block text-[#7C848C] text-[13px] tracking-tight uppercase cursor-pointer">
+                    <span
+                        onClick={scrollToTop}
+                        className="hidden lg:block text-[#7C848C] text-[13px] tracking-tight uppercase cursor-pointer"
+                    >
                         Back to top
                     </span>
                 </FlexContainer>

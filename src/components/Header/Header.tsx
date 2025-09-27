@@ -238,6 +238,15 @@ export const Header = () => {
         }, 300)
     }
 
+    const scrollToTop = () => {
+        if (lenis) {
+            lenis.scrollTo(0, {
+                duration: 2,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+            })
+        }
+    }
+
     const closeOverlay = (onDone?: () => void) => {
         if (!overlayRef.current || !mobileOpen) {
             onDone?.()
@@ -322,9 +331,14 @@ export const Header = () => {
                         className="absolute bottom-0 h-[1px] bg-gradient-to-r from-transparent via-[#6de1ce] to-transparent w-[100px] hidden lg:block"
                     />
 
-                    <FlexContainer width="w-fit" gap="gap-[7px]">
+                    <FlexContainer
+                        width="w-fit"
+                        gap="gap-[7px]"
+                        onClick={scrollToTop}
+                        className="cursor-pointer"
+                    >
                         <Image src={logo} alt="Cadbury logo" />
-                        <TypographyLead className="font-pp-montreal cursor-default">
+                        <TypographyLead className="font-pp-montreal">
                             Cadbury
                         </TypographyLead>
                     </FlexContainer>
