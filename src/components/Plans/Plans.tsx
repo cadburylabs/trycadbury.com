@@ -20,7 +20,6 @@ export const Plans = ({ id = '' }: { id: string }) => {
                     className="relative py-10 px-4 lg:px-14"
                 >
                     {/* horizontal gradient line */}
-                    <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
                     <span className="hidden lg:block absolute bottom-0 left-0 w-full h-px border-x-gradient" />
                     <span className="block lg:hidden text-[13px]">/</span>
 
