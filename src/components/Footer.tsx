@@ -39,9 +39,19 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                     className="lg:hidden text-[#ADBACC] text-[10px] lg:text-[14px] tracking-tight pt-8"
                     center
                 >
-                    <a className="cursor-pointer">Linkedin</a>
+                    <a
+                        href="https://www.linkedin.com/in/manish-sinha-9675b366/"
+                        className="cursor-pointer"
+                    >
+                        Linkedin
+                    </a>
                     <span>/</span>
-                    <a className="cursor-pointer">Twitter</a>
+                    <a
+                        href="https://x.com/manishsinhaha"
+                        className="cursor-pointer"
+                    >
+                        Twitter
+                    </a>
                 </FlexContainer>
                 <FlexContainer
                     justifyContent="justify-between"
@@ -58,9 +68,19 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                         gap="gap-3"
                         className="hidden lg:flex text-[#ADBACC] text-[14px] tracking-tight"
                     >
-                        <a className="cursor-pointer">Linkedin</a>
+                        <a
+                            href="https://www.linkedin.com/in/manish-sinha-9675b366/"
+                            className="cursor-pointer"
+                        >
+                            Linkedin
+                        </a>
                         <span>/</span>
-                        <a className="cursor-pointer">Twitter</a>
+                        <a
+                            href="https://x.com/manishsinhaha"
+                            className="cursor-pointer"
+                        >
+                            Twitter
+                        </a>
                     </FlexContainer>
                     <span className="text-[#7C848C] text-[9px] lg:text-[13px] tracking-tight uppercase cursor-pointer">
                         Privacy policy
