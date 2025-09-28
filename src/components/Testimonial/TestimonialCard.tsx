@@ -4,9 +4,9 @@ import { P } from '../Typography/P'
 
 type TestimonialCardProps = {
     index: number
-    logo: StaticImageData
+    logo: StaticImageData | string
     feedback: string
-    personImage: string
+    personImage: StaticImageData | string
     personName: string
     position: string
 }

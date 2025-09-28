@@ -11,6 +11,7 @@ import brain from '@/assets/brain.json'
 import circles from '@/assets/circles.json'
 
 import googleLogo from '@/assets/google.png'
+import { StaticImageData } from 'next/image'
 
 export type MenuItem = {
     label: string
@@ -140,7 +141,15 @@ export const plansConfig = [
     },
 ]
 
-export const testimonialsConfig = [
+type TestimonialItem = {
+    logo: string | StaticImageData
+    feedback: string
+    personImage: string | StaticImageData
+    personName: string
+    position: string
+}
+
+export const testimonialsConfig: TestimonialItem[] = [
     {
         logo: googleLogo,
         feedback:
