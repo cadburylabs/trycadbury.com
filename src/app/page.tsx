@@ -26,8 +26,8 @@ export default function Home() {
                 </div>
                 <Online id="online" />
                 <Benefits id="benefits" />
+                <Testimonial id="testimonial" />
                 <Plans id="plans" />
-                <Testimonial />
                 <Contact id="contact" />
             </main>
         </>
