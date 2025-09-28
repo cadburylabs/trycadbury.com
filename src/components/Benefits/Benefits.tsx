@@ -16,10 +16,9 @@ gsap.registerPlugin(ScrollTrigger)
 export const Benefits = ({ id = '' }: { id: string }) => {
     const n = benefitsConfig.length
     const containerRef = useRef<HTMLDivElement>(null)
+    const sectionRef = useRef<HTMLElement>(null)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
     const { lenis } = useLenisContext()
-
-    const CARD_OFFSET = 40
 
     useEffect(() => {
         if (!containerRef.current || !lenis) return
@@ -45,55 +44,69 @@ export const Benefits = ({ id = '' }: { id: string }) => {
             pinType: document.body.style.transform ? 'transform' : 'fixed',
         })
 
-        const isMobile = window.innerWidth < 1024
+        const cardsLength = cards.length
 
-        gsap.set(cards, { opacity: 0, y: 20, scale: 0.95 })
-        gsap.set(cards[0], { opacity: 1, y: 0, scale: 1 })
+        cards.forEach((card, index) => {
+            if (!card) return
 
-        ScrollTrigger.create({
-            trigger: containerRef.current,
-            start: isMobile ? 'top 65%' : 'top 70%',
-            end: isMobile ? 'bottom 35%' : 'bottom 30%',
-            id: 'benefits-card-container',
-            onUpdate: (self) => {
-                const progress = self.progress
-                const totalCards = cards.length
-                const cardIndex = Math.min(
-                    Math.floor(progress * totalCards),
-                    totalCards - 1
-                )
+            if (index < cards.length - 1) {
+                const nextCard = cards[index + 1]
+                const scaleValue =
+                    (100 - cardsLength) / 100 + (index + 1) * 0.01
 
-                cards.forEach((card, i) => {
-                    if (!card) return
-
-                    if (i <= cardIndex) {
-                        gsap.to(card, {
-                            opacity: 1,
-                            y: i * CARD_OFFSET,
-                            scale: 1,
-                            duration: 0.4,
-                            ease: 'power2.out',
-                            overwrite: 'auto',
-                        })
-                    } else {
-                        gsap.to(card, {
-                            opacity: 0,
-                            y: 20,
-                            scale: 0.95,
-                            duration: 0.3,
-                            ease: 'power2.out',
-                            overwrite: 'auto',
-                        })
-                    }
+                ScrollTrigger.create({
+                    trigger: nextCard,
+                    start: 'top 60%',
+                    end: 'top 40%',
+                    scrub: 1,
+                    id: `benefits-scale-${index}`,
+                    animation: gsap.to(card, {
+                        scale: scaleValue,
+                        duration: 1,
+                        ease: 'none',
+                    }),
                 })
-            },
+            }
+
+            const visiblePortion = 0
+            const stackOffset = index * visiblePortion
+
+            ScrollTrigger.create({
+                trigger: cards[cards.length - 1],
+                start: 'top 20%',
+                end: 'top 5%',
+                scrub: 1,
+                id: `benefits-stack-${index}`,
+                animation: gsap.to(card, {
+                    y: -stackOffset,
+                    duration: 1,
+                    ease: 'none',
+                }),
+            })
+
+            const headerHeight = 0
+            const finalPushUp =
+                (cardsLength - index - 1) * visiblePortion + headerHeight
+
+            ScrollTrigger.create({
+                trigger: sectionRef.current,
+                start: 'bottom bottom',
+                end: 'bottom top',
+                scrub: true,
+                id: `benefits-hide-${index}`,
+                animation: gsap.to(card, {
+                    y: -finalPushUp,
+                    duration: 1,
+                    ease: 'none',
+                }),
+            })
         })
 
         ScrollTrigger.refresh()
 
         return () => {
             ScrollTrigger.getAll().forEach((t) => {
-                if (t.vars.id === 'benefits-card-container') t.kill()
+                if (t.vars.id?.includes('benefits-')) t.kill()
             })
             lenis.off('scroll', ScrollTrigger.update)
         }
@@ -101,7 +114,11 @@ export const Benefits = ({ id = '' }: { id: string }) => {
 
     return (
         <div className="bg-gradient-dots">
-            <section id={id} className="relative mx-3 lg:mx-5 bg-gradient-dots">
+            <section
+                ref={sectionRef}
+                id={id}
+                className="relative mx-3 lg:mx-5 bg-gradient-dots"
+            >
                 <div className="relative">
                     {/* vertical gradient line */}
                     <span className="absolute top-0 left-0 h-full w-px border-y-gradient z-40" />
@@ -152,25 +169,27 @@ export const Benefits = ({ id = '' }: { id: string }) => {
                         </FlexContainer>
                     </FlexContainer>
 
-                    <div
-                        ref={containerRef}
-                        className="relative h-[530px] lg:h-[500px]"
-                    >
-                        <div className="sticky top-20">
-                            <div className="relative overflow-hidden h-[530px] lg:h-[500px]">
-                                {benefitsConfig.map((card, index) => (
-                                    <div
-                                        key={card.index ?? index}
-                                        ref={(el) => {
-                                            cardsRef.current[index] = el
-                                        }}
-                                        className="absolute top-0 left-0 w-full h-[450px] lg:h-[426px]"
-                                    >
+                    <div ref={containerRef} className="relative">
+                        {benefitsConfig.map((card, index) => {
+                            const stackOffset = index * 40
+                            return (
+                                <div
+                                    key={card.index ?? index}
+                                    ref={(el) => {
+                                        cardsRef.current[index] = el
+                                    }}
+                                    className="sticky h-[450px] lg:h-[426px]"
+                                    style={{
+                                        top: `${50 + stackOffset}px`,
+                                        zIndex: index + 1,
+                                    }}
+                                >
+                                    <div className="h-full transition-all duration-300">
                                         <BenefitsCard {...card} />
                                     </div>
-                                ))}
-                            </div>
-                        </div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </section>

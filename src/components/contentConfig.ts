@@ -10,6 +10,24 @@ import chip from '@/assets/chip.json'
 import brain from '@/assets/brain.json'
 import circles from '@/assets/circles.json'
 
+import googleLogo from '@/assets/google.png'
+
+export type MenuItem = {
+    label: string
+    target?: string
+    href?: string
+}
+
+export const menuConfig: MenuItem[] = [
+    { label: 'The Challenge', target: 'challenge' },
+    { label: 'The Fix', target: 'fix' },
+    { label: 'How it works', target: 'online' },
+    { label: 'Benefits', target: 'benefits' },
+    { label: 'Testimonial', target: 'testimonial' },
+    { label: 'Plans', target: 'plans' },
+    // { label: 'Manifestation', href: 'https://google.com' },
+]
+
 export const challengeConfig = [
     {
         index: 'CH-01',
@@ -119,5 +137,26 @@ export const plansConfig = [
             '50 GB bandwidth',
             '10 legacy Editor users',
         ],
+    },
+]
+
+export const testimonialsConfig = [
+    {
+        logo: googleLogo,
+        feedback:
+            "This solution transformed our workflow completely. The team's attention to detail and innovative approach exceeded all our expectations. Highly recommended!",
+        personImage:
+            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+        personName: 'John Anderson',
+        position: 'CEO, ACME Inc',
+    },
+    {
+        logo: googleLogo,
+        feedback:
+            'Outstanding service and support. The implementation was seamless, and the results speak for themselves. Our productivity increased by 40%.',
+        personImage:
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+        personName: 'Sarah Johnson',
+        position: 'CTO, TechCorp',
     },
 ]

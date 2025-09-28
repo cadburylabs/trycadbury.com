@@ -99,7 +99,7 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             <section
                 ref={sectionRef}
                 id={id}
-                className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden bg-gradient-dots"
+                className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden bg-gradient-dots lg:min-h-[175vh]"
             >
                 {/* vertical gradient line */}
                 <span className="block lg:hidden absolute top-0 left-0 h-full w-px border-y-gradient" />
@@ -109,7 +109,7 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                     <FlexContainer
                         direction="flex-col"
                         gap="gap-8 lg:gap-[40px]"
-                        className="challenge-left-column relative pt-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
+                        className="challenge-left-column relative py-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
                     >
                         {/* vertical gradient line */}
                         <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
@@ -138,39 +138,36 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                                 Challenge
                             </span>
                         </H2>
-
-                        <div ref={leftIconRef} className="flex-shrink-0">
-                            <LottieAnimation
-                                animationData={currentIcon}
-                                className="hidden lg:block w-[300px] max-w-[300px]"
-                                key={`icon-${activeCard}`}
-                            />
-                        </div>
                     </FlexContainer>
                 </div>
 
                 <div className="lg:w-1/2 lg:flex-shrink-0">
                     <FlexContainer
                         direction="flex-col"
-                        gap="gap-10 lg:gap-[120px]"
-                        className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 overflow-hidden"
+                        justifyContent="justify-start"
+                        // 100vh + 25vh per card count
+                        className="relative px-4 lg:px-14 overflow-hidden min-h-[175vh]"
                     >
                         <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
 
-                        {challengeConfig.map((card, index) => (
-                            <div
-                                key={card.index}
-                                ref={(el) => {
-                                    cardsRef.current[index] = el
-                                }}
-                                className="w-full max-w-full"
-                            >
-                                <ChallengeCard
-                                    {...card}
-                                    isActive={activeCard === index}
-                                />
-                            </div>
-                        ))}
+                        <div className="lg:pt-[50vh] space-y-10 lg:space-y-[15vh] pb-10 lg:pb-[50vh]">
+                            {challengeConfig.map((card, index) => (
+                                <div
+                                    key={card.index}
+                                    ref={(el) => {
+                                        cardsRef.current[index] = el
+                                    }}
+                                    className="flex items-center justify-center"
+                                >
+                                    <div className="w-full max-w-full">
+                                        <ChallengeCard
+                                            {...card}
+                                            isActive={activeCard === index}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </FlexContainer>
                 </div>
             </section>
