@@ -138,17 +138,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                                 Challenge
                             </span>
                         </H2>
-
-                        {/* <div
-                            ref={leftIconRef}
-                            className="hidden lg:block flex-shrink-0"
-                        >
-                            <LottieAnimation
-                                animationData={currentIcon}
-                                className="hidden lg:block w-[300px] max-w-[300px]"
-                                key={`icon-${activeCard}`}
-                            />
-                        </div> */}
                     </FlexContainer>
                 </div>
 
