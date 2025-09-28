@@ -7,6 +7,7 @@ import { Header } from '@/components/Header/Header'
 import { Intro } from '@/components/Intro/Intro'
 import { Online } from '@/components/Online/Online'
 import { Plans } from '@/components/Plans/Plans'
+import { Testimonial } from '@/components/Testimonial/Testimonial'
 
 export default function Home() {
     return (
@@ -26,6 +27,7 @@ export default function Home() {
                 <Online id="online" />
                 <Benefits id="benefits" />
                 <Plans id="plans" />
+                <Testimonial />
                 <Contact id="contact" />
             </main>
         </>
