@@ -25,7 +25,7 @@ export const menuConfig: MenuItem[] = [
     { label: 'Benefits', target: 'benefits' },
     { label: 'Testimonial', target: 'testimonial' },
     { label: 'Plans', target: 'plans' },
-    { label: 'Manifestation', href: 'https://google.com' },
+    // { label: 'Manifestation', href: 'https://google.com' },
 ]
 
 export const challengeConfig = [
