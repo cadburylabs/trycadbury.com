@@ -24,16 +24,12 @@ const menuConfig = [
 export const Header = () => {
     const { lenis } = useLenisContext()
 
-    const lineRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
-    const navRef = useRef<HTMLUListElement>(null)
-
     const overlayRef = useRef<HTMLDivElement>(null)
     const linksRef = useRef<HTMLLIElement[]>([])
-    const [mobileOpen, setMobileOpen] = useState(false)
+    const closeTween = useRef<gsap.core.Timeline | null>(null)
 
-    const loopTween = useRef<gsap.core.Tween>(null)
-    const [locked, setLocked] = useState(false)
+    const [mobileOpen, setMobileOpen] = useState(false)
     const [showForm, setShowForm] = useState(false)
     const [showVideo, setShowVideo] = useState(false)
 
@@ -56,73 +52,6 @@ export const Header = () => {
         mql.addEventListener('change', onChange)
         return () => mql.removeEventListener('change', onChange)
     }, [mobileOpen])
-
-    useEffect(() => {
-        if (lineRef.current && containerRef.current) {
-            const containerWidth = containerRef.current.offsetWidth
-            const lineWidth = lineRef.current.offsetWidth
-
-            loopTween.current = gsap.to(lineRef.current, {
-                x: containerWidth - lineWidth - 28,
-                duration: 14,
-                repeat: -1,
-                yoyo: true,
-                ease: 'power1.inOut',
-            })
-        }
-    }, [])
-
-    const resumeTween = useRef<gsap.core.Tween | null>(null)
-
-    const moveToLink = (target: HTMLElement) => {
-        if (!lineRef.current || !containerRef.current) return
-        if (loopTween.current) loopTween.current.kill()
-        if (resumeTween.current) resumeTween.current.kill()
-
-        const linkRect = target.getBoundingClientRect()
-        const containerRect = containerRef.current!.getBoundingClientRect()
-
-        gsap.to(lineRef.current, {
-            x: linkRect.left - containerRect.left - 28,
-            width: linkRect.width + 14,
-            duration: 0.4,
-            ease: 'power3.out',
-        })
-    }
-
-    const resumeLoop = () => {
-        if (!locked && lineRef.current && containerRef.current) {
-            if (loopTween.current) loopTween.current.kill()
-            if (resumeTween.current) resumeTween.current.kill()
-
-            const containerWidth = containerRef.current.offsetWidth
-            const lineWidth = lineRef.current.offsetWidth
-
-            resumeTween.current = gsap.to(lineRef.current, {
-                x: 0,
-                duration: 14,
-                ease: 'power2.out',
-                onComplete: () => {
-                    resumeTween.current = null
-                    loopTween.current = gsap.to(lineRef.current, {
-                        x: containerWidth - lineWidth - 28,
-                        duration: 14,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: 'power1.inOut',
-                        fromCurrent: true,
-                    })
-                },
-            })
-        }
-    }
-
-    const lockLine = (target: HTMLElement) => {
-        moveToLink(target)
-        setLocked(true)
-    }
-
-    const closeTween = useRef<gsap.core.Timeline | null>(null)
 
     const toggleMobileMenu = () => {
         if (!overlayRef.current) return
@@ -213,14 +142,8 @@ export const Header = () => {
         }
     }
 
-    const handleNavClick = (
-        e: React.MouseEvent,
-        targetId: string,
-        li: HTMLElement
-    ) => {
+    const handleNavClick = (e: React.MouseEvent, targetId: string) => {
         e.preventDefault()
-
-        lockLine(li)
 
         if (mobileOpen) {
             toggleMobileMenu()
@@ -230,7 +153,7 @@ export const Header = () => {
             const section = document.getElementById(targetId)
             if (section && lenis) {
                 lenis.scrollTo(section, {
-                    offset: -80,
+                    offset: 0,
                     duration: 2.0,
                     easing: (t) => 1 - Math.pow(1 - t, 3),
                 })
@@ -326,11 +249,6 @@ export const Header = () => {
                         </>
                     )}
 
-                    <div
-                        ref={lineRef}
-                        className="absolute bottom-0 h-[1px] bg-gradient-to-r from-transparent via-[#6de1ce] to-transparent w-[100px] hidden lg:block"
-                    />
-
                     <FlexContainer
                         width="w-fit"
                         gap="gap-[7px]"
@@ -344,25 +262,12 @@ export const Header = () => {
                     </FlexContainer>
 
                     <nav>
-                        <ul
-                            ref={navRef}
-                            className="hidden lg:flex gap-7 relative"
-                        >
+                        <ul className="hidden lg:flex gap-7 relative">
                             {menuConfig.map(({ label, target }) => (
                                 <li
                                     key={label}
                                     className="cursor-pointer tracking-tight text-[#cfdae5]"
-                                    onMouseEnter={(e) =>
-                                        moveToLink(e.currentTarget)
-                                    }
-                                    onMouseLeave={resumeLoop}
-                                    onClick={(e) =>
-                                        handleNavClick(
-                                            e,
-                                            target,
-                                            e.currentTarget
-                                        )
-                                    }
+                                    onClick={(e) => handleNavClick(e, target)}
                                 >
                                     {label}
                                 </li>
@@ -413,9 +318,7 @@ export const Header = () => {
                                 if (el) linksRef.current[i] = el
                             }}
                             className="cursor-pointer hover:text-[#6DE1CE] transition-colors duration-200"
-                            onClick={(e) =>
-                                handleNavClick(e, target, e.currentTarget)
-                            }
+                            onClick={(e) => handleNavClick(e, target)}
                         >
                             {label}
                         </li>
