@@ -1,6 +1,7 @@
 'use client'
 import { Benefits } from '@/components/Benefits/Benefits'
 import { Challenge } from '@/components/Challenge/Challenge'
+import { ChallengeOne } from '@/components/Challenge/ChallengeOne'
 import { Contact } from '@/components/Contact/Contact'
 import { Fix } from '@/components/Fix/Fix'
 import { Header } from '@/components/Header/Header'
@@ -16,6 +17,7 @@ export default function Home() {
             <main>
                 <Intro id="intro" />
                 <Challenge id="challenge" />
+                <ChallengeOne id="challenge1" />
                 <div className="relative mx-3 lg:mx-5 bg-gradient-dots">
                     <span className="absolute top-0 left-0 w-full h-px border-x-gradient" />
                     <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />

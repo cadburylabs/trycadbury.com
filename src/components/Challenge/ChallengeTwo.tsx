@@ -1,31 +1,21 @@
 'use client'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useLenisContext } from '@/context/LenisContext'
 import { FlexContainer } from '../FlexContainer'
 import { H2 } from '../Typography/H2'
-import { ChallengeCard } from './ChallengeCard'
+import { ChallengeCardTwo } from './ChallengeCardTwo'
 import Image from 'next/image'
 import pointIco from '@/assets/point.png'
-import { LottieAnimation } from '../LottieAnimation'
 import { challengeConfig } from '../contentConfig'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export const Challenge = ({ id = '' }: { id: string }) => {
+export const ChallengeTwo = ({ id = '' }: { id: string }) => {
     const { lenis } = useLenisContext()
     const sectionRef = useRef<HTMLElement | null>(null)
-    const leftIconRef = useRef<HTMLDivElement | null>(null)
     const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-    const [activeCard, setActiveCard] = useState(0)
-    const currentIcon = challengeConfig[activeCard]?.icon
-
-    const updateActiveCard = useCallback((newIndex: number) => {
-        setActiveCard((prevActive) =>
-            prevActive !== newIndex ? newIndex : prevActive
-        )
-    }, [])
 
     useEffect(() => {
         const section = sectionRef.current
@@ -64,17 +54,6 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             })
         })
 
-        cards.forEach((card, index) => {
-            if (!card) return
-            ScrollTrigger.create({
-                trigger: card,
-                start: 'center 70%',
-                end: 'center center',
-                onEnter: () => updateActiveCard(index),
-                onEnterBack: () => updateActiveCard(index),
-            })
-        })
-
         ScrollTrigger.refresh()
 
         return () => {
@@ -82,36 +61,27 @@ export const Challenge = ({ id = '' }: { id: string }) => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
             lenis.off('scroll', ScrollTrigger.update)
         }
-    }, [lenis, updateActiveCard])
-
-    useEffect(() => {
-        const iconElement = leftIconRef.current
-        if (!iconElement) return
-        gsap.fromTo(
-            iconElement,
-            { scale: 0.9, opacity: 0.7 },
-            { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }
-        )
-    }, [activeCard])
+    }, [lenis])
 
     return (
         <div className="bg-gradient-dots">
             <section
                 ref={sectionRef}
                 id={id}
-                className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden bg-gradient-dots lg:min-h-[175vh]"
+                className="relative flex flex-col lg:flex-row mx-3 lg:mx-5 overflow-hidden bg-gradient-dots"
             >
-                {/* vertical gradient line */}
+                {/* vertical gradient line for mobile */}
                 <span className="block lg:hidden absolute top-0 left-0 h-full w-px border-y-gradient" />
                 <span className="block lg:hidden absolute top-0 right-0 h-full w-px border-y-gradient" />
 
+                {/* Left column */}
                 <div className="lg:w-1/2 lg:flex-shrink-0">
                     <FlexContainer
                         direction="flex-col"
                         gap="gap-8 lg:gap-[40px]"
-                        className="challenge-left-column relative py-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
+                        className="challenge-left-column relative pt-8 lg:py-32 px-4 lg:px-14 lg:h-screen lg:max-h-screen overflow-hidden"
                     >
-                        {/* vertical gradient line */}
+                        {/* vertical gradient line for desktop */}
                         <span className="hidden lg:block absolute top-0 left-0 h-full w-px border-y-gradient" />
                         <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
 
@@ -138,47 +108,29 @@ export const Challenge = ({ id = '' }: { id: string }) => {
                                 Challenge
                             </span>
                         </H2>
-
-                        {/* <div
-                            ref={leftIconRef}
-                            className="hidden lg:block flex-shrink-0"
-                        >
-                            <LottieAnimation
-                                animationData={currentIcon}
-                                className="hidden lg:block w-[300px] max-w-[300px]"
-                                key={`icon-${activeCard}`}
-                            />
-                        </div> */}
                     </FlexContainer>
                 </div>
 
+                {/* Right column */}
                 <div className="lg:w-1/2 lg:flex-shrink-0">
                     <FlexContainer
                         direction="flex-col"
-                        justifyContent="justify-start"
-                        // 100vh + 25vh per card count
-                        className="relative px-4 lg:px-14 overflow-hidden min-h-[175vh]"
+                        gap="gap-10"
+                        className="relative h-full xl:justify-between pb-10 lg:py-32 px-4 lg:px-14 overflow-hidden"
                     >
                         <span className="hidden lg:block absolute top-0 right-0 h-full w-px border-y-gradient" />
 
-                        <div className="lg:pt-[50vh] space-y-10 lg:space-y-[15vh] pb-10 lg:pb-[50vh]">
-                            {challengeConfig.map((card, index) => (
-                                <div
-                                    key={card.index}
-                                    ref={(el) => {
-                                        cardsRef.current[index] = el
-                                    }}
-                                    className="flex items-center justify-center"
-                                >
-                                    <div className="w-full max-w-full">
-                                        <ChallengeCard
-                                            {...card}
-                                            isActive={activeCard === index}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        {challengeConfig.map((card, index) => (
+                            <div
+                                key={card.index}
+                                ref={(el) => {
+                                    cardsRef.current[index] = el
+                                }}
+                                className="w-full max-w-full"
+                            >
+                                <ChallengeCardTwo {...card} />
+                            </div>
+                        ))}
                     </FlexContainer>
                 </div>
             </section>

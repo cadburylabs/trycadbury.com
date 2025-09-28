@@ -12,7 +12,7 @@ type ChallengeCardProps = {
     isActive?: boolean
 }
 
-export const ChallengeCard = ({
+export const ChallengeCardTwo = ({
     index,
     icon,
     title,
@@ -24,7 +24,7 @@ export const ChallengeCard = ({
             className={`challenge-card transition-all duration-700 ease-out w-full max-w-full ${
                 isActive
                     ? 'opacity-100 scale-100 translate-y-0'
-                    : 'opacity-50 scale-95 translate-y-4'
+                    : 'opacity-100 scale-100 translate-y-0'
             }`}
         >
             <FlexContainer direction="flex-col" className="w-full max-w-full">
@@ -38,8 +38,7 @@ export const ChallengeCard = ({
 
                     <LottieAnimation
                         animationData={icon}
-                        // lg:hidden
-                        className="max-w-[120px]  flex-shrink-0"
+                        className="max-w-[120px] flex-shrink-0"
                     />
                     <H3 className="whitespace-pre-line w-full max-w-full overflow-hidden">
                         {title}

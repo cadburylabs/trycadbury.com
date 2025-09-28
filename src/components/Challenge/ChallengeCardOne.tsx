@@ -12,7 +12,7 @@ type ChallengeCardProps = {
     isActive?: boolean
 }
 
-export const ChallengeCard = ({
+export const ChallengeCardOne = ({
     index,
     icon,
     title,
@@ -28,26 +28,33 @@ export const ChallengeCard = ({
             }`}
         >
             <FlexContainer direction="flex-col" className="w-full max-w-full">
+                <LottieAnimation
+                    animationData={icon}
+                    className="max-w-[120px] lg:hidden flex-shrink-0"
+                />
                 <FlexContainer
-                    direction="flex-col"
-                    gap="gap-2"
+                    alignItems="items-center"
+                    justifyContent="justify-between"
                     className="relative pb-[15px] lg:pb-[30px] w-full max-w-full"
                 >
                     {/* horizontal gradient line */}
                     <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
-                    <LottieAnimation
-                        animationData={icon}
-                        // lg:hidden
-                        className="max-w-[120px]  flex-shrink-0"
-                    />
-                    <H3 className="whitespace-pre-line w-full max-w-full overflow-hidden">
-                        {title}
-                    </H3>
-                    <div className="absolute right-0 top-0 lg:top-1/4 flex-shrink-0 text-[11px] lg:text-[16px] font-roboto-mono">
+                    <FlexContainer gap="gap-3" alignItems="items-center">
+                        <LottieAnimation
+                            animationData={icon}
+                            className="hidden lg:block max-w-[80px] flex-shrink-0"
+                        />
+                        <H3 className="whitespace-pre-line w-full overflow-hidden">
+                            {title}
+                        </H3>
+                    </FlexContainer>
+
+                    <div className="text-[11px] lg:text-[16px] font-roboto-mono">
                         {index}
                     </div>
                 </FlexContainer>
+
                 <P className="pt-[15px] lg:pt-[30px] w-full max-w-full overflow-hidden">
                     {description}
                 </P>
