@@ -12,14 +12,7 @@ import { Modal } from '../Modal'
 import videoPreview from '@/assets/videoPreview.png'
 import icoBack from '@/assets/icoBack.svg'
 import { VideoPreview } from '../VideoPreview'
-
-const menuConfig = [
-    { label: 'The Challenge', target: 'challenge' },
-    { label: 'The Fix', target: 'fix' },
-    { label: 'How it works', target: 'online' },
-    { label: 'Benefits', target: 'benefits' },
-    { label: 'Comparison', target: 'plans' },
-]
+import { menuConfig, MenuItem } from '../contentConfig'
 
 export const Header = () => {
     const { lenis } = useLenisContext()
@@ -142,23 +135,27 @@ export const Header = () => {
         }
     }
 
-    const handleNavClick = (e: React.MouseEvent, targetId: string) => {
-        e.preventDefault()
-
-        if (mobileOpen) {
-            toggleMobileMenu()
+    const handleNavClick = (e: React.MouseEvent, item: MenuItem) => {
+        if (item.href) {
+            if (mobileOpen) toggleMobileMenu()
+            return
         }
 
-        setTimeout(() => {
-            const section = document.getElementById(targetId)
-            if (section && lenis) {
-                lenis.scrollTo(section, {
-                    offset: 0,
-                    duration: 2.0,
-                    easing: (t) => 1 - Math.pow(1 - t, 3),
-                })
-            }
-        }, 300)
+        if (item.target) {
+            e.preventDefault()
+            if (mobileOpen) toggleMobileMenu()
+
+            setTimeout(() => {
+                const section = document.getElementById(item.target!)
+                if (section && lenis) {
+                    lenis.scrollTo(section, {
+                        offset: 0,
+                        duration: 2,
+                        easing: (t) => 1 - Math.pow(1 - t, 3),
+                    })
+                }
+            }, 300)
+        }
     }
 
     const scrollToTop = () => {
@@ -263,13 +260,25 @@ export const Header = () => {
 
                     <nav>
                         <ul className="hidden lg:flex gap-7 relative">
-                            {menuConfig.map(({ label, target }) => (
-                                <li
-                                    key={label}
-                                    className="cursor-pointer tracking-tight text-[#cfdae5]"
-                                    onClick={(e) => handleNavClick(e, target)}
-                                >
-                                    {label}
+                            {menuConfig.map((item) => (
+                                <li key={item.label}>
+                                    <a
+                                        href={item.href ?? `#${item.target}`}
+                                        onClick={(e) => handleNavClick(e, item)}
+                                        className="cursor-pointer tracking-tight text-[#cfdae5]"
+                                        target={
+                                            item.href?.startsWith('http')
+                                                ? '_blank'
+                                                : undefined
+                                        }
+                                        rel={
+                                            item.href?.startsWith('http')
+                                                ? 'noreferrer'
+                                                : undefined
+                                        }
+                                    >
+                                        {item.label}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
@@ -311,16 +320,30 @@ export const Header = () => {
             >
                 {/* nav */}
                 <ul className="flex flex-col gap-6 text-[23px] tracking-tighter text-[#cfdae5] mb-8">
-                    {menuConfig.map(({ label, target }, i) => (
+                    {menuConfig.map((item, i) => (
                         <li
-                            key={label}
+                            key={item.label}
                             ref={(el) => {
                                 if (el) linksRef.current[i] = el
                             }}
                             className="cursor-pointer hover:text-[#6DE1CE] transition-colors duration-200"
-                            onClick={(e) => handleNavClick(e, target)}
                         >
-                            {label}
+                            <a
+                                href={item.href ?? `#${item.target}`}
+                                onClick={(e) => handleNavClick(e, item)}
+                                target={
+                                    item.href?.startsWith('http')
+                                        ? '_blank'
+                                        : undefined
+                                }
+                                rel={
+                                    item.href?.startsWith('http')
+                                        ? 'noreferrer'
+                                        : undefined
+                                }
+                            >
+                                {item.label}
+                            </a>
                         </li>
                     ))}
                 </ul>

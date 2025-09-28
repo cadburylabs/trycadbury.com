@@ -12,6 +12,22 @@ import circles from '@/assets/circles.json'
 
 import googleLogo from '@/assets/google.png'
 
+export type MenuItem = {
+    label: string
+    target?: string
+    href?: string
+}
+
+export const menuConfig: MenuItem[] = [
+    { label: 'The Challenge', target: 'challenge' },
+    { label: 'The Fix', target: 'fix' },
+    { label: 'How it works', target: 'online' },
+    { label: 'Benefits', target: 'benefits' },
+    { label: 'Testimonial', target: 'testimonial' },
+    { label: 'Plans', target: 'plans' },
+    { label: 'Manifestation', href: 'https://google.com' },
+]
+
 export const challengeConfig = [
     {
         index: 'CH-01',
