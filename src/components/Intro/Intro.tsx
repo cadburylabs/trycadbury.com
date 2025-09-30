@@ -5,7 +5,7 @@ import { P } from '../Typography/P'
 import { Button } from '../Button'
 import { Modal } from '../Modal'
 import Image from 'next/image'
-import videoPreview from '@/assets/videoPreview.png'
+import videoPreview from '@/assets/videoPreview_2.png'
 import icoBack from '@/assets/icoBack.svg'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -46,10 +46,10 @@ export const Intro = ({ id = '' }: { id: string }) => {
                     <H1>
                         Cadbury is an <br />
                         <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                            AI NetSuite
+                            AI powered
                         </span>
                         <br />
-                        Consultant
+                        NetSuite Consultant
                     </H1>
                     <FlexContainer
                         direction="flex-col"
@@ -57,19 +57,10 @@ export const Intro = ({ id = '' }: { id: string }) => {
                         className="lg:max-w-[500px]"
                     >
                         <P>
-                            Cadbury builds workflows,{' '}
-                            <span className="font-medium">
-                                edits PDF templates
-                            </span>
-                            , and creates saved searches in minutes.
-                        </P>
-                        <P>
-                            Trained on a proprietary corpus of data sourced from
-                            hundreds of expert consultants, Cadbury is the last
-                            consultant you’ll ever need.
+                            Whether it's creating saved searches, building workflows, or writing integrations, Cadbury does it all—instantly.
                         </P>
                     </FlexContainer>
-                    <Button className="mt-8">Schedule a Consultation</Button>
+                    <Button className="mt-8">Let's Talk</Button>
                 </FlexContainer>
 
                 <FlexContainer center className="relative lg:px-14">
@@ -78,7 +69,7 @@ export const Intro = ({ id = '' }: { id: string }) => {
 
                     <VideoPreview
                         src={videoPreview}
-                        onClick={() => setShowVideo(true)}
+                        youtubeUrl="https://www.youtube.com/watch?v=nrX3lxsy_J0"
                     />
                 </FlexContainer>
                 <Modal

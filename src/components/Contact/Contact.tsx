@@ -126,9 +126,8 @@ export const Contact = ({ id = '' }: { id: string }) => {
                                     Started
                                 </span>
                             </H2>
-                            <P>PS - we’re at SuiteWorld 2025. Come say hi!</P>
                         </FlexContainer>
-                        <Button>Schedule a Consultation</Button>
+                        <Button>Let's Talk</Button>
                     </FlexContainer>
                     <Image src={logoColor} alt="" />
                 </FlexContainer>

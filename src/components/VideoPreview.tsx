@@ -8,21 +8,31 @@ interface VideoPreviewProps {
     src: StaticImageData
     header?: boolean
     alt?: string
-    onClick: () => void
+    youtubeUrl?: string
+    onClick?: () => void
 }
 
 export const VideoPreview = ({
     src,
     header,
     alt = 'video preview',
+    youtubeUrl,
     onClick,
 }: VideoPreviewProps) => {
+    const handleClick = () => {
+        if (youtubeUrl) {
+            window.open(youtubeUrl, '_blank', 'noopener,noreferrer')
+        } else if (onClick) {
+            onClick()
+        }
+    }
+
     return (
         <Box
             className={`${
                 header ? '' : 'mx-4'
             } my-8 group cursor-pointer relative`}
-            onClick={onClick}
+            onClick={handleClick}
         >
             <Image
                 src={src}

@@ -90,7 +90,7 @@ export const Form = ({ open, onClose }: FormProps) => {
         <Modal isOpen={open} onClose={onClose} className="mx-5 text-white">
             <FlexContainer
                 direction="flex-col"
-                gap="gap-6"
+                gap="gap-0"
                 className="border-[0.5px] border-[#363E44] px-[30px]"
             >
                 <Box className="w-full">
@@ -117,18 +117,6 @@ export const Form = ({ open, onClose }: FormProps) => {
                             className="cursor-pointer"
                         />
                     </FlexContainer>
-                    <Box className="w-full text-center">
-                        <span className="text-[17px] lg:text-[23px] font-medium tracking-tighter leading-none">
-                            Going to{' '}
-                            <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                                SuiteWorld 2025?
-                            </span>{' '}
-                            <br />
-                            <span className="underline decoration-[0.5px] underline-offset-2">
-                                {"Let's meet up in person"}
-                            </span>
-                        </span>
-                    </Box>
                 </Box>
 
                 <form

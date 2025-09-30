@@ -30,9 +30,7 @@ export const TestimonialCard = ({
                     <Image
                         src={logo}
                         alt="Company Logo"
-                        width={120}
-                        height={48}
-                        className="h-12 w-auto object-contain"
+                        className="h-6 w-auto object-contain"
                     />
                 </div>
             </div>

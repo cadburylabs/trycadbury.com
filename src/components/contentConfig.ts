@@ -10,23 +10,34 @@ import chip from '@/assets/chip.json'
 import brain from '@/assets/brain.json'
 import circles from '@/assets/circles.json'
 
-import googleLogo from '@/assets/google.png'
+import naveen from '@/assets/naveen.jpeg'
+import pranjal from '@/assets/pranjal.jpg'
+import baileyLogo from '@/assets/bailey.png'
+import accendLogo from '@/assets/accend.png'
+
 import { StaticImageData } from 'next/image'
 
 export type MenuItem = {
     label: string
     target?: string
     href?: string
+    icon?: string
 }
+
+// External link icon (up-right-from-square style)
+const externalLinkIcon = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.5 2.5H7.5V7.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.5 2.5L2.5 7.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
 
 export const menuConfig: MenuItem[] = [
     { label: 'The Challenge', target: 'challenge' },
     { label: 'The Fix', target: 'fix' },
     { label: 'How it works', target: 'online' },
     { label: 'Benefits', target: 'benefits' },
-    { label: 'Testimonial', target: 'testimonial' },
+    { label: 'Testimonials', target: 'testimonial' },
     { label: 'Plans', target: 'plans' },
-    // { label: 'Manifestation', href: 'https://google.com' },
+    { label: 'Manifesto', href: 'https://google.com', icon: externalLinkIcon },
 ]
 
 export const challengeConfig = [
@@ -35,45 +46,45 @@ export const challengeConfig = [
         icon: phone,
         title: 'One Big Game of Telephone',
         description:
-            'In 2025, you shouldn’t need four different people to service your request. Yet due to a broken system, your simple request to edit a PDF template leads to one big game of telephone with a sales rep, an engagement manager, a functional consultant, and finally a technical consultant.',
+            'You shouldn’t need four different people to service your ticket. <br/><br/>But due to a broken system that equates team size with capability, your simple request to edit a PDF template leads to a big game of telephone with a sales rep, an engagement manager, a functional consultant, and finally a technical consultant.',
     },
     {
         index: 'CH-02',
         icon: glass,
         title: 'Perpetual Discovery',
         description:
-            'What kind of business are you? What’s important to you? Order-to-cash, procure-to-pay - how do you go about it? You’ve answered these questions hundreds of times, and yet every consulting firm you onboard has to ask again. And when that firm leaves your team? All that training leaves with them.',
+            '"What kind of business are you? What’s important to you? Order-to-cash, procure-to-pay—how do you go about it?" <br/><br/>You’ve answered these questions hundreds of times, and yet every consulting firm you onboard has to ask them again. And when that firm leaves your team? All that training leaves with them.',
     },
     {
         index: 'CH-03',
         icon: browser,
-        title: 'Developer Experience?\nWhat Developer Experience?',
+        title: 'What Developer Experience?',
         description:
-            'In NetSuite, there is no local environment, no version control, and no testing framework. Without this infrastructure, existing consultants move slowly and are prone to making errors.',
+            'In NetSuite, there is no local environment, no version control, and no testing framework. Without modern infrastructure, existing consultants move slowly and are prone to making errors.',
     },
 ]
 
 export const fixConfig = [
     {
         index: 'CH-01',
-        title: 'Down with the Bureaucracy',
+        title: 'Smash the Bureaucracy',
         image: hammer,
         description:
-            'Stop depending on large consulting firms that have to fit your needs into their bureaucracy. Cadbury is your always available AI powered NetSuite Consultant, ready to act when your business needs it—not the other way around.',
+            'Big firms love week long discovery sessions, multi page SOWs, and a bureaucracy of consultants. You should be growing your business, not wasting time on their process. <br/><br/>Cadbury is your always available, hyper aware AI powered NetSuite consultant. You issue a ticket, and it gets to work—without all the process.'
     },
     {
         index: 'CH-02',
-        title: 'Context Aware',
+        title: 'Hyper Accurate',
         image: ring,
         description:
-            'After installation, Cadbury automatically builds a dense understanding of the inner workings of your NetSuite instance by scanning scripts, workflows, and integrations. Combined with its own proprietary trained data—sourced from hundreds of expert NetSuite consultants—Cadbury moves faster and more accurately than the typical consultant.',
+            'Cadbury builds a dense understanding of the inner workings of your NetSuite instance by scanning active scripts, workflows, and integrations. Combined with its own proprietary trained data—sourced from hundreds of expert NetSuite consultants—Cadbury moves faster and more accurately than existing consultants.',
     },
     {
         index: 'CH-03',
         title: 'A Modern DX',
         image: cards,
         description:
-            'Stop depending on large consulting firms that have to fit your needs into their bureaucracy. Cadbury is your always available AI powered NetSuite Consultant, ready to act when your business needs it—not the other way around.',
+            'Modern development tooling for NetSuite development doesn\'t exist—so we created it.<br/><br/>Cadbury leverages it in writing, deploying, and testing all of its work. A modern DX leads to fewer bugs, quicker feedback cycles, and a faster moving business.',
     },
 ]
 
@@ -84,7 +95,7 @@ export const benefitsConfig = [
         tag: 'Swift',
         title: 'Speed',
         description:
-            'Cadbury takes tasks that would take a human consultant days or weeks to finish—and leverages AI to complete them in minutes. We believe your business deserves to move fast, and shouldn’t be slowed down by inefficient consulting firms.',
+            'Cadbury takes tasks that would take an existing consultant weeks to finish—and leverages AI to complete them in minutes. You deserve to be growing your business rapidly, and your NetSuite tooling should match that.'
     },
     {
         index: 'BS-02',
@@ -92,7 +103,7 @@ export const benefitsConfig = [
         tag: 'Precise',
         title: 'Accuracy',
         description:
-            'Trained on proprietary knowledge that we’ve sourced from hundreds of expert NetSuite consultants, Cadbury is more accurate & complete than existing solutions like ChatGPT and SuiteAnswers.',
+            'Trained on proprietary knowledge that we’ve sourced from hundreds of expert NetSuite consultants, Cadbury is more accurate & complete than existing solutions like ChatGPT and SuiteAnswers. Not only does it form an accurate plan of action, it can go ahead and execute them in your NetSuite instance.',
     },
     {
         index: 'BS-03',
@@ -108,35 +119,35 @@ export const plansConfig = [
     {
         className: '',
         title: 'Self Serve',
-        monthly: 49,
+        monthly: 750,
         description:
-            'You deserve to be growing your business, not managing another consultant.',
+            'Crafted for medium sized businesses who need an on-demand NetSuite admin.',
         publishing: [
-            'Integration with the Webflow Enterprise platform',
-            'Integrations with CRMs and marketing systems of record',
-            'Integrations with ABM tools',
+            'Health checks',
+            'Data migration',
+            'PDF template editor',
         ],
         hosting: [
-            '50 form submits (lifetime)',
-            '1 GB bandwidth',
-            '20 CMS collections',
+            'More coming soon...',
+            'More coming soon...',
+            'More coming soon...'
         ],
     },
     {
         className: '',
         title: 'White Glove',
-        monthly: 135,
+        monthly: -1,
         description:
-            'Enterprise-grade performance, security, and control — designed for teams who demand more.',
+            'Tailored for larger enterprises who need a human touch. Includes everything in Self Serve, plus...',
         publishing: [
-            'Advanced targeting with Enhanced Match',
-            'Integrations with CRMs and marketing systems of record',
-            'Integrations with ABM tools',
+            'SuiteFlow + SuiteScript generation',
+            'CadburyGPT (custom LLM trained on NetSuite)',
+            'Automated integrations',
         ],
         hosting: [
-            'Unlimited form submits',
-            '50 GB bandwidth',
-            '10 legacy Editor users',
+            'Quarter end close',
+            'Revenue reconciliation',
+            'Compliance audits'
         ],
     },
 ]
@@ -151,21 +162,21 @@ type TestimonialItem = {
 
 export const testimonialsConfig: TestimonialItem[] = [
     {
-        logo: googleLogo,
+        logo: baileyLogo,
         feedback:
-            "This solution transformed our workflow completely. The team's attention to detail and innovative approach exceeded all our expectations. Highly recommended!",
+            "As a lean manufacturing organization, we are not in the business of managing a fleet of consultants. With Cadbury, we were able to leverage NetSuite immediately, accelerating our adoption curve while keeping focus on core operations. Instead of viewing NetSuite as a cost center, we have been able to realize its value from day 1.",
         personImage:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-        personName: 'John Anderson',
-        position: 'CEO, ACME Inc',
+            naveen,
+        personName: 'Naveen Vinta',
+        position: 'CEO, Bailey Cranes',
     },
     {
-        logo: googleLogo,
+        logo: accendLogo,
         feedback:
-            'Outstanding service and support. The implementation was seamless, and the results speak for themselves. Our productivity increased by 40%.',
+            'Cadbury was a delight to work with. We value speed both in our own work and with who we partner with. Cadbury\'s AI tech meant dealing with less people, doing less manual work, and an on-time delivery for us.',
         personImage:
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-        personName: 'Sarah Johnson',
-        position: 'CTO, TechCorp',
+            pranjal,
+        personName: 'Pranjal Daga',
+        position: 'CEO, Accend',
     },
 ]

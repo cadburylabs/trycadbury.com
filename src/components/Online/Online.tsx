@@ -48,12 +48,7 @@ export const Online = ({ id = '' }: { id: string }) => {
                     <LottieAnimation animationData={clock} />
                     <span className="-mt-12 lg:hidden text-[21px] font-medium tracking-tight leading-none text-center">
                         No implementation periods, no calls with our developers,
-                        no gimmicks. Simply add{' '}
-                        <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                            Cadbury as a user with admin privileges
-                        </span>{' '}
-                        into your sandbox account, and we’ll take care of the
-                        rest.
+                        and no gimmicks.<br/><br/>Add Cadbury to your sandbox, and in <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">under a minute</span>, it's ready to start working on your tickets.
                         <Box className="w-full flex justify-center">
                             <Image
                                 src={gradientLogo}
@@ -76,12 +71,7 @@ export const Online = ({ id = '' }: { id: string }) => {
                     <LottieAnimation animationData={browserProfile} />
                     <span className="-mt-32 max-w-[500px] text-[30px] font-medium tracking-tighter leading-none text-center">
                         No implementation periods, no calls with our developers,
-                        no gimmicks. Simply add{' '}
-                        <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                            Cadbury as a user with admin privileges
-                        </span>{' '}
-                        into your sandbox account, and we’ll take care of the
-                        rest.
+                        and no gimmicks.<br/><br/>Add Cadbury to your sandbox, and in <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">under a minute</span>, it's ready to start working on your tickets.
                         <Box className="w-full flex justify-center">
                             <Image
                                 src={gradientLogo}

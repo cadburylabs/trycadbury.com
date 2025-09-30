@@ -5,6 +5,7 @@ import { P } from '../Typography/P'
 
 import Image from 'next/image'
 import pointIco from '@/assets/point.png'
+import { Button } from '../Button'
 
 type PlansCardProps = {
     title: string
@@ -45,12 +46,19 @@ export const PlansCard = ({
 
                 <H3>{title}</H3>
                 <H3>
-                    <span className="bg-gradient-to-r from-[#6DE1CE] via-[#288FF6] to-[#32FFFF] bg-clip-text text-transparent">
-                        {`$${monthly}`}
-                    </span>
-                    <span className="pl-1 uppercase text-[15px] lg:text-[16px] tracking-tighter font-roboto-mono">
-                        /mo
-                    </span>
+                    {monthly !== -1 ? (
+                        <>
+                        <span className="pl-1 uppercase text-[15px] lg:text-[20px] tracking-tighter font-roboto-mono">
+                                {`$${monthly}`}
+                            /mo
+                        </span>
+                        </>
+                    ) : (
+                        <span className="pl-1 uppercase text-[15px] lg:text-[20px] tracking-tighter font-roboto-mono">
+                            <Button unstyled>Let's talk</Button>
+                        </span>
+                        )
+                        }
                 </H3>
             </FlexContainer>
 
@@ -74,7 +82,7 @@ export const PlansCard = ({
                 <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
                 <P className="uppercase tracking-tight text-[14px] lg:text-[16px] font-roboto-mono">
-                    Publishing
+                    Basic
                 </P>
                 <ul className="space-y-2 list-none pl-0">
                     {publishing.map((point) => (
@@ -99,7 +107,7 @@ export const PlansCard = ({
                 <span className="absolute bottom-0 left-0 w-full h-px border-x-gradient" />
 
                 <P className="uppercase tracking-tight text-[14px] lg:text-[16px] font-roboto-mono">
-                    Hosting
+                    Advanced
                 </P>
                 <ul className="space-y-2 list-none pl-0">
                     {hosting.map((point) => (

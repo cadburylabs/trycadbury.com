@@ -9,7 +9,7 @@ import gsap from 'gsap'
 import { useLenisContext } from '@/context/LenisContext'
 import { Form } from '../Contact/Form'
 import { Modal } from '../Modal'
-import videoPreview from '@/assets/videoPreview.png'
+import videoPreview from '@/assets/videoPreview_2.png'
 import icoBack from '@/assets/icoBack.svg'
 import { VideoPreview } from '../VideoPreview'
 import { menuConfig, MenuItem } from '../contentConfig'
@@ -265,7 +265,7 @@ export const Header = () => {
                                     <a
                                         href={item.href ?? `#${item.target}`}
                                         onClick={(e) => handleNavClick(e, item)}
-                                        className="cursor-pointer tracking-tight text-[#cfdae5]"
+                                        className="cursor-pointer tracking-tight text-[#cfdae5] hover:text-white transition-colors duration-200"
                                         target={
                                             item.href?.startsWith('http')
                                                 ? '_blank'
@@ -278,6 +278,12 @@ export const Header = () => {
                                         }
                                     >
                                         {item.label}
+                                        {item.icon && (
+                                            <span 
+                                                className="ml-1 inline-block"
+                                                dangerouslySetInnerHTML={{ __html: item.icon }}
+                                            />
+                                        )}
                                     </a>
                                 </li>
                             ))}

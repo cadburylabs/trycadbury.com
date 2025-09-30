@@ -33,11 +33,11 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                     fontSize="text-[19px] md:text-[40px]"
                     className="text-center leading-tight max-w-[800px]"
                 >
-                    You Deserve{' '}
+                    You deserve to be{' '}
                     <span className="text-[#6DE1CE]">
-                        to Be Growing Your Business
+                        growing your business
                     </span>
-                    , not Managing Another Consultant.
+                    , not managing another team of consultants.
                 </H3>
             </div>
             <FlexContainer
@@ -55,14 +55,12 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                         href="https://www.linkedin.com/in/manish-sinha-9675b366/"
                         className="cursor-pointer"
                     >
-                        Linkedin
                     </a>
-                    <span>/</span>
+                    <span></span>
                     <a
                         href="https://x.com/manishsinhaha"
                         className="cursor-pointer"
                     >
-                        Twitter
                     </a>
                 </FlexContainer>
                 <FlexContainer
@@ -70,7 +68,7 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                     className="font-roboto-mono"
                 >
                     <span className="text-[#ADBACC] text-[10px] lg:text-[14px] tracking-tight">
-                        ©2025 Cadbury.
+                        ©2025 Cadbury Inc.
                     </span>
                     <span className="text-[#7C848C] text-[9px] lg:text-[13px] tracking-tight uppercase">
                         All rights reserved.
@@ -84,18 +82,14 @@ export const Footer = ({ animatedBlockRef }: FooterProps) => {
                             href="https://www.linkedin.com/in/manish-sinha-9675b366/"
                             className="cursor-pointer"
                         >
-                            Linkedin
                         </a>
-                        <span>/</span>
                         <a
                             href="https://x.com/manishsinhaha"
                             className="cursor-pointer"
                         >
-                            Twitter
                         </a>
                     </FlexContainer>
                     <span className="text-[#7C848C] text-[9px] lg:text-[13px] tracking-tight uppercase cursor-pointer">
-                        Privacy policy
                     </span>
                     <span
                         onClick={scrollToTop}
