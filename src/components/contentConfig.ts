@@ -37,7 +37,7 @@ export const menuConfig: MenuItem[] = [
     { label: 'Benefits', target: 'benefits' },
     { label: 'Testimonials', target: 'testimonial' },
     { label: 'Plans', target: 'plans' },
-    { label: 'Manifesto', href: 'https://google.com', icon: externalLinkIcon },
+    { label: 'Manifesto', href: 'https://trycadbury.com/manifesto', icon: externalLinkIcon },
 ]
 
 export const challengeConfig = [
@@ -124,7 +124,7 @@ export const plansConfig = [
             'Crafted for medium sized businesses who need an on-demand NetSuite admin.',
         publishing: [
             'Health checks',
-            'Data migration',
+            'Data migrations',
             'PDF template editor',
         ],
         hosting: [

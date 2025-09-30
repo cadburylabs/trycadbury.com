@@ -229,7 +229,7 @@ export const Header = () => {
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full px-[13px] lg:px-[21px] z-[100] font-roboto-mono">
+            <header className="relative top-0 left-0 w-full px-[13px] lg:px-[21px] z-[100] font-roboto-mono">
                 <FlexContainer
                     ref={containerRef}
                     justifyContent="justify-between"

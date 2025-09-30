@@ -80,10 +80,27 @@ export const Form = ({ open, onClose }: FormProps) => {
     })
 
     const onSubmit = async (data: FormData) => {
-        console.log('Form submitted:', data)
-        // TODO: send to API if needed
-        showThankYou()
-        reset()
+        try {
+            const response = await fetch('https://formspree.io/f/mblzoaly', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+
+            if (response.ok) {
+                console.log('Form submitted successfully')
+                showThankYou()
+                reset()
+            } else {
+                console.error('Form submission failed')
+                // You might want to show an error message to the user
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error)
+            // You might want to show an error message to the user
+        }
     }
 
     return (

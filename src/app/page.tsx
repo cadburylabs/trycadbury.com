@@ -8,10 +8,12 @@ import { Intro } from '@/components/Intro/Intro'
 import { Online } from '@/components/Online/Online'
 import { Plans } from '@/components/Plans/Plans'
 import { Testimonial } from '@/components/Testimonial/Testimonial'
+import { Banner } from '@/components/Banner'
 
 export default function Home() {
     return (
         <>
+            <Banner />
             <Header />
             <main>
                 <Intro id="intro" />
