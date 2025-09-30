@@ -33,7 +33,7 @@ And the consequences are brutal:
 <ol className="list-decimal list-outside ml-6">
 <li>Businesses are distracted from growing their business, with staff working a second job hand holding consultants.</li>
 <li>Consultants are slow and inefficient, because they lack modern tooling to develop, test, and deploy their work.</li>
-<li>The underlying products are stuck with a horrific time-to-value proposition, unable to deliver value to end users for months.</li>
+<li>NetSuite is stuck with a horrific time-to-value proposition, unable to deliver value to end users for months.</li>
 </ol>
 <br/>
 As a team of NetSuite consultants and software engineers, we’ve felt this pain. So we decided to do something about it.
