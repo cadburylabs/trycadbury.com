@@ -53,7 +53,7 @@ export const ChallengeCard = ({
                         <span className="block lg:hidden absolute bottom-0 left-0 w-full h-px border-x-gradient" />
                         {title}
                     </H3>
-                    <P 
+                    <p 
                         className="pt-4 lg:pt-0"
                         dangerouslySetInnerHTML={{ __html: description }}
                     />

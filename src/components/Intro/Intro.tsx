@@ -57,10 +57,10 @@ export const Intro = ({ id = '' }: { id: string }) => {
                         className="lg:max-w-[500px]"
                     >
                         <P>
-                            Whether it's creating saved searches, building workflows, or writing integrations, Cadbury does it all—instantly.
+                            Whether it&apos;s creating saved searches, building workflows, or writing integrations, Cadbury does it all—instantly.
                         </P>
                     </FlexContainer>
-                    <Button className="mt-8">Let's Talk</Button>
+                    <Button className="mt-8">Let&apos;s Talk</Button>
                 </FlexContainer>
 
                 <FlexContainer center className="relative lg:px-14">

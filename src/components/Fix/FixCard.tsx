@@ -51,7 +51,7 @@ export const FixCard = ({
 
                         {title}
                     </H3>
-                    <P 
+                    <p 
                         className="pt-4 lg:pt-0"
                         dangerouslySetInnerHTML={{ __html: description }}
                     />

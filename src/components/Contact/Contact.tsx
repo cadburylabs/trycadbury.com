@@ -127,7 +127,7 @@ export const Contact = ({ id = '' }: { id: string }) => {
                                 </span>
                             </H2>
                         </FlexContainer>
-                        <Button>Let's Talk</Button>
+                        <Button>Let&apos;s Talk</Button>
                     </FlexContainer>
                     <Image src={logoColor} alt="" />
                 </FlexContainer>

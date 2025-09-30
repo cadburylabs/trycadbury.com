@@ -55,7 +55,7 @@ export const PlansCard = ({
                         </>
                     ) : (
                         <span className="pl-1 uppercase text-[15px] lg:text-[20px] tracking-tighter font-roboto-mono">
-                            <Button unstyled>Let's talk</Button>
+                            <Button unstyled>Let&apos;s talk</Button>
                         </span>
                         )
                         }
